@@ -4,5 +4,5 @@ project(OpenGL VERSION 1.0
         DESCRIPTION "Basic framework for easy OpenGL development"
         LANGUAGES CXX C)
 
-add_subdirectory(opengl-Prelude)
+add_subdirectory(opengl-Firefly)
 add_subdirectory(opengl-Sandbox)
