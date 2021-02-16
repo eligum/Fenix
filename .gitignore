@@ -1,0 +1,10 @@
+# Files
+*.out
+*.exe
+*.x
+*.el
+*.json
+
+# Directories
+/[Bb]uild
+/.ccls*

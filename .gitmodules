@@ -1,0 +1,8 @@
+[submodule "Prelude/vendor/glfw"]
+    path = opengl-Prelude/vendor/glfw
+    url = https://github.com/glfw/glfw.git
+    branch = master
+[submodule "Prelude/vendor/glm"]
+    path = opengl-Prelude/vendor/glm
+    url = https://github.com/g-truc/glm.git
+    branch = master
