@@ -1,0 +1,3 @@
+[submodule "opengl-Firefly/vendor/glm"]
+	path = opengl-Firefly/vendor/glm
+	url = git@github.com:g-truc/glm.git
