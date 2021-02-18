@@ -1,9 +1,7 @@
 file(GLOB SOURCES "*.cc")
-message("${SOURCES}")
-add_executable(Firefly "${SOURCES}")
+
+add_library(Firefly SHARED "${SOURCES}")
 
 target_link_libraries(Firefly PRIVATE lib_external_deps)
 
-# target_include_directories()
-
-# target_compile_options()
+target_include_directories(Firefly PUBLIC ../include)
