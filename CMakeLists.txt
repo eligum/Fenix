@@ -1,17 +1,6 @@
-cmake_minimum_required(VERSION 3.12)
-
-project(OpenGL VERSION 1.0
-        DESCRIPTION "Basic framework for easy OpenGL development"
-        LANGUAGES CXX C)
-
-# Build framework library
-add_subdirectory(opengl-Firefly)
-
-# Build framework executable
-add_subdirectory(opengl-Sandbox)
-
-# ----------------------------------------------------------------------- #
-
+# ---------------------------------------------------------------------------- #
+#                                CMAKE ROOT FILE                               #
+# ---------------------------------------------------------------------------- #
 cmake_minimum_required(VERSION 3.14)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -20,23 +9,24 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
-include(PreventInSourceBuilds)
-
 ## Establish project ##
 
 project(OpenGL VERSION 1.0
         DESCRIPTION "Basic framework for easy OpenGL development"
         LANGUAGES CXX C)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin-${PROJECT_NAME}")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin-${PROJECT_NAME}")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin-${PROJECT_NAME}")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin-${CMAKE_BUILD_TYPE}")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin-${CMAKE_BUILD_TYPE}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin-${CMAKE_BUILD_TYPE}")
 
 ## Dependencies ##
 
-add_subdirectory()
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
+include(functions)
+PreventInSourceBuilds()
 
-## Build app ##
+add_subdirectory(vendor)
+
+## Build project target ##
 
 add_subdirectory(src)
