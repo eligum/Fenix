@@ -14,7 +14,7 @@ find_package(glm REQUIRED)
 
 add_library(lib_external_deps INTERFACE)
 target_link_libraries(lib_external_deps INTERFACE
-                                        glfw3
+                                        glfw
                                         glm::glm
                                         glad
                                         stb)
