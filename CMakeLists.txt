@@ -30,6 +30,7 @@ PreventInSourceBuilds()
 
 add_subdirectory(vendor)
 
-## Build project target ##
+## Build project targets ##
 
 add_subdirectory(src)
+add_subdirectory(examples)
