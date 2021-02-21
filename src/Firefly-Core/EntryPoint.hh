@@ -8,8 +8,9 @@ extern flyCore::Application* flyCore::CreateApplication();
 int main(int argc, char** argv)
 {
     flyCore::Log::Init();
-    flyCore::Log::GetCoreLogger()->warn("Initialized Log!");
-    flyCore::Log::GetClientLogger()->warn("Initialized Log!");
+    FLY_CORE_WARN("Initialized Log!");
+    int a = 8;
+    FLY_INFO("Hello! Var={0}", a);
 
     auto app = flyCore::CreateApplication();
     app->Run();
