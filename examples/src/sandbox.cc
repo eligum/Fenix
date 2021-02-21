@@ -3,14 +3,12 @@
 class Sandbox : public flyCore::Application
 {
 public:
-    Sandbox() {}
+    Sandbox(){}
 
     ~Sandbox() {}
 };
 
-int main()
+flyCore::Application* flyCore::CreateApplication()
 {
-    Sandbox* sandbox = new Sandbox();
-    sandbox->Run();
-    delete sandbox;
+    return new Sandbox;
 }

@@ -9,3 +9,7 @@
 #include <cstddef>
 
 #include "../src/Firefly-Core/Application.hh"
+
+// ----Entry Point----------------------------
+#include "../src/Firefly-Core/EntryPoint.hh"
+// -------------------------------------------
