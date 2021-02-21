@@ -4,3 +4,6 @@
 [submodule "vendor/glfw"]
 	path = vendor/glfw
 	url = git@github.com:glfw/glfw.git
+[submodule "vendor/spdlog"]
+	path = vendor/spdlog
+	url = git@github.com:gabime/spdlog.git
