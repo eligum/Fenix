@@ -20,4 +20,4 @@ target_link_libraries(lib_external_deps INTERFACE
                                         glm::glm
                                         glad
                                         stb
-                                        spdlog::spdlog)
+                                        spdlog)
