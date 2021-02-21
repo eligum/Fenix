@@ -1,9 +1,6 @@
-# file(GLOB SOURCES "*.cc")
+file(GLOB SOURCES "Firefly-Core/*.cc")
 
-# add_executable(Firefly "${SOURCES}")
-add_library(Firefly SHARED Firefly-Core/Application.cc
-                           Firefly-Core/Application.hh
-                           )
+add_library(Firefly SHARED ${SOURCES})
 
 target_link_libraries(Firefly PUBLIC lib_external_deps)
 
