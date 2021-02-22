@@ -1,17 +1,13 @@
-#include "Application.hh"
-
-#include <iostream>
-#include <unistd.h>
+#include "Firefly/Core/Application.hh"
+#include "Firefly/Core/Log.hh"
+#include "Firefly/Core/Events/ApplicationEvent.hh"
 
 namespace flyCore {
 
     void Application::Run()
     {
         while (true)
-        {
-            std::cout << "Welcome to firefly" << '\n';
-            sleep(2);
-        }
+            ;
     }
 
 } // namespace flyCore

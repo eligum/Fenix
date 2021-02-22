@@ -1,4 +1,4 @@
-#include "Firefly.hh"
+#include "Firefly/Firefly.hh"
 
 class Sandbox : public flyCore::Application
 {
