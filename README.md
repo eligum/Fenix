@@ -7,7 +7,7 @@ This project uses CMake to generate build files. The following commands should h
 ```console
 $ mkdir -p build
 $ cd build
-$ cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=YES
+$ cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=YES -DSPDLOG_BUILD_SHARED=ON
 ```
 
 ## Features
