@@ -6,6 +6,10 @@ namespace flyCore {
 
     void Application::Run()
     {
+        WindowResizeEvent e(1280, 720);
+        if (e.IsInCategory(EventCategoryApplication))
+            FLY_INFO(e);
+
         while (true)
             ;
     }
