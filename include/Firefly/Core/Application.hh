@@ -1,6 +1,6 @@
 #pragma once
 
-#include <string>
+#include "Firefly/flypch.hh"
 
 namespace flyCore {
 
@@ -8,8 +8,8 @@ namespace flyCore {
     {
     public:
         // Application(const std::string& title = "OpenGL Sandbox", uint32_t width = 1280, uint32_t height = 720);
-        Application() = default;
-        virtual ~Application() = default;
+        Application();
+        virtual ~Application();
 
         void Run();
     };

@@ -3,7 +3,7 @@
 class Sandbox : public flyCore::Application
 {
 public:
-    Sandbox(){}
+    Sandbox() {}
 
     ~Sandbox() {}
 };

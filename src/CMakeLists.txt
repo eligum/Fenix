@@ -5,3 +5,5 @@ add_library(Firefly SHARED ${SOURCES})
 target_link_libraries(Firefly PUBLIC lib_external_deps)
 
 target_include_directories(Firefly PUBLIC ../include)
+
+target_precompile_headers(Firefly PRIVATE ../include/Firefly/flypch.hh)
