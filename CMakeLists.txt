@@ -13,8 +13,13 @@ project(OpenGL VERSION 1.0
         DESCRIPTION "Basic framework for easy OpenGL development"
         LANGUAGES CXX C)
 
-include(cmake/ProjectSettings.cmake)
 include(cmake/PreventInSourceBuilds.cmake)
+include(cmake/ProjectSettings.cmake)
+include(cmake/CompilerWarnings.cmake)
+
+# Link this 'library' to use the warnings specified in CompilerWarnings.cmake
+add_library(project_warnings INTERFACE)
+set_project_warnings(project_warnings)
 
 ## Dependencies ##
 

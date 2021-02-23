@@ -5,9 +5,11 @@ Work-in-progress OpenGL framework that aims to provide a strong base for you to 
 ## Install
 This project uses CMake to generate build files. The following commands should help you setup a nice starting point.
 ```console
+$ git clone --recursive https://github.com/eligum/OpenGL-fw.git
+$ cd OpenGL-fw
 $ mkdir -p build
 $ cd build
-$ cmake .. -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=YES -DSPDLOG_BUILD_SHARED=ON
+$ cmake .. -DWARNINGS_AS_ERRORS=FALSE -DSPDLOG_BUILD_SHARED=ON
 ```
 
 ## Features
