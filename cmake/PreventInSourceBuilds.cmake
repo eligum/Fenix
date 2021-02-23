@@ -1,12 +1,5 @@
-# Prints the value of all the variables passed
-function(print)
-    foreach(var IN LISTS "${ARGN}")
-        message("${var} = ${${var}}")
-    endforeach()
-endfunction()
-
 # Aborts with fatal error if user tried to create an in-source cmake build
-function(PreventInSourceBuilds)
+function(PreventInSourceBuild)
     # make sure the user doesn't play dirty with symlinks
     get_filename_component(srcdir "${CMAKE_SOURCE_DIR}" REALPATH)
     get_filename_component(bindir "${CMAKE_BINARY_DIR}" REALPATH)
@@ -20,3 +13,5 @@ function(PreventInSourceBuilds)
         message(FATAL_ERROR)
     endif()
 endfunction()
+
+PreventInSourceBuild()
