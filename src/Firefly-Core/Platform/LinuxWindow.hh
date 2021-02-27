@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Window.hh"
+#include "../Window.hh"
 #include "GLFW/glfw3.h"
 
 namespace flyCore {

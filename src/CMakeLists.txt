@@ -1,6 +1,8 @@
 file(GLOB MY_SOURCES "Firefly-Core/*.cc"
                      "Firefly-Core/*.hh"
-                     "Events/*.hh")
+                     "Events/*.hh"
+                     "Platform/*.cc"
+                     "Platform/*.hh")
 
 add_library(Firefly SHARED ${MY_SOURCES})
 

@@ -1,5 +1,5 @@
 #include "LinuxWindow.hh"
-#include "Base.hh"
+#include "../Base.hh"
 
 namespace flyCore {
 
@@ -30,8 +30,8 @@ namespace flyCore {
 
         if (s_GLFWWindowCount == 0)
         {
-            int succes = glfwInit();
-            FLY_CORE_WARN("glfwInit() returned: {0}", succes);
+            int success = glfwInit();
+            FLY_CORE_ASSERT(success, "Failed to initialize GLFW!")
         }
 
         m_Window = glfwCreateWindow(static_cast<int>(props.Width),
