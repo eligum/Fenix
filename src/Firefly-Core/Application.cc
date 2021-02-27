@@ -1,6 +1,6 @@
-#include "Firefly/Core/Application.hh"
-#include "Firefly/Core/Log.hh"
-#include "Firefly/Core/Events/ApplicationEvent.hh"
+#include "Application.hh"
+#include "Log.hh"
+#include "Events/ApplicationEvent.hh"
 
 namespace flyCore {
 

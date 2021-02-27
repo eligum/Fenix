@@ -3,10 +3,6 @@
 # ---------------------------------------------------------------------------- #
 cmake_minimum_required(VERSION 3.16)
 
-# set(CMAKE_CXX_STANDARD 17)
-# set(CMAKE_CXX_STANDARD_REQUIRED ON)
-# set(CMAKE_CXX_EXTENSIONS OFF)
-
 ## Establish project ##
 
 project(OpenGL VERSION 1.0
@@ -30,11 +26,14 @@ target_compile_features(project_options INTERFACE cxx_std_17)
 # consider breaking this out per project as necessary
 option(MY_ENABLE_PCH "Enable Precompiled Headers" OFF)
 if(MY_ENABLE_PCH)
-    target_precompile_headers(project_options INTERFACE
-                                              <vector>
-                                              <string>
-                                              <map>
-                                              <utility>)
+    target_precompile_headers(
+         project_options
+        INTERFACE
+         <vector>
+         <string>
+         <sstream>
+         <unordered_map>
+         <utility>)
 endif()
 
 ## Dependencies ##

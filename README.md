@@ -1,6 +1,7 @@
 # Sandbox for OpenGL development
 
 Work-in-progress OpenGL framework that aims to provide a strong base for you to just dive-in and start writing OpenGL.
+Lorax
 
 ## Install
 This project uses CMake to generate build files. The following commands should help you setup a nice starting point.

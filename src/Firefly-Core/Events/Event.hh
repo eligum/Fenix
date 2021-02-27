@@ -3,7 +3,7 @@
 #include <string>
 #include <functional>
 
-#define BIT(x) 1 << x
+#include "../Base.hh"
 
 namespace flyCore {
 
