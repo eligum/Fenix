@@ -15,13 +15,6 @@ namespace flyCore {
 
     void Application::Run()
     {
-        WindowResizeEvent e(1280, 720);
-        if (e.IsInCategory(EventCategoryApplication))
-        {
-            FLY_INFO(e);
-            FLY_ERROR(e);
-        }
-
         while (m_Running)
         {
             m_Window->OnUpdate();

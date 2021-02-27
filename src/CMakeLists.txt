@@ -1,8 +1,5 @@
-file(GLOB MY_SOURCES "Firefly-Core/*.cc"
-                     "Firefly-Core/*.hh"
-                     "Events/*.hh"
-                     "Platform/*.cc"
-                     "Platform/*.hh")
+file(GLOB_RECURSE MY_SOURCES "Firefly-Core/*.cc"
+                             "Firefly-Core/*.hh")
 
 add_library(Firefly SHARED ${MY_SOURCES})
 
