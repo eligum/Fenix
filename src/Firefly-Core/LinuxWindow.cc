@@ -1,9 +1,11 @@
-#include "LinuxWindow.hh"
-#include "../Base.hh"
+#include "glad/glad.h"
 
-#include "Firefly-Core/Events/ApplicationEvent.hh"
-#include "Firefly-Core/Events/KeyEvent.hh"
-#include "Firefly-Core/Events/MouseEvent.hh"
+#include "Firefly/Platform/Linux/LinuxWindow.hh"
+#include "Firefly/Base.hh"
+
+#include "Firefly/Core/Events/ApplicationEvent.hh"
+#include "Firefly/Core/Events/KeyEvent.hh"
+#include "Firefly/Core/Events/MouseEvent.hh"
 
 namespace flyCore {
 
@@ -53,6 +55,10 @@ namespace flyCore {
         glfwMakeContextCurrent(m_Window);
         glfwSetWindowUserPointer(m_Window, &m_Data);
         SetVSync(true);
+
+        // Glad
+        int status = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
+        FLY_CORE_ASSERT(status, "Failed to initialize Glad!")
 
         // Set GLFW callbacks
         glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {

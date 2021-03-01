@@ -3,7 +3,6 @@
 #include <memory>
 #include <utility>
 
-#include "Log.hh"
 #include "PlatformDetection.hh"
 
 #ifdef FLY_DEBUG
@@ -31,3 +30,5 @@
 #define BIT(x) (1 << x)
 
 #define FLY_BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
+
+#include "Core/Log.hh"

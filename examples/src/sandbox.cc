@@ -8,7 +8,7 @@ public:
 
     void OnUpdate() override
     {
-        FLY_INFO("ExampleLayer::Update");
+        // FLY_INFO("ExampleLayer::Update");
     }
 
     void OnEvent(flyCore::Event& e) override
