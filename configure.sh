@@ -5,7 +5,7 @@ if [ ! -f configure.sh ]; then
     exit
 fi
 
-# Run cmake
+# Create nested build-dir and run cmake
 mkdir -p build
 cmake -G 'Unix Makefiles' -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-       -DWARNINGS_AS_ERRORS=FALSE -DSPDLOG_BUILD_SHARED=ON
+      -DWARNINGS_AS_ERRORS=FALSE -DSPDLOG_BUILD_SHARED=OFF

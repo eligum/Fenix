@@ -11,6 +11,9 @@ set(glm_DIR ${CMAKE_CURRENT_LIST_DIR}/glm/cmake/glm)
 find_package(glm REQUIRED)
 
 add_subdirectory(spdlog)
+set_property(TARGET spdlog PROPERTY POSITION_INDEPENDENT_CODE ON)
+
+add_subdirectory(imgui)
 
 # ---------------------------------------------------------------------------- #
 
@@ -20,4 +23,5 @@ target_link_libraries(lib_external_deps INTERFACE
                                         glm::glm
                                         glad
                                         stb
-                                        spdlog)
+                                        spdlog
+                                        imgui)
