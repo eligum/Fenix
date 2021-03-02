@@ -1,7 +1,7 @@
 file(GLOB_RECURSE MY_SOURCES "Firefly-Core/*.cc"
                              "Firefly-Core/*.hh")
 
-add_library(Firefly STATIC ${MY_SOURCES})
+add_library(Firefly SHARED ${MY_SOURCES})
 
 target_link_libraries(Firefly PUBLIC
                                lib_external_deps
