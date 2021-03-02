@@ -51,7 +51,7 @@ namespace flyCore {
     {
         while (m_Running)
         {
-            glClearColor(1, 0, 1, 1);
+            glClearColor(0.16f, 0.17f, 0.20f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
 
             for (Layer* layer : m_LayerStack)
