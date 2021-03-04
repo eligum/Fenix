@@ -18,12 +18,12 @@ namespace flyCore {
 
         void Run();
 
-        void OnEvent(Event& e);
+        void OnEvent(Event& evt);
 
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* overlay);
     private:
-        bool OnWindowClose(WindowCloseEvent& e);
+        bool OnWindowClose(WindowCloseEvent& evt);
     private:
         std::unique_ptr<Window> m_Window;
         bool m_Running = true;

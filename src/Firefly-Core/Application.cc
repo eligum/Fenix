@@ -16,17 +16,17 @@ namespace flyCore {
     {
     }
 
-    void Application::OnEvent(Event& e)
+    void Application::OnEvent(Event& evt)
     {
-        EventDispatcher dispatcher(e);
+        EventDispatcher dispatcher(evt);
         dispatcher.Dispatch<WindowCloseEvent>(std::bind(&Application::OnWindowClose, this, std::placeholders::_1));
 
-        FLY_CORE_TRACE("{0}", e);
+        FLY_CORE_TRACE("{0}", evt);
 
         for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
         {
-            (*--it)->OnEvent(e);
-            if (e.Handled)
+            (*--it)->OnEvent(evt);
+            if (evt.Handled)
                 break;
         }
     }
@@ -41,7 +41,7 @@ namespace flyCore {
         m_LayerStack.PushOverlay(overlay);
     }
 
-    bool Application::OnWindowClose(WindowCloseEvent& e)
+    bool Application::OnWindowClose(WindowCloseEvent& evt)
     {
         m_Running = false;
         return true;
