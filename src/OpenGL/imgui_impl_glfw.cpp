@@ -38,10 +38,10 @@
 //  2016-10-15: Misc: Added a void* user_data parameter to Clipboard function handlers.
 
 #include "imgui.h"
-#include "imgui_impl_glfw.h"
+#include "Firefly/Platform/OpenGL/imgui_impl_glfw.h"
 
 // GLFW
-#include <GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
 #ifdef _WIN32
 #undef APIENTRY
 #define GLFW_EXPOSE_NATIVE_WIN32

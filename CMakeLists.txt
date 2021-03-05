@@ -23,7 +23,7 @@ target_compile_features(project_options INTERFACE cxx_std_17)
 
 # Bunch of options
 option(FLY_BUILD_EXAMPLES "Build a set of example applications using Firefly" OFF)
-option(FLY_BUILD_DOCS "Build Firefly documentation, requires doxygen" ON)
+option(FLY_BUILD_DOCS "Build Firefly documentation, requires doxygen" OFF)
 option(FLY_BUILD_SHARED "Build Firefly as a shared library" OFF)
 
 ## Dependencies ##

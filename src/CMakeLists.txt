@@ -1,5 +1,5 @@
 file(GLOB_RECURSE MY_SOURCES "Firefly-Core/*.cc"
-                             "Firefly-Core/*.hh")
+                             "OpenGL/*.cpp")
 
 add_library(Firefly SHARED ${MY_SOURCES})
 

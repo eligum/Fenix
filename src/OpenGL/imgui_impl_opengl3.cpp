@@ -78,7 +78,7 @@
 #endif
 
 #include "imgui.h"
-#include "imgui_impl_opengl3.h"
+#include "Firefly/Platform/OpenGL/imgui_impl_opengl3.h"
 #include <stdio.h>
 #if defined(_MSC_VER) && _MSC_VER <= 1500 // MSVC 2008 or earlier
 #include <stddef.h>     // intptr_t
@@ -105,7 +105,7 @@
 #elif defined(IMGUI_IMPL_OPENGL_LOADER_GLEW)
 #include <GL/glew.h>            // Needs to be initialized with glewInit() in user's code.
 #elif defined(IMGUI_IMPL_OPENGL_LOADER_GLAD)
-#include <glad/glad.h>          // Needs to be initialized with gladLoadGL() in user's code.
+#include "glad/glad.h"          // Needs to be initialized with gladLoadGL() in user's code.
 #elif defined(IMGUI_IMPL_OPENGL_LOADER_GLAD2)
 #include <glad/gl.h>            // Needs to be initialized with gladLoadGL(...) or gladLoaderLoadGL() in user's code.
 #elif defined(IMGUI_IMPL_OPENGL_LOADER_GLBINDING2)

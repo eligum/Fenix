@@ -58,6 +58,7 @@ namespace flyCore {
 
         // Glad
         int status = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
+        // int status = gladLoadGL();
         FLY_CORE_ASSERT(status, "Failed to initialize Glad!")
 
         // Set GLFW callbacks
