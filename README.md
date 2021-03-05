@@ -1,5 +1,4 @@
 # Sandbox for OpenGL development
-
 Work-in-progress OpenGL framework that aims to provide a strong base for you to just dive-in and start writing OpenGL.
 Lorax
 
@@ -9,8 +8,7 @@ This project uses CMake to generate build files. The following commands should h
 $ git clone --recursive https://github.com/eligum/OpenGL-fw.git
 $ cd OpenGL-fw
 $ mkdir -p build
-$ cd build
-$ cmake .. -DWARNINGS_AS_ERRORS=FALSE -DSPDLOG_BUILD_SHARED=ON
+$ cmake -S . -B build -DWARNINGS_AS_ERRORS=FALSE -DCMAKE_BUILD_TYPE=Debug
 ```
 
 ## Features
