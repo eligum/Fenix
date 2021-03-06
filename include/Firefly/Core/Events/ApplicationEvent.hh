@@ -4,7 +4,7 @@
 
 #include "Event.hh"
 
-namespace flyCore {
+namespace Hazel {
 
     class WindowResizeEvent : public Event
     {
@@ -38,4 +38,4 @@ namespace flyCore {
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
     };
 
-}
+} // namespace Hazel

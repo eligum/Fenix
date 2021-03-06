@@ -4,7 +4,7 @@
 
 #include "Event.hh"
 
-namespace flyCore {
+namespace Hazel {
 
     /// @class KeyEvent
     /// Abstract class, it is never going to be directly constructed. Therefore it doesn't have to
@@ -81,4 +81,4 @@ namespace flyCore {
         EVENT_CLASS_TYPE(KeyTyped)
     };
 
-}
+} // namespace Hazel

@@ -3,7 +3,7 @@
 #include "../../Core/Window.hh"
 #include "GLFW/glfw3.h"
 
-namespace flyCore {
+namespace Hazel {
 
     class LinuxWindow : public Window
     {
@@ -40,4 +40,4 @@ namespace flyCore {
         WindowData m_Data;
     };
 
-} // namespace flyCore
+} // namespace Hazel

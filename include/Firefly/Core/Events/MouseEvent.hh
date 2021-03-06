@@ -4,11 +4,9 @@
 
 #include "Event.hh"
 
-namespace flyCore {
+namespace Hazel {
 
-    /**
-     * @class MouseMovedEvent
-     */
+    /// @class MouseMovedEvent
     class MouseMovedEvent : public Event
     {
     public:
@@ -32,9 +30,7 @@ namespace flyCore {
         float m_MouseY;
     };
 
-    /**
-     * @class MouseScrolledEvent
-     */
+    /// @class MouseScrolledEvent
     class MouseScrolledEvent : public Event
     {
     public:
@@ -58,9 +54,7 @@ namespace flyCore {
         float m_YOffset;
     };
 
-    /**
-     * @class MouseButtonEvent
-     */
+    /// @class MouseButtonEvent
     class MouseButtonEvent : public Event
     {
     public:
@@ -74,6 +68,7 @@ namespace flyCore {
         int m_Button;
     };
 
+    /// @class MouseButtonPressedEvent
     class MouseButtonPressedEvent : public MouseButtonEvent
     {
     public:
@@ -90,6 +85,7 @@ namespace flyCore {
         EVENT_CLASS_TYPE(MouseButtonPressed)
     };
 
+    /// @class MouseButtonReleasedEvent
     class MouseButtonReleasedEvent : public MouseButtonEvent
     {
     public:

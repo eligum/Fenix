@@ -1,8 +1,8 @@
 #include "Firefly/Core/Layer.hh"
 
-namespace flyCore {
+namespace Hazel {
 
     Layer::Layer(const std::string& name)
         : m_DebugName(name) {}
 
-}
+} // namespace Hazel

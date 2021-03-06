@@ -3,14 +3,14 @@
 // #define FLY_PLATFORM_LINUX
 // #ifdef FLY_PLATFORM_LINUX
 
-extern flyCore::Application* flyCore::CreateApplication();
+extern Hazel::Application* Hazel::CreateApplication();
 
 int main(int argc, char** argv)
 {
-    flyCore::Log::Init();
+    Hazel::Log::Init();
     FLY_CORE_INFO("Initialized Log!");
 
-    auto app = flyCore::CreateApplication();
+    auto app = Hazel::CreateApplication();
     app->Run();
     delete app;
 }

@@ -5,7 +5,7 @@
 #include "Events/ApplicationEvent.hh"
 #include "Events/KeyEvent.hh"
 
-namespace flyCore {
+namespace Hazel {
 
     class ImGuiLayer : public Layer
     {
@@ -30,4 +30,4 @@ namespace flyCore {
         float m_Time = 0.0f;
     };
 
-} // namespace flyCore
+} // namespace Hazel

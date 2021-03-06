@@ -1,7 +1,7 @@
 #include "Firefly/Core/Log.hh"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
-namespace flyCore {
+namespace Hazel {
 
     std::shared_ptr<spdlog::logger> Log::s_CoreLogger;
     std::shared_ptr<spdlog::logger> Log::s_ClientLogger;
@@ -16,4 +16,4 @@ namespace flyCore {
         s_CoreLogger->set_level(spdlog::level::trace);
     }
 
-}
+} // namespace Hazel

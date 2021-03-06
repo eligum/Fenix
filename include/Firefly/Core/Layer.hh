@@ -4,7 +4,7 @@
 
 #include "Events/Event.hh"
 
-namespace flyCore {
+namespace Hazel {
 
     class Layer
     {
@@ -22,4 +22,4 @@ namespace flyCore {
         std::string m_DebugName;
     };
 
-}
+} // namespace Hazel

@@ -1,6 +1,6 @@
 #include "Firefly/Firefly.hh"
 
-class ExampleLayer : public flyCore::Layer
+class ExampleLayer : public Hazel::Layer
 {
 public:
     ExampleLayer()
@@ -11,25 +11,25 @@ public:
         // FLY_INFO("ExampleLayer::Update");
     }
 
-    void OnEvent(flyCore::Event& e) override
+    void OnEvent(Hazel::Event& e) override
     {
         FLY_TRACE("{0}", e);
     }
 };
 
-class Sandbox : public flyCore::Application
+class Sandbox : public Hazel::Application
 {
 public:
     Sandbox()
     {
         PushLayer(new ExampleLayer());
-        PushOverlay(new flyCore::ImGuiLayer());
+        PushOverlay(new Hazel::ImGuiLayer());
     }
 
     ~Sandbox() {}
 };
 
-flyCore::Application* flyCore::CreateApplication()
+Hazel::Application* Hazel::CreateApplication()
 {
     return new Sandbox;
 }

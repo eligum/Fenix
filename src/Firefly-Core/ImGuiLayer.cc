@@ -9,7 +9,7 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
-namespace flyCore {
+namespace Hazel {
 
     ImGuiLayer::ImGuiLayer()
         : Layer("ImGuiLayer")
@@ -87,14 +87,14 @@ namespace flyCore {
     void ImGuiLayer::OnEvent(Event& event)
     {
         EventDispatcher dispatcher(event);
-        dispatcher.Dispatch<MouseButtonPressedEvent>  (FLY_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonPressedEvent));
-        dispatcher.Dispatch<MouseButtonReleasedEvent> (FLY_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonReleasedEvent));
-        dispatcher.Dispatch<MouseMovedEvent>          (FLY_BIND_EVENT_FN(ImGuiLayer::OnMouseMovedEvent));
-        dispatcher.Dispatch<MouseScrolledEvent>       (FLY_BIND_EVENT_FN(ImGuiLayer::OnMouseScrolledEvent));
-        dispatcher.Dispatch<KeyPressedEvent>          (FLY_BIND_EVENT_FN(ImGuiLayer::OnKeyPressedEvent));
-        dispatcher.Dispatch<KeyReleasedEvent>         (FLY_BIND_EVENT_FN(ImGuiLayer::OnKeyReleasedEvent));
-        dispatcher.Dispatch<KeyTypedEvent>            (FLY_BIND_EVENT_FN(ImGuiLayer::OnKeyTypedEvent));
-        dispatcher.Dispatch<WindowResizeEvent>        (FLY_BIND_EVENT_FN(ImGuiLayer::OnWindowResizedEvent));
+        dispatcher.Dispatch<MouseButtonPressedEvent>  (HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonPressedEvent));
+        dispatcher.Dispatch<MouseButtonReleasedEvent> (HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonReleasedEvent));
+        dispatcher.Dispatch<MouseMovedEvent>          (HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseMovedEvent));
+        dispatcher.Dispatch<MouseScrolledEvent>       (HZ_BIND_EVENT_FN(ImGuiLayer::OnMouseScrolledEvent));
+        dispatcher.Dispatch<KeyPressedEvent>          (HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyPressedEvent));
+        dispatcher.Dispatch<KeyReleasedEvent>         (HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyReleasedEvent));
+        dispatcher.Dispatch<KeyTypedEvent>            (HZ_BIND_EVENT_FN(ImGuiLayer::OnKeyTypedEvent));
+        dispatcher.Dispatch<WindowResizeEvent>        (HZ_BIND_EVENT_FN(ImGuiLayer::OnWindowResizedEvent));
     }
 
     bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& evt)
@@ -172,4 +172,4 @@ namespace flyCore {
         return false;
     }
 
-} // namespace flyCore
+} // namespace Hazel

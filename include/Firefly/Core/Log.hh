@@ -5,7 +5,7 @@
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
 
-namespace flyCore {
+namespace Hazel {
 
     class Log
     {
@@ -19,18 +19,18 @@ namespace flyCore {
         static std::shared_ptr<spdlog::logger> s_ClientLogger;
     };
 
-}
+} // namespace Hazel
 
 // Core log macros
-#define FLY_CORE_TRACE(...)   ::flyCore::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define FLY_CORE_INFO(...)    ::flyCore::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define FLY_CORE_WARN(...)    ::flyCore::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define FLY_CORE_ERROR(...)   ::flyCore::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define FLY_CORE_FATAL(...)   ::flyCore::Log::GetCoreLogger()->critical(__VA_ARGS__)
+#define HZ_CORE_TRACE(...)   ::Hazel::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define HZ_CORE_INFO(...)    ::Hazel::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define HZ_CORE_WARN(...)    ::Hazel::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define HZ_CORE_ERROR(...)   ::Hazel::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define HZ_CORE_FATAL(...)   ::Hazel::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Clien log macros
-#define FLY_TRACE(...)        ::flyCore::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define FLY_INFO(...)         ::flyCore::Log::GetClientLogger()->info(__VA_ARGS__)
-#define FLY_WARN(...)         ::flyCore::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define FLY_ERROR(...)        ::flyCore::Log::GetClientLogger()->error(__VA_ARGS__)
-#define FLY_FATAL(...)        ::flyCore::Log::GetClientLogger()->critical(__VA_ARGS__)
+#define HZ_TRACE(...)        ::Hazel::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define HZ_INFO(...)         ::Hazel::Log::GetClientLogger()->info(__VA_ARGS__)
+#define HZ_WARN(...)         ::Hazel::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define HZ_ERROR(...)        ::Hazel::Log::GetClientLogger()->error(__VA_ARGS__)
+#define HZ_FATAL(...)        ::Hazel::Log::GetClientLogger()->critical(__VA_ARGS__)

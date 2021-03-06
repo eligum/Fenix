@@ -7,13 +7,13 @@
 #include "Firefly/Core/Events/KeyEvent.hh"
 #include "Firefly/Core/Events/MouseEvent.hh"
 
-namespace flyCore {
+namespace Hazel {
 
     static uint8_t s_GLFWWindowCount = 0;
 
     static void GLFWErrorCallback(int error, const char* description)
     {
-        FLY_CORE_ERROR("GLFW error ({0}): {1}", error, description);
+        HZ_CORE_ERROR("GLFW error ({0}): {1}", error, description);
     }
 
     Window* Window::Create(const WindowProps& props)
@@ -37,12 +37,12 @@ namespace flyCore {
         m_Data.Width = props.Width;
         m_Data.Height = props.Height;
 
-        FLY_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+        HZ_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
         if (s_GLFWWindowCount == 0)
         {
             int success = glfwInit();
-            FLY_CORE_ASSERT(success, "Failed to initialize GLFW!");
+            HZ_CORE_ASSERT(success, "Failed to initialize GLFW!");
             glfwSetErrorCallback(GLFWErrorCallback);
         }
 
@@ -58,7 +58,7 @@ namespace flyCore {
 
         // Glad load function pointers
         int status = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
-        FLY_CORE_ASSERT(status, "Failed to initialize Glad!")
+        HZ_CORE_ASSERT(status, "Failed to initialize Glad!")
 
         // Set GLFW callbacks
         glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
@@ -158,4 +158,4 @@ namespace flyCore {
         return m_Data.VSync;
     }
 
-} // namespace flyCore
+} // namespace Hazel

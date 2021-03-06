@@ -4,13 +4,13 @@
 
 #include "glad/glad.h"
 
-namespace flyCore {
+namespace Hazel {
 
     Application* Application::s_Instance = nullptr;
 
     Application::Application()
     {
-        FLY_CORE_ASSERT(!s_Instance, "Application already exists!");
+        HZ_CORE_ASSERT(!s_Instance, "Application already exists!");
         s_Instance = this;
 
         m_Window = std::unique_ptr<Window>(Window::Create());
@@ -26,7 +26,7 @@ namespace flyCore {
         EventDispatcher dispatcher(evt);
         dispatcher.Dispatch<WindowCloseEvent>(std::bind(&Application::OnWindowClose, this, std::placeholders::_1));
 
-        FLY_CORE_TRACE("{0}", evt);
+        HZ_CORE_TRACE("{0}", evt);
 
         for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
         {
@@ -66,4 +66,4 @@ namespace flyCore {
         }
     }
 
-} // namespace flyCore
+} // namespace Hazel

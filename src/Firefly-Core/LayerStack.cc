@@ -1,7 +1,7 @@
 #include "Firefly/Core/LayerStack.hh"
 #include <algorithm>
 
-namespace flyCore {
+namespace Hazel {
 
     LayerStack::LayerStack() = default;
 
@@ -48,4 +48,4 @@ namespace flyCore {
         }
     }
 
-} // namespace flyCore
+} // namespace Hazel

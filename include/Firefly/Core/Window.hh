@@ -6,7 +6,7 @@
 
 #include "Events/Event.hh"
 
-namespace flyCore {
+namespace Hazel {
 
     struct WindowProps
     {
@@ -43,4 +43,4 @@ namespace flyCore {
         static Window* Create(const WindowProps& props = WindowProps());
     };
 
-} // namespace flyCore
+} // namespace Hazel

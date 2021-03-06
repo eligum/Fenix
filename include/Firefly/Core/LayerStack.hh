@@ -5,7 +5,7 @@
 #include <vector>
 #include <cstdint>
 
-namespace flyCore {
+namespace Hazel {
 
     class LayerStack
     {
@@ -25,4 +25,4 @@ namespace flyCore {
         uint32_t m_LayerInsertIndex = 0;
     };
 
-}
+} // namespace Hazel

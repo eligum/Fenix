@@ -8,7 +8,7 @@
 #include "Events/Event.hh"
 #include "Events/ApplicationEvent.hh"
 
-namespace flyCore {
+namespace Hazel {
 
     class Application
     {
@@ -37,4 +37,4 @@ namespace flyCore {
     // To be defined in CLIENT
     Application* CreateApplication();
 
-}
+} // namespace Hazel
