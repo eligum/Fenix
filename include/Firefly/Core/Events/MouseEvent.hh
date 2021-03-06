@@ -19,11 +19,11 @@ namespace flyCore {
         inline float GetY() const { return m_MouseY; }
 
         std::string ToString() const override
-            {
-                std::stringstream ss;
-                ss << "MouseMovedEvent: " << m_MouseX << ", " << m_MouseY;
-                return ss.str();
-            }
+        {
+            std::stringstream ss;
+            ss << "MouseMovedEvent: " << m_MouseX << ", " << m_MouseY;
+            return ss.str();
+        }
 
         EVENT_CLASS_TYPE(MouseMoved)
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
@@ -69,7 +69,7 @@ namespace flyCore {
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput | EventCategoryMouseButton)
     protected:
         MouseButtonEvent(int button)
-        : m_Button(button) {}
+            : m_Button(button) {}
 
         int m_Button;
     };

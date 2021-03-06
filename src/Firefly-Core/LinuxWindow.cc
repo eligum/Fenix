@@ -97,6 +97,12 @@ namespace flyCore {
             }
         });
 
+        glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int key_code) {
+            WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
+            KeyTypedEvent event(key_code);
+            data.EventCallback(event);
+        });
+
         glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods) {
             WindowData& data = *static_cast<WindowData*>(glfwGetWindowUserPointer(window));
             switch (action)

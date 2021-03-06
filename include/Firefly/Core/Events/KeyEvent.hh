@@ -6,11 +6,9 @@
 
 namespace flyCore {
 
-    /**
-     * @class KeyEvent
-     * Abstract class, it is never going to be directly constructed. Therefore it doesn't have to
-     * implement the virtual methods from Event, its derived classes will.
-     */
+    /// @class KeyEvent
+    /// Abstract class, it is never going to be directly constructed. Therefore it doesn't have to
+    /// implement the virtual methods from Event, its derived classes will.
     class KeyEvent : public Event
     {
     public:
@@ -24,11 +22,9 @@ namespace flyCore {
         int m_KeyCode;
     };
 
-    /**
-     * @class KeyPressedEvent
-     * This class represents the action of a key being pressed, for now it will keep track of how
-     * many repeated key events are sent when a key is hold pressed for a period of time.
-     */
+    /// @class KeyPressedEvent
+    /// This class represents the action of a key being pressed, for now it will keep track of how
+    /// many repeated key events are sent when a key is hold pressed for a period of time.
     class KeyPressedEvent : public KeyEvent
     {
     public:
@@ -49,10 +45,8 @@ namespace flyCore {
         int m_RepeatCount;
     };
 
-    /**
-     * @class KeyReleasedEvent
-     * The opposite of KeyPressedEvent.
-     */
+    /// @class KeyReleasedEvent
+    /// The opposite of KeyPressedEvent.
     class KeyReleasedEvent : public KeyEvent
     {
     public:
@@ -67,6 +61,24 @@ namespace flyCore {
         }
 
         EVENT_CLASS_TYPE(KeyReleased)
+    };
+
+    /// @class KeyTypedEvent
+    /// This class represents what you would imagine, a key being pressed in the keyboard.
+    class KeyTypedEvent : public KeyEvent
+    {
+    public:
+        KeyTypedEvent(int key_code)
+            : KeyEvent(key_code) {}
+
+        std::string ToString() const override
+        {
+            std::stringstream ss;
+            ss << "KeyTypedEvent: " << m_KeyCode;
+            return ss.str();
+        }
+
+        EVENT_CLASS_TYPE(KeyTyped)
     };
 
 }

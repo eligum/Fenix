@@ -4,6 +4,9 @@
 
 #include "imgui.h"
 #include "imgui_impl_opengl3.h"
+
+// Temporary
+#include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
 namespace flyCore {
@@ -62,9 +65,6 @@ namespace flyCore {
 
     void ImGuiLayer::OnUpdate()
     {
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui::NewFrame();
-
         ImGuiIO& io = ImGui::GetIO();
         Application& app = Application::GetApp();
         io.DisplaySize = ImVec2(static_cast<float>(app.GetWindow().GetWidth()),
@@ -73,6 +73,9 @@ namespace flyCore {
         float time = static_cast<float>(glfwGetTime());
         io.DeltaTime = (m_Time > 0.0f) ? (time - m_Time) : (1.0f / 60.0f);
         m_Time = time;
+
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui::NewFrame();
 
         static bool show = true;
         ImGui::ShowDemoWindow(&show);
@@ -83,6 +86,90 @@ namespace flyCore {
 
     void ImGuiLayer::OnEvent(Event& event)
     {
+        EventDispatcher dispatcher(event);
+        dispatcher.Dispatch<MouseButtonPressedEvent>  (FLY_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonPressedEvent));
+        dispatcher.Dispatch<MouseButtonReleasedEvent> (FLY_BIND_EVENT_FN(ImGuiLayer::OnMouseButtonReleasedEvent));
+        dispatcher.Dispatch<MouseMovedEvent>          (FLY_BIND_EVENT_FN(ImGuiLayer::OnMouseMovedEvent));
+        dispatcher.Dispatch<MouseScrolledEvent>       (FLY_BIND_EVENT_FN(ImGuiLayer::OnMouseScrolledEvent));
+        dispatcher.Dispatch<KeyPressedEvent>          (FLY_BIND_EVENT_FN(ImGuiLayer::OnKeyPressedEvent));
+        dispatcher.Dispatch<KeyReleasedEvent>         (FLY_BIND_EVENT_FN(ImGuiLayer::OnKeyReleasedEvent));
+        dispatcher.Dispatch<KeyTypedEvent>            (FLY_BIND_EVENT_FN(ImGuiLayer::OnKeyTypedEvent));
+        dispatcher.Dispatch<WindowResizeEvent>        (FLY_BIND_EVENT_FN(ImGuiLayer::OnWindowResizedEvent));
+    }
+
+    bool ImGuiLayer::OnMouseButtonPressedEvent(MouseButtonPressedEvent& evt)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.MouseDown[evt.GetMouseButton()] = true;
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& evt)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.MouseDown[evt.GetMouseButton()] = false;
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnMouseMovedEvent(MouseMovedEvent& evt)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.MousePos = ImVec2(evt.GetX(), evt.GetY());
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnMouseScrolledEvent(MouseScrolledEvent& evt)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.MouseWheelH += evt.GetXOffset();
+        io.MouseWheel += evt.GetYOffset();
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnKeyPressedEvent(KeyPressedEvent& evt)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.KeysDown[evt.GetKeyCode()] = true;
+
+        io.KeyCtrl  = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
+        io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT]   || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
+        io.KeyAlt   = io.KeysDown[GLFW_KEY_LEFT_ALT]     || io.KeysDown[GLFW_KEY_RIGHT_ALT];
+        io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER]   || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
+        return false;
+    }
+
+    bool ImGuiLayer::OnKeyReleasedEvent(KeyReleasedEvent& evt)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.KeysDown[evt.GetKeyCode()] = false;
+
+        io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
+        return false;
+    }
+
+    bool ImGuiLayer::OnKeyTypedEvent(KeyTypedEvent& evt)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        int keycode = (evt.GetKeyCode());
+        if (keycode > 0 && keycode < 0x10000)
+            io.AddInputCharacter(static_cast<unsigned short>(keycode));
+
+        return false;
+    }
+
+    bool ImGuiLayer::OnWindowResizedEvent(WindowResizeEvent& evt)
+    {
+        ImGuiIO& io = ImGui::GetIO();
+        io.DisplaySize = ImVec2(static_cast<float>(evt.GetWidth()),
+                                static_cast<float>(evt.GetHeight()));
+        io.DisplayFramebufferScale = ImVec2(1.0f, 1.0f);
+        glViewport(0, 0, evt.GetWidth(), evt.GetHeight());
+
+        return false;
     }
 
 } // namespace flyCore
