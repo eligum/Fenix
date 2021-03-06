@@ -1,11 +1,11 @@
 #include "glad/glad.h"
 
-#include "Firefly/Platform/Linux/LinuxWindow.hh"
-#include "Firefly/Base.hh"
+#include "Hazel/Platform/Linux/LinuxWindow.hh"
+#include "Hazel/Base.hh"
 
-#include "Firefly/Core/Events/ApplicationEvent.hh"
-#include "Firefly/Core/Events/KeyEvent.hh"
-#include "Firefly/Core/Events/MouseEvent.hh"
+#include "Hazel/Core/Events/ApplicationEvent.hh"
+#include "Hazel/Core/Events/KeyEvent.hh"
+#include "Hazel/Core/Events/MouseEvent.hh"
 
 namespace Hazel {
 

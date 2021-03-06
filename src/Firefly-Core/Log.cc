@@ -1,4 +1,4 @@
-#include "Firefly/Core/Log.hh"
+#include "Hazel/Core/Log.hh"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
 namespace Hazel {

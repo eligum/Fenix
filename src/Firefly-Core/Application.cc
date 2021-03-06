@@ -1,6 +1,6 @@
-#include "Firefly/Core/Application.hh"
-#include "Firefly/Core/Log.hh"
-#include "Firefly/Core/Events/ApplicationEvent.hh"
+#include "Hazel/Core/Application.hh"
+#include "Hazel/Core/Log.hh"
+#include "Hazel/Core/Events/ApplicationEvent.hh"
 
 #include "glad/glad.h"
 

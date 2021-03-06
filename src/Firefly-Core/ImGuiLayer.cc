@@ -1,6 +1,6 @@
-#include "Firefly/Core/ImGuiLayer.hh"
+#include "Hazel/Core/ImGuiLayer.hh"
 
-#include "Firefly/Core/Application.hh"
+#include "Hazel/Core/Application.hh"
 
 #include "imgui.h"
 #include "imgui_impl_opengl3.h"

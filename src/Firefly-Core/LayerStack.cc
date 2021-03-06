@@ -1,4 +1,4 @@
-#include "Firefly/Core/LayerStack.hh"
+#include "Hazel/Core/LayerStack.hh"
 #include <algorithm>
 
 namespace Hazel {
