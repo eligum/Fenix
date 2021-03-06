@@ -56,9 +56,8 @@ namespace flyCore {
         glfwSetWindowUserPointer(m_Window, &m_Data);
         SetVSync(true);
 
-        // Glad
+        // Glad load function pointers
         int status = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
-        // int status = gladLoadGL();
         FLY_CORE_ASSERT(status, "Failed to initialize Glad!")
 
         // Set GLFW callbacks
