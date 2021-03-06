@@ -1,6 +1,6 @@
 #pragma once
 
-// For use by firefly applications
+// For use by Hazel applications
 
 #include "Core/Application.hh"
 #include "Core/Log.hh"
