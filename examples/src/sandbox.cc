@@ -1,4 +1,4 @@
-#include "Firefly/Firefly.hh"
+#include "Hazel/Hazel.hh"
 
 class ExampleLayer : public Hazel::Layer
 {
@@ -8,12 +8,12 @@ public:
 
     void OnUpdate() override
     {
-        // FLY_INFO("ExampleLayer::Update");
+        // HZ_INFO("ExampleLayer::Update");
     }
 
     void OnEvent(Hazel::Event& e) override
     {
-        FLY_TRACE("{0}", e);
+        HZ_TRACE("{0}", e);
     }
 };
 
