@@ -1,5 +1,6 @@
 file(GLOB_RECURSE MY_SOURCES "Firefly-Core/*.cc"
-                             "OpenGL/*.cpp")
+                             "OpenGL/*.cpp"
+                             "OpenGL/*.h")
 
 add_library(Firefly STATIC ${MY_SOURCES})
 
@@ -12,4 +13,4 @@ target_link_libraries(Firefly PUBLIC
 target_include_directories(Firefly PUBLIC
                                     ../include
                                    PRIVATE
-                                    .)
+                                    OpenGL)
