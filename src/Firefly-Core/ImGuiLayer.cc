@@ -1,7 +1,7 @@
 #include "Firefly/Core/ImGuiLayer.hh"
 
-#include "imgui.h"
-#include "Firefly/Platform/OpenGL/imgui_impl_opengl3.h"
+// #include "imgui.h"
+#include "../OpenGL/imgui_impl_opengl3.h"
 
 namespace flyCore {
 
@@ -24,7 +24,7 @@ namespace flyCore {
 
         ImGui::StyleColorsDark();
 
-        ImGui_ImplOpenGL3_Init("#version 430");
+        ImGui_ImplOpenGL3_Init("#version 410");
     }
 
     void ImGuiLayer::OnDetach()
