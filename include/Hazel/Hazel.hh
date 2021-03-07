@@ -10,7 +10,7 @@
 #include "Core/KeyCodes.hh"
 #include "Core/MouseCodes.hh"
 
-#include "Core/ImGuiLayer.hh"
+#include "ImGui/ImGuiLayer.hh"
 
 // ----Entry Point----------------------------
 #include "EntryPoint.hh"

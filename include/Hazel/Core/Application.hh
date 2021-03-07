@@ -3,12 +3,12 @@
 #include <string>
 #include <memory>
 
-#include "Window.hh"
-#include "LayerStack.hh"
-#include "Events/Event.hh"
-#include "Events/ApplicationEvent.hh"
+#include "Hazel/Core/Window.hh"
+#include "Hazel/Core/LayerStack.hh"
+#include "Hazel/Core/Events/Event.hh"
+#include "Hazel/Core/Events/ApplicationEvent.hh"
 
-#include "ImGuiLayer.hh"
+#include "Hazel/ImGui/ImGuiLayer.hh"
 
 namespace Hazel {
 

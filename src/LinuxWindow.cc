@@ -1,6 +1,6 @@
 #include "glad/glad.h"
 
-#include "Hazel/Platform/Linux/LinuxWindow.hh"
+#include "Platform/Linux/LinuxWindow.hh"
 #include "Hazel/Base.hh"
 
 #include "Hazel/Core/Events/ApplicationEvent.hh"

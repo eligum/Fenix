@@ -1,4 +1,4 @@
-#include "Hazel/Core/ImGuiLayer.hh"
+#include "Hazel/ImGui/ImGuiLayer.hh"
 
 #include "Hazel/Core/Application.hh"
 
