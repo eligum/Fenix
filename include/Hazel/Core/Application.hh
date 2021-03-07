@@ -8,6 +8,8 @@
 #include "Events/Event.hh"
 #include "Events/ApplicationEvent.hh"
 
+#include "ImGuiLayer.hh"
+
 namespace Hazel {
 
     class Application
@@ -23,14 +25,17 @@ namespace Hazel {
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* overlay);
 
-        static Application& GetApp() { return *s_Instance; }
         Window& GetWindow() { return *m_Window; }
+
+        static Application& GetApp() { return *s_Instance; }
     private:
         bool OnWindowClose(WindowCloseEvent& evt);
     private:
         std::unique_ptr<Window> m_Window;
+        ImGuiLayer* m_ImGuiLayer;
         bool m_Running = true;
         LayerStack m_LayerStack;
+
         static Application* s_Instance;
     };
 

@@ -1,6 +1,5 @@
 file(GLOB_RECURSE MY_SOURCES "Firefly-Core/*.cc"
-                             "OpenGL/*.cpp"
-                             "OpenGL/*.h")
+                             "ImGui/*.cc")
 
 add_library(Firefly STATIC ${MY_SOURCES})
 

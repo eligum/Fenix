@@ -24,4 +24,4 @@ target_link_libraries(lib_external_deps INTERFACE
                                         glad
                                         stb
                                         spdlog
-                                        my_imgui)
+                                        imgui)
