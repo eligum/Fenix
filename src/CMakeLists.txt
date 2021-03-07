@@ -1,10 +1,12 @@
-file(GLOB_RECURSE MY_SOURCES "Firefly-Core/*.cc"
-                             "ImGui/*.cc")
+file(GLOB_RECURSE _hazel_SOURCE "Hazel-Core/*.cc")
+
+# This line is just a flex of my cmake skills
+list(APPEND _hazel_SOURCE "ImGui/ImGuiBuild.cc")
 
 if(HAZEL_BUILD_SHARED)
-    add_library(Hazel SHARED ${MY_SOURCES})
+    add_library(Hazel SHARED ${_hazel_SOURCE})
 else()
-    add_library(Hazel STATIC ${MY_SOURCES})
+    add_library(Hazel STATIC ${_hazel_SOURCE})
 endif()
 
 target_link_libraries(Hazel PUBLIC
