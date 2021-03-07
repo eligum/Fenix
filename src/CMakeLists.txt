@@ -1,15 +1,16 @@
 file(GLOB_RECURSE MY_SOURCES "Firefly-Core/*.cc"
                              "ImGui/*.cc")
 
-add_library(Firefly STATIC ${MY_SOURCES})
+if(HAZEL_BUILD_SHARED)
+    add_library(Hazel SHARED ${MY_SOURCES})
+else()
+    add_library(Hazel STATIC ${MY_SOURCES})
+endif()
 
-target_link_libraries(Firefly PUBLIC
-                               lib_external_deps
+target_link_libraries(Hazel PUBLIC
+                               external_deps
                               PRIVATE
-                               project_warnings
-                               project_options)
+                               my_compile_warnings
+                               my_compile_features)
 
-target_include_directories(Firefly PUBLIC
-                                    ../include
-                                   PRIVATE
-                                    OpenGL)
+target_include_directories(Hazel PUBLIC ../include)

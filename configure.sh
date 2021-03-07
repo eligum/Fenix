@@ -8,4 +8,4 @@ fi
 # Create nested build-dir and run cmake
 mkdir -p build
 cmake -G 'Unix Makefiles' -S . -B build -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-      -DWARNINGS_AS_ERRORS=FALSE -DSPDLOG_BUILD_SHARED=OFF
+      -DWARNINGS_AS_ERRORS=FALSE -DHAZEL_BUILD_SHARED=OFF

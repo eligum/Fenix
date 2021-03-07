@@ -17,11 +17,11 @@ add_subdirectory(imgui)
 
 # ---------------------------------------------------------------------------- #
 
-add_library(lib_external_deps INTERFACE)
-target_link_libraries(lib_external_deps INTERFACE
-                                        glfw
-                                        glm::glm
-                                        glad
-                                        stb
-                                        spdlog
-                                        imgui)
+add_library(external_deps INTERFACE)
+target_link_libraries(external_deps INTERFACE
+                                    glfw
+                                    glm::glm
+                                    glad
+                                    stb
+                                    spdlog
+                                    imgui)
