@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "Event.hh"
+#include "../MouseCodes.hh"
 
 namespace Hazel {
 
@@ -13,8 +14,8 @@ namespace Hazel {
         MouseMovedEvent(float x, float y)
             : m_MouseX(x), m_MouseY(y) {}
 
-        inline float GetX() const { return m_MouseX; }
-        inline float GetY() const { return m_MouseY; }
+        float GetX() const { return m_MouseX; }
+        float GetY() const { return m_MouseY; }
 
         std::string ToString() const override
         {
@@ -25,7 +26,7 @@ namespace Hazel {
 
         EVENT_CLASS_TYPE(MouseMoved)
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
-        private:
+    private:
         float m_MouseX;
         float m_MouseY;
     };
@@ -49,7 +50,7 @@ namespace Hazel {
 
         EVENT_CLASS_TYPE(MouseScrolled)
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
-        private:
+    private:
         float m_XOffset;
         float m_YOffset;
     };
@@ -58,21 +59,21 @@ namespace Hazel {
     class MouseButtonEvent : public Event
     {
     public:
-        int GetMouseButton() const { return m_Button; }
+        MouseCode GetMouseButton() const { return m_Button; }
 
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput | EventCategoryMouseButton)
     protected:
-        MouseButtonEvent(int button)
+        MouseButtonEvent(MouseCode button)
             : m_Button(button) {}
 
-        int m_Button;
+        MouseCode m_Button;
     };
 
     /// @class MouseButtonPressedEvent
     class MouseButtonPressedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonPressedEvent(int button)
+        MouseButtonPressedEvent(MouseCode button)
             : MouseButtonEvent(button) {}
 
         std::string ToString() const override
@@ -89,7 +90,7 @@ namespace Hazel {
     class MouseButtonReleasedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonReleasedEvent(int button)
+        MouseButtonReleasedEvent(MouseCode button)
             : MouseButtonEvent(button) {}
 
         std::string ToString() const override

@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "Event.hh"
+#include "../KeyCodes.hh"
 
 namespace Hazel {
 
@@ -12,14 +13,14 @@ namespace Hazel {
     class KeyEvent : public Event
     {
     public:
-        inline int GetKeyCode() const { return m_KeyCode; }
+        KeyCode GetKeyCode() const { return m_KeyCode; }
 
         EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
     protected:
-        KeyEvent(int key_code)
+        KeyEvent(KeyCode key_code)
             : m_KeyCode(key_code) {}
 
-        int m_KeyCode;
+        KeyCode m_KeyCode;
     };
 
     /// @class KeyPressedEvent
@@ -28,10 +29,10 @@ namespace Hazel {
     class KeyPressedEvent : public KeyEvent
     {
     public:
-        KeyPressedEvent(int key_code, int repeat_count)
+        KeyPressedEvent(KeyCode key_code, int repeat_count)
             : KeyEvent(key_code), m_RepeatCount(repeat_count) {}
 
-        inline int GetRepeatCount() const { return m_RepeatCount; }
+        int GetRepeatCount() const { return m_RepeatCount; }
 
         std::string ToString() const override
         {
@@ -50,7 +51,7 @@ namespace Hazel {
     class KeyReleasedEvent : public KeyEvent
     {
     public:
-        KeyReleasedEvent(int key_code)
+        KeyReleasedEvent(KeyCode key_code)
             : KeyEvent(key_code) {}
 
         std::string ToString() const override
@@ -68,7 +69,7 @@ namespace Hazel {
     class KeyTypedEvent : public KeyEvent
     {
     public:
-        KeyTypedEvent(int key_code)
+        KeyTypedEvent(KeyCode key_code)
             : KeyEvent(key_code) {}
 
         std::string ToString() const override
