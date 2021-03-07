@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <utility>
+#include <cstddef>
 
 #include "PlatformDetection.hh"
 

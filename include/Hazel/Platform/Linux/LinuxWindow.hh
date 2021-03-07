@@ -9,7 +9,7 @@ namespace Hazel {
     {
     public:
         LinuxWindow(const WindowProps& props);
-        virtual ~LinuxWindow();
+        ~LinuxWindow();
 
         void OnUpdate() override;
 
@@ -21,10 +21,10 @@ namespace Hazel {
         void SetVSync(bool enabled) override;
         bool IsVSync() const override;
 
-        virtual void* GetNativeWindow() const override { return m_Window; }
+        void* GetNativeWindow() const override { return m_Window; }
     private:
-        virtual void Init(const WindowProps& props);
-        virtual void Shutdown();
+        void Init(const WindowProps& props);
+        void Shutdown();
     private:
         GLFWwindow* m_Window;
 
