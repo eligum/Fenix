@@ -42,6 +42,29 @@ namespace Hazel {
 
         uint32_t indices[3] = { 0, 1, 2 };
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+        std::string vertexSrc = R"(
+            #version 330 core
+            layout(location = 0) in vec3 a_Pos;
+            out vec3 v_Pos;
+            void main()
+            {
+                v_Pos = a_Pos;
+                gl_Position = vec4(a_Pos , 1.0);
+            }
+        )";
+
+        std::string fragmentSrc = R"(
+            #version 330 core
+            in vec3 v_Pos;
+            out vec4 color;
+            void main()
+            {
+                color = vec4(v_Pos * 0.5 + 0.5, 1.0);
+            }
+        )";
+
+        m_Shader.reset(new OpenGLShader("plain_color", vertexSrc, fragmentSrc));
     }
 
     Application::~Application()
@@ -83,9 +106,10 @@ namespace Hazel {
     {
         while (m_Running)
         {
-            glClearColor(0.33f, 0.67f, 1.0f, 1.0f);
+            glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT);
 
+            m_Shader->Bind();
             glBindVertexArray(m_Vao);
             glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, nullptr);
 

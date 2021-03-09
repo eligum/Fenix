@@ -3,9 +3,6 @@
 #include "Hazel/Renderer/Shader.hh"
 #include <glm/glm.hpp>
 
-// TODO: REMOVE!
-typedef uint32_t GLenum;
-
 namespace Hazel {
 
     class OpenGLShader : public Shader
@@ -40,8 +37,8 @@ namespace Hazel {
         void UploadUniformMat4     (const std::string& name, const glm::mat4& matrix);
     private:
         std::string ReadFile (const std::string& filepath);
-        std::unordered_map<GLenum, std::string> PreProcess(const std::string& source);
-        void Compile (const std::unordered_map<GLenum, std::string>& shaderSources);
+        std::unordered_map<uint32_t, std::string> PreProcess(const std::string& source);
+        void Compile (const std::unordered_map<uint32_t, std::string>& shaderSources);
     private:
         uint32_t m_RendererID;
         std::string m_Name;

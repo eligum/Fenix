@@ -8,7 +8,7 @@
 
 namespace Hazel {
 
-    static GLenum ShaderTypeFromString(const std::string& type)
+    static uint32_t ShaderTypeFromString(const std::string& type)
     {
         if (type == "vertex")
             return GL_VERTEX_SHADER;
@@ -38,7 +38,7 @@ namespace Hazel {
     OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
         : m_Name(name)
     {
-        std::unordered_map<GLenum, std::string> sources;
+        std::unordered_map<uint32_t, std::string> sources;
         sources[GL_VERTEX_SHADER] = vertexSrc;
         sources[GL_FRAGMENT_SHADER] = fragmentSrc;
         Compile(sources);
@@ -76,22 +76,22 @@ namespace Hazel {
         return result;
     }
 
-    std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source)
+    std::unordered_map<uint32_t, std::string> OpenGLShader::PreProcess(const std::string& source)
     {
-        std::unordered_map<GLenum, std::string> shaderSources;
+        std::unordered_map<uint32_t, std::string> shaderSources;
 
         const char* typeToken = "#type";
-        size_t typeTokenLength = strlen(typeToken);
-        size_t pos = source.find(typeToken, 0); //Start of shader type declaration line
+        std::size_t typeTokenLength = strlen(typeToken);
+        std::size_t pos = source.find(typeToken, 0); //Start of shader type declaration line
         while (pos != std::string::npos)
         {
-            size_t eol = source.find_first_of("\r\n", pos); //End of shader type declaration line
+            std::size_t eol = source.find_first_of("\r\n", pos); //End of shader type declaration line
             HZ_CORE_ASSERT(eol != std::string::npos, "Syntax error");
-            size_t begin = pos + typeTokenLength + 1; //Start of shader type name (after "#type " keyword)
+            std::size_t begin = pos + typeTokenLength + 1; //Start of shader type name (after "#type " keyword)
             std::string type = source.substr(begin, eol - begin);
             HZ_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
 
-            size_t nextLinePos = source.find_first_not_of("\r\n", eol); //Start of shader code after shader type declaration line
+            std::size_t nextLinePos = source.find_first_not_of("\r\n", eol); //Start of shader code after shader type declaration line
             HZ_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
             pos = source.find(typeToken, nextLinePos); //Start of next shader type declaration line
 
@@ -101,11 +101,11 @@ namespace Hazel {
         return shaderSources;
     }
 
-    void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
+    void OpenGLShader::Compile(const std::unordered_map<uint32_t, std::string>& shaderSources)
     {
         uint32_t program = glCreateProgram();
         HZ_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
-        std::array<GLenum, 2> shaderIDs;
+        std::array<uint32_t, 2> shaderIDs;
         int shaderIDIndex = 0;
         for (auto& [type, source] : shaderSources)
         {
@@ -153,9 +153,8 @@ namespace Hazel {
             std::vector<char> infoLog(logMaxLength);
             glGetProgramInfoLog(program, logMaxLength, &logMaxLength, &infoLog[0]);
 
-            // We don't need the program anymore.
+            // We don't need the program nor the shaders anymore.
             glDeleteProgram(program);
-
             for (auto id : shaderIDs)
                 glDeleteShader(id);
 

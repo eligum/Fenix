@@ -10,6 +10,8 @@
 
 #include "Hazel/ImGui/ImGuiLayer.hh"
 
+#include "Platform/OpenGL/OpenGLShader.hh"
+
 namespace Hazel {
 
     class Application
@@ -38,6 +40,7 @@ namespace Hazel {
 
         // Temporary
         uint32_t m_Vao, m_Vbo, m_IndexBuffer;
+        std::unique_ptr<OpenGLShader> m_Shader;
 
         static Application* s_Instance;
     };
