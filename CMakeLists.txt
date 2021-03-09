@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.16)
 
 ## Establish project ##
 
-project(OpenGL VERSION 1.0
+project(HazelEngine VERSION 1.0
         DESCRIPTION "Basic framework for easy OpenGL development"
         LANGUAGES CXX C)
 

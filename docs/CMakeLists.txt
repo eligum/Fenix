@@ -2,7 +2,7 @@
 #       (i.e. Pages) list in the generated documentation
 
 set(BOX2D_DOXYGEN_SOURCES
-    "include/Firefly"
+    "include/Hazel"
     "docs/overview.md"
     "docs/common.md")
 

@@ -11,6 +11,7 @@
 #include "Hazel/ImGui/ImGuiLayer.hh"
 
 #include "Platform/OpenGL/OpenGLShader.hh"
+#include "Hazel/Renderer/Buffer.hh"
 
 namespace Hazel {
 
@@ -39,8 +40,10 @@ namespace Hazel {
         LayerStack m_LayerStack;
 
         // Temporary
-        uint32_t m_Vao, m_Vbo, m_IndexBuffer;
+        uint32_t m_VertexArray;
         std::unique_ptr<OpenGLShader> m_Shader;
+        std::unique_ptr<VertexBuffer> m_VertexBuffer;
+        std::unique_ptr<IndexBuffer> m_IndexBuffer;
 
         static Application* s_Instance;
     };
