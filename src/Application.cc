@@ -44,21 +44,26 @@ namespace Hazel {
         glGenVertexArrays(1, &m_VertexArray);
         glBindVertexArray(m_VertexArray);
 
-        float vertices[9] = {
-             0.0f,  0.5f, 0.0f,
-            -0.5f, -0.5f, 0.0f,
-             0.5f, -0.5f, 0.0f
+        float vertices[3 * 7] = {
+             0.0f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+            -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+             0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f
         };
         uint32_t indices[3] = { 0, 1, 2 };
 
         m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
         m_IndexBuffer.reset(IndexBuffer::Create(indices, 3));
 
-        BufferLayout layout = {
-            { ShaderDataType::Float3, "a_Pos" }
-        };
+        {
+            BufferLayout layout = {
+                { ShaderDataType::Float3, "a_Pos" },
+                { ShaderDataType::Float4, "a_Color" }
+            };
+            m_VertexBuffer->SetLayout(layout);
+        }
 
         uint32_t index = 0;
+        const auto& layout = m_VertexBuffer->GetLayout();
         for (const auto& element : layout)
         {
             glEnableVertexAttribArray(index);
@@ -76,10 +81,13 @@ namespace Hazel {
         std::string vertexSrc = R"(
             #version 330 core
             layout(location = 0) in vec3 a_Pos;
+            layout(location = 1) in vec4 a_Color;
             out vec3 v_Pos;
+            out vec4 v_Color;
             void main()
             {
                 v_Pos = a_Pos;
+                v_Color = a_Color;
                 gl_Position = vec4(a_Pos , 1.0);
             }
         )";
@@ -87,10 +95,11 @@ namespace Hazel {
         std::string fragmentSrc = R"(
             #version 330 core
             in vec3 v_Pos;
+            in vec4 v_Color;
             out vec4 color;
             void main()
             {
-                color = vec4(v_Pos * 0.5 + 0.5, 1.0);
+                color = v_Color;
             }
         )";
 
