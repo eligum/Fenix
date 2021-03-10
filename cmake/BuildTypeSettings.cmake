@@ -1,8 +1,7 @@
 # Set a default build type if none was specified
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     message(STATUS "Setting build type to 'RelWithDebInfo' as none was specified.")
-    set(CMAKE_BUILD_TYPE
-        RelWithDebInfo
+    set(CMAKE_BUILD_TYPE "RelWithDebInfo"
         CACHE STRING "Choose the type of build." FORCE)
     # Set the possible values of build type for cmake-gui, ccmake
     set_property(
@@ -16,8 +15,3 @@ endif()
 
 # Generate compile_commands.json to make it easier to work with clang based tools
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-# Put all binaries under the same easy-to-access directory
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE}")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE}")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE}")
