@@ -1,13 +1,12 @@
-file(GLOB _hazel_SOURCE LIST_DIRECTORIES false "${CMAKE_CURRENT_SOURCE_DIR}/*.cc")
-file(GLOB_RECURSE _hazel_ALL_HEADERS "${CMAKE_SOURCE_DIR}/include/*.hh")
+file(GLOB HAZEL_SOURCE LIST_DIRECTORIES false "${CMAKE_CURRENT_SOURCE_DIR}/*.cc")
 
 # This line is just a flex of my cmake skills
-# list(APPEND _hazel_SOURCE "ImGui/ImGuiBuild.cc;ImGui/ImGuiLayer.cc")
+# list(APPEND HAZEL_SOURCE "ImGui/ImGuiBuild.cc;ImGui/ImGuiLayer.cc")
 
 if(HAZEL_BUILD_SHARED)
-    add_library(Hazel SHARED ${_hazel_SOURCE} ${_hazel_ALL_HEADERS})
+    add_library(Hazel SHARED ${HAZEL_SOURCE} ${HAZEL_ALL_HEADERS})
 else()
-    add_library(Hazel STATIC ${_hazel_SOURCE} ${_hazel_ALL_HEADERS})
+    add_library(Hazel STATIC ${HAZEL_SOURCE} ${HAZEL_ALL_HEADERS})
 endif()
 
 target_link_libraries(Hazel PUBLIC
@@ -16,4 +15,4 @@ target_link_libraries(Hazel PUBLIC
                               my_compile_warnings
                               my_compile_features)
 
-target_include_directories(Hazel PUBLIC "${CMAKE_SOURCE_DIR}/include")
+target_include_directories(Hazel PUBLIC "${HAZEL_HEADERS_DIR}")
