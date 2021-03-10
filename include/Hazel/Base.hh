@@ -25,7 +25,8 @@
     #define HZ_CORE_ASSERT(x, ...)
 #else
     #define HZ_ASSERT(x, ...) { if (!(x)) { HZ_ERROR("Assertion failed: {0}", __VA_ARGS__); } }
-    #define HZ_CORE_ASSERT(x, ...) { if (!(x)) { HZ_CORE_ERROR("Assertion failed: {0}", __VA_ARGS__); } }
+    #define HZ_CORE_ASSERT(x, ...) { if (!(x)) { HZ_CORE_ERROR("Assertion failed at LINE {0} in {1}", __LINE__, __FILE__); \
+                                                 HZ_CORE_ERROR("{0}", __VA_ARGS__); } }
 #endif
 
 #define BIT(x) (1 << x)

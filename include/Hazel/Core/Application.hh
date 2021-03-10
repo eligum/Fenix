@@ -10,6 +10,7 @@
 
 #include "Hazel/ImGui/ImGuiLayer.hh"
 
+// TEMP: Temporary
 #include "Platform/OpenGL/OpenGLShader.hh"
 #include "Hazel/Renderer/Buffer.hh"
 
@@ -39,7 +40,7 @@ namespace Hazel {
         bool m_Running = true;
         LayerStack m_LayerStack;
 
-        // Temporary
+        // TEMP: Temporary
         uint32_t m_VertexArray;
         std::unique_ptr<OpenGLShader> m_Shader;
         std::unique_ptr<VertexBuffer> m_VertexBuffer;
