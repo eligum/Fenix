@@ -18,7 +18,7 @@ message(STATUS "Build Hazel version: ${HAZEL_VERSION}")
 # ---------------------------------------------------------------------------------------
 # Project build configuration
 # ---------------------------------------------------------------------------------------
-include(cmake/buildTypeSettings.cmake)
+include(cmake/BuildTypeSettings.cmake)
 
 # Output all binaries under the same easy-to-access directory
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE}")

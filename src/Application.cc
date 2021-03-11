@@ -4,31 +4,11 @@
 
 // TEMP: Temporary
 #include <glad/glad.h>
+#include "Hazel/Renderer/Renderer.hh"
 
 namespace Hazel {
 
     Application* Application::s_Instance = nullptr;
-
-    static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
-    {
-        switch (type)
-        {
-            case ShaderDataType::Float:  return GL_FLOAT;
-            case ShaderDataType::Float2: return GL_FLOAT;
-            case ShaderDataType::Float3: return GL_FLOAT;
-            case ShaderDataType::Float4: return GL_FLOAT;
-            case ShaderDataType::Int:    return GL_INT;
-            case ShaderDataType::Int2:   return GL_INT;
-            case ShaderDataType::Int3:   return GL_INT;
-            case ShaderDataType::Int4:   return GL_INT;
-            case ShaderDataType::Mat3:   return GL_FLOAT;
-            case ShaderDataType::Mat4:   return GL_FLOAT;
-            case ShaderDataType::Bool:   return GL_BOOL;
-            case ShaderDataType::None:   break;
-        }
-        HZ_CORE_ASSERT(false, "Unknown ShaderDataType!");
-        return 0;
-    }
 
     Application::Application()
     {
@@ -41,44 +21,56 @@ namespace Hazel {
         m_ImGuiLayer = new ImGuiLayer();
         PushOverlay(m_ImGuiLayer);
 
-        glGenVertexArrays(1, &m_VertexArray);
-        glBindVertexArray(m_VertexArray);
+        // VAO
+        m_TriangleVA.reset(VertexArray::Create());
 
+        // VBO
         float vertices[3 * 7] = {
              0.0f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
             -0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
              0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f
         };
+        std::shared_ptr<VertexBuffer> vertex_buffer;
+        vertex_buffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+        BufferLayout layout = {
+            { ShaderDataType::Float3, "a_Pos" },
+            { ShaderDataType::Float4, "a_Color" }
+        };
+        vertex_buffer->SetLayout(layout);
+        m_TriangleVA->AddVertexBuffer(vertex_buffer);
+
+        // EBO
         uint32_t indices[3] = { 0, 1, 2 };
+        std::shared_ptr<IndexBuffer> index_buffer;
+        index_buffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+        m_TriangleVA->SetIndexBuffer(index_buffer);
 
-        m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-        m_IndexBuffer.reset(IndexBuffer::Create(indices, 3));
+        // VAO
+        m_SquareVA.reset(VertexArray::Create());
 
-        {
-            BufferLayout layout = {
-                { ShaderDataType::Float3, "a_Pos" },
-                { ShaderDataType::Float4, "a_Color" }
-            };
-            m_VertexBuffer->SetLayout(layout);
-        }
+        // VBO
+        float sq_vertices[4 * 3] = {
+             0.75f,  0.75f, 0.0f,
+            -0.75f,  0.75f, 0.0f,
+            -0.75f, -0.75f, 0.0f,
+             0.75f, -0.75f, 0.0f
+        };
+        std::shared_ptr<VertexBuffer> square_VB;
+        square_VB.reset(VertexBuffer::Create(sq_vertices, sizeof(sq_vertices)));
+        BufferLayout layout2 = {
+            { ShaderDataType::Float3, "a_Pos" }
+        };
+        square_VB->SetLayout(layout2);
+        m_SquareVA->AddVertexBuffer(square_VB);
 
-        uint32_t index = 0;
-        const auto& layout = m_VertexBuffer->GetLayout();
-        for (const auto& element : layout)
-        {
-            glEnableVertexAttribArray(index);
-            glVertexAttribPointer(index,
-                                  element.GetComponentCount(),
-                                  ShaderDataTypeToOpenGLBaseType(element.Type),
-                                  element.Normalize ? GL_TRUE : GL_FALSE,
-                                  layout.GetStride(),
-                                  reinterpret_cast<const void*>(element.Offset));
-            index++;
-        }
+        // EBO
+        uint32_t sq_indices[6] = { 0, 1, 2, 2, 3, 0 };
+        std::shared_ptr<IndexBuffer> square_IB;
+        square_IB.reset(IndexBuffer::Create(sq_indices, sizeof(sq_indices) / sizeof(uint32_t)));
+        m_SquareVA->SetIndexBuffer(square_IB);
 
-        glBindVertexArray(0);
-
-        std::string vertexSrc = R"(
+        // Create and compile shaders
+        std::string vertex_src = R"(
             #version 330 core
             layout(location = 0) in vec3 a_Pos;
             layout(location = 1) in vec4 a_Color;
@@ -92,7 +84,7 @@ namespace Hazel {
             }
         )";
 
-        std::string fragmentSrc = R"(
+        std::string fragment_src = R"(
             #version 330 core
             in vec3 v_Pos;
             in vec4 v_Color;
@@ -103,7 +95,28 @@ namespace Hazel {
             }
         )";
 
-        m_Shader.reset(new OpenGLShader("plain_color", vertexSrc, fragmentSrc));
+        m_Shader.reset(new OpenGLShader("pos-based-color", vertex_src, fragment_src));
+
+        std::string blue_shader_vert_src = R"(
+            #version 330 core
+            layout(location = 0) in vec3 a_Pos;
+            void main()
+            {
+                gl_Position = vec4(a_Pos , 1.0);
+            }
+        )";
+
+        std::string blue_shader_frag_src = R"(
+            #version 330 core
+            out vec4 color;
+            void main()
+            {
+                color = vec4(0.1, 0.2, 0.8, 1.0);
+            }
+        )";
+
+        m_BlueShader.reset(new OpenGLShader("blue-shader", blue_shader_vert_src, blue_shader_frag_src));
+
     }
 
     Application::~Application()
@@ -145,12 +158,18 @@ namespace Hazel {
     {
         while (m_Running)
         {
-            glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-            glClear(GL_COLOR_BUFFER_BIT);
+            RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
+            RenderCommand::Clear();
+
+            Renderer::BeginScene();
+
+            m_BlueShader->Bind();
+            Renderer::Submit(m_SquareVA);
 
             m_Shader->Bind();
-            glBindVertexArray(m_VertexArray);
-            glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+            Renderer::Submit(m_TriangleVA);
+
+            Renderer::EndScene();
 
             for (Layer* layer : m_LayerStack)
                 layer->OnUpdate();

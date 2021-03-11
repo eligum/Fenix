@@ -2,7 +2,18 @@
 
 namespace Hazel {
 
-    // TEMP: In the future this should be set at runtime
-    RendererAPI Renderer::s_RendererAPI = RendererAPI::OpenGL;
+    // TODO: Initialize here shader uniforms, camera settings...
+    void Renderer::BeginScene()
+    {
+    }
 
-}
+    void Renderer::EndScene()
+    {
+    }
+
+    void Renderer::Submit(const std::shared_ptr<VertexArray>& vertex_array)
+    {
+        RenderCommand::DrawIndexed(vertex_array);
+    }
+
+} // namespace Hazel

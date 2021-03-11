@@ -36,7 +36,10 @@ public:
         PushLayer(new ExampleLayer());
     }
 
-    ~Sandbox() {}
+    ~Sandbox()
+    {
+
+    }
 };
 
 Hazel::Application* Hazel::CreateApplication()

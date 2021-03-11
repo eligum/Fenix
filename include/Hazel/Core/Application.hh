@@ -13,6 +13,7 @@
 // TEMP: Temporary
 #include "Platform/OpenGL/OpenGLShader.hh"
 #include "Hazel/Renderer/Buffer.hh"
+#include "Hazel/Renderer/VertexArray.hh"
 
 namespace Hazel {
 
@@ -41,10 +42,11 @@ namespace Hazel {
         LayerStack m_LayerStack;
 
         // TEMP: Temporary
-        uint32_t m_VertexArray;
-        std::unique_ptr<OpenGLShader> m_Shader;
-        std::unique_ptr<VertexBuffer> m_VertexBuffer;
-        std::unique_ptr<IndexBuffer> m_IndexBuffer;
+        std::shared_ptr<OpenGLShader> m_Shader;
+        std::shared_ptr<VertexArray> m_TriangleVA;
+
+        std::shared_ptr<OpenGLShader> m_BlueShader;
+        std::shared_ptr<VertexArray> m_SquareVA;
 
         static Application* s_Instance;
     };
