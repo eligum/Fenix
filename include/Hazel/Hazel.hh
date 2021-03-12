@@ -12,6 +12,17 @@
 
 #include "ImGui/ImGuiLayer.hh"
 
+// ----Renderer-------------------------------
+#include "Renderer/Renderer.hh"
+#include "Renderer/RenderCommand.hh"
+
+#include "Renderer/VertexArray.hh"
+#include "Renderer/Buffer.hh"
+#include "Renderer/Shader.hh"
+
+#include "Renderer/Camera.hh"
+// -------------------------------------------
+
 // ----Entry Point----------------------------
 #include "EntryPoint.hh"
 // -------------------------------------------

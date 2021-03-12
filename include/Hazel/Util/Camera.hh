@@ -4,7 +4,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-enum Camera_Movement
+enum CameraMovement
 {
     FORWARD,
     BACKWARD,
@@ -66,7 +66,7 @@ public:
      * parameter in the form of camera defined ENUM (to abstract it from windowing
      * systems).
      */
-    void ProcessAction(Camera_Movement direction, float deltaTime);
+    void ProcessAction(CameraMovement direction, float deltaTime);
 
     /**
      * Processes input received from a mouse input system. Expects the offset value
