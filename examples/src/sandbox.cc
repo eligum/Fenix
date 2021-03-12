@@ -9,7 +9,8 @@ class ExampleLayer : public Hazel::Layer
 {
 public:
     ExampleLayer()
-        : Layer("Example"), m_Camera(-0.5f * HEIGHT * ASPECT_RATIO, 0.5f * HEIGHT * ASPECT_RATIO, -0.5f * HEIGHT, 0.5f * HEIGHT)
+        : Layer("Example"), m_Camera(-0.5f * HEIGHT * ASPECT_RATIO, 0.5f * HEIGHT * ASPECT_RATIO, -0.5f * HEIGHT, 0.5f * HEIGHT),
+          m_CameraPos(0.0f), m_CameraAngle(0.0f)
     {
         // VAO
         m_TriangleVA.reset(Hazel::VertexArray::Create());
@@ -123,11 +124,16 @@ public:
 
     void OnUpdate() override
     {
+        if (Hazel::Input::IsKeyPressed(Hazel::Key::A))
+            m_CameraPos.x -= 0.002f;
+        if (Hazel::Input::IsKeyPressed(Hazel::Key::D))
+            m_CameraPos.x += 0.002f;
+
         Hazel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
         Hazel::RenderCommand::Clear();
 
-        m_Camera.SetPosition({ 0.75f, 0.75f, 0.0f });
-        m_Camera.SetRotation(30.0f);
+        m_Camera.SetPosition(m_CameraPos);
+        m_Camera.SetRotation(m_CameraAngle);
 
         Hazel::Renderer::BeginScene(m_Camera);
 
@@ -144,9 +150,19 @@ public:
         // ImGui::End();
      }
 
-    void OnEvent(Hazel::Event& e) override
+    void OnEvent(Hazel::Event& evt) override
     {
         // HZ_TRACE("{0}", e);
+        // Hazel::EventDispatcher dispatcher(evt);
+        // dispatcher.Dispatch<Hazel::KeyPressedEvent>(HZ_BIND_EVENT_FN(ExampleLayer::OnKeyPressedEvent));
+    }
+
+    bool OnKeyPressedEvent(Hazel::KeyPressedEvent& evt)
+    {
+        // if (evt.GetKeyCode() == Hazel::Key::A)
+        //     m_CameraPos.x += 0.1f;
+
+        // return false;
     }
 private:
     std::shared_ptr<Hazel::Shader> m_Shader;
@@ -156,6 +172,8 @@ private:
     std::shared_ptr<Hazel::VertexArray> m_SquareVA;
 
     Hazel::OrthographicCamera m_Camera;
+    glm::vec3 m_CameraPos;
+    float m_CameraAngle;
 };
 
 
