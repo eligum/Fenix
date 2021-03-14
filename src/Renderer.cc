@@ -1,5 +1,7 @@
 #include "Hazel/Renderer/Renderer.hh"
 
+#include "Platform/OpenGL/OpenGLShader.hh"
+
 namespace Hazel {
 
     Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
@@ -14,10 +16,11 @@ namespace Hazel {
     {
     }
 
-    void Renderer::Submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vertex_array)
+    void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertex_array, const glm::mat4& transform)
     {
         shader->Bind();
-        shader->SetMat4("u_ProjView", m_SceneData->ProjViewMatrix);
+        std::dynamic_pointer_cast<OpenGLShader>(shader)->SetMat4("u_ProjView", m_SceneData->ProjViewMatrix);
+        std::dynamic_pointer_cast<OpenGLShader>(shader)->SetMat4("u_Transform", transform);
 
         vertex_array->Bind();
         RenderCommand::DrawIndexed(vertex_array);

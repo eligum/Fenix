@@ -146,7 +146,11 @@ namespace Hazel {
 
     void LinuxWindow::SetVSync(bool enabled)
     {
-        (enabled) ? glfwSwapInterval(1) : glfwSwapInterval(0);
+        if (enabled)
+            glfwSwapInterval(1);
+        else
+            glfwSwapInterval(0);
+
         m_Data.VSync = enabled;
     }
 

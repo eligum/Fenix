@@ -7,6 +7,8 @@
 #include "Core/Log.hh"
 #include "Core/Layer.hh"
 
+#include "Core/Timestep.hh"
+
 #include "Core/Input.hh"
 #include "Core/KeyCodes.hh"
 #include "Core/MouseCodes.hh"
