@@ -67,11 +67,8 @@ public:
         m_Shader          = Hazel::Shader::Create("examples/assets/shaders/triangle.vert",
                                                   "examples/assets/shaders/triangle.frag");
 
-        m_FlatColorShader = Hazel::Shader::Create("examples/assets/shaders/flat_color.vert",
-                                                  "examples/assets/shaders/flat_color.frag");
-
-        m_TextureShader   = Hazel::Shader::Create("examples/assets/shaders/texture.vert",
-                                                  "examples/assets/shaders/texture.frag");
+        m_FlatColorShader = Hazel::Shader::Create("examples/assets/shaders/flat_color.glsl");
+        m_TextureShader   = Hazel::Shader::Create("examples/assets/shaders/texture.glsl");
 
         m_TextureShader->Bind();
         m_TextureShader->SetInt("u_Texture", 0);
