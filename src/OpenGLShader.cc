@@ -35,6 +35,18 @@ namespace Hazel {
         m_Name = filepath.substr(lastSlash, count);
     }
 
+    OpenGLShader::OpenGLShader(const std::string& vert_filepath, const std::string& frag_filepath)
+    {
+        std::string vertSrc = ReadFile(vert_filepath);
+        std::string fragSrc = ReadFile(frag_filepath);
+
+        std::unordered_map<uint32_t, std::string> sources;
+        sources[GL_VERTEX_SHADER] = vertSrc;
+        sources[GL_FRAGMENT_SHADER] = fragSrc;
+        Compile(sources);
+        m_Name = "Loaded from 2 files";
+    }
+
     OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
         : m_Name(name)
     {

@@ -42,6 +42,9 @@ namespace Hazel {
     template <typename T>
     using Ref = std::shared_ptr<T>;
 
+    // template <typename T>
+    // using CreateRef = std::make_shared<T>;
+
 }
 
 #include "Core/Log.hh"

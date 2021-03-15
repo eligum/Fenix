@@ -1,7 +1,7 @@
 #include "Hazel/Hazel.hh"
 
-#include "imgui.h"
-#include "glm/gtc/type_ptr.hpp"
+#include <imgui.h>
+#include <glm/gtc/type_ptr.hpp>
 
 constexpr float ASPECT_RATIO = 16.0f / 9.0f;
 constexpr float HEIGHT = 3.0f;
@@ -64,103 +64,14 @@ public:
         square_IB.reset(Hazel::IndexBuffer::Create(sq_indices, sizeof(sq_indices) / sizeof(uint32_t)));
         m_SquareVA->SetIndexBuffer(square_IB);
 
-        // Create and compile shaders
-        std::string vertex_src = R"(
-            #version 330 core
+        m_Shader          = Hazel::Shader::Create("examples/assets/shaders/triangle.vert",
+                                                  "examples/assets/shaders/triangle.frag");
 
-            layout(location = 0) in vec3 a_Pos;
-            layout(location = 1) in vec4 a_Color;
+        m_FlatColorShader = Hazel::Shader::Create("examples/assets/shaders/flat_color.vert",
+                                                  "examples/assets/shaders/flat_color.frag");
 
-            uniform mat4 u_ProjView;
-            uniform mat4 u_Transform;
-
-            out vec4 v_Color;
-
-            void main()
-            {
-                v_Color = a_Color;
-                gl_Position = u_ProjView * u_Transform * vec4(a_Pos , 1.0);
-            }
-        )";
-
-        std::string fragment_src = R"(
-            #version 330 core
-
-            in vec4 v_Color;
-
-            out vec4 color;
-
-            void main()
-            {
-                color = v_Color;
-            }
-        )";
-
-        m_Shader.reset(Hazel::Shader::Create("vertex-based-color", vertex_src, fragment_src));
-
-        std::string flat_color_shader_vert_src = R"(
-            #version 330 core
-
-            layout(location = 0) in vec3 a_Pos;
-
-            uniform mat4 u_ProjView;
-            uniform mat4 u_Transform;
-
-            void main()
-            {
-                gl_Position = u_ProjView * u_Transform * vec4(a_Pos , 1.0);
-            }
-        )";
-
-        std::string flat_color_shader_frag_src = R"(
-            #version 330 core
-
-            uniform vec3 u_Color;
-
-            out vec4 color;
-
-            void main()
-            {
-                color = vec4(u_Color, 1.0);
-            }
-        )";
-
-        m_FlatColorShader.reset(Hazel::Shader::Create("flat-color-shader", flat_color_shader_vert_src, flat_color_shader_frag_src));
-
-        std::string texture_shader_vert_src = R"(
-            #version 330 core
-
-            layout(location = 0) in vec3 a_Pos;
-            layout(location = 1) in vec2 a_TexCoord;
-
-            uniform mat4 u_ProjView;
-            uniform mat4 u_Transform;
-
-            out vec2 v_TexCoord;
-
-            void main()
-            {
-                v_TexCoord = a_TexCoord;
-                gl_Position = u_ProjView * u_Transform * vec4(a_Pos , 1.0);
-            }
-        )";
-
-        std::string texture_shader_frag_src = R"(
-            #version 330 core
-
-            in vec2 v_TexCoord;
-
-            uniform sampler2D u_Texture;
-
-            out vec4 color;
-
-            void main()
-            {
-                color = texture(u_Texture, v_TexCoord);
-            }
-        )";
-
-        m_TextureShader.reset(Hazel::Shader::Create("texture-shader", texture_shader_vert_src, texture_shader_frag_src));
+        m_TextureShader   = Hazel::Shader::Create("examples/assets/shaders/texture.vert",
+                                                  "examples/assets/shaders/texture.frag");
 
         m_TextureShader->Bind();
         m_TextureShader->SetInt("u_Texture", 0);

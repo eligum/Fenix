@@ -9,6 +9,7 @@ namespace Hazel {
         : m_Path(filepath)
     {
         int width, height, channels;
+        stbi_set_flip_vertically_on_load(1);
         stbi_uc* data = stbi_load(filepath.c_str(), &width, &height, &channels, STBI_default);
         HZ_CORE_ASSERT(data, "Failed to load image");
         m_Width = static_cast<uint32_t>(width);
