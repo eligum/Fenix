@@ -6,6 +6,11 @@ namespace Hazel {
 
     Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
 
+    void Renderer::Init()
+    {
+        RenderCommand::Init();
+    }
+
     // TODO: Initialize here shader uniforms, camera settings...
     void Renderer::BeginScene(OrthographicCamera& camera)
     {

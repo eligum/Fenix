@@ -2,6 +2,8 @@
 #include "Hazel/Core/Log.hh"
 #include "Hazel/Core/Events/ApplicationEvent.hh"
 
+#include "Hazel/Renderer/Renderer.hh"
+
 #include <GLFW/glfw3.h>
 
 namespace Hazel {
@@ -16,6 +18,8 @@ namespace Hazel {
         m_Window = std::unique_ptr<Window>(Window::Create({ "HAZEL", 1600, 900 }));
         m_Window->SetEventCallback(HZ_BIND_EVENT_FN(Application::OnEvent));
         m_Window->SetVSync(true);
+
+        Renderer::Init();
 
         m_ImGuiLayer = new ImGuiLayer();
         PushOverlay(m_ImGuiLayer);
