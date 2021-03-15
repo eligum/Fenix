@@ -64,9 +64,7 @@ public:
         square_IB.reset(Hazel::IndexBuffer::Create(sq_indices, sizeof(sq_indices) / sizeof(uint32_t)));
         m_SquareVA->SetIndexBuffer(square_IB);
 
-        m_Shader          = Hazel::Shader::Create("examples/assets/shaders/triangle.vert",
-                                                  "examples/assets/shaders/triangle.frag");
-
+        m_Shader          = Hazel::Shader::Create("examples/assets/shaders/triangle.glsl");
         m_FlatColorShader = Hazel::Shader::Create("examples/assets/shaders/flat_color.glsl");
         m_TextureShader   = Hazel::Shader::Create("examples/assets/shaders/texture.glsl");
 
