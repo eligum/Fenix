@@ -43,16 +43,17 @@ public:
         m_SquareVA.reset(Hazel::VertexArray::Create());
 
         // VBO
-        float sq_vertices[4 * 3] = {
-             0.5f,  0.5f, 0.0f,
-            -0.5f,  0.5f, 0.0f,
-            -0.5f, -0.5f, 0.0f,
-             0.5f, -0.5f, 0.0f
+        float sq_vertices[4 * 5] = {
+            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+             0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+             0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+            -0.5f,  0.5f, 0.0f, 0.0f, 1.0f,
         };
         Hazel::Ref<Hazel::VertexBuffer> square_VB;
         square_VB.reset(Hazel::VertexBuffer::Create(sq_vertices, sizeof(sq_vertices)));
         Hazel::BufferLayout layout2 = {
-            { Hazel::ShaderDataType::Float3, "a_Pos" }
+            { Hazel::ShaderDataType::Float3, "a_Pos" },
+            { Hazel::ShaderDataType::Float2, "a_TexCoord" }
         };
         square_VB->SetLayout(layout2);
         m_SquareVA->AddVertexBuffer(square_VB);
@@ -125,11 +126,51 @@ public:
         )";
 
         m_FlatColorShader.reset(Hazel::Shader::Create("flat-color-shader", flat_color_shader_vert_src, flat_color_shader_frag_src));
+
+        std::string texture_shader_vert_src = R"(
+            #version 330 core
+
+            layout(location = 0) in vec3 a_Pos;
+            layout(location = 1) in vec2 a_TexCoord;
+
+            uniform mat4 u_ProjView;
+            uniform mat4 u_Transform;
+
+            out vec2 v_TexCoord;
+
+            void main()
+            {
+                v_TexCoord = a_TexCoord;
+                gl_Position = u_ProjView * u_Transform * vec4(a_Pos , 1.0);
+            }
+        )";
+
+        std::string texture_shader_frag_src = R"(
+            #version 330 core
+
+            in vec2 v_TexCoord;
+
+            uniform sampler2D u_Texture;
+
+            out vec4 color;
+
+            void main()
+            {
+                color = texture(u_Texture, v_TexCoord);
+            }
+        )";
+
+        m_TextureShader.reset(Hazel::Shader::Create("texture-shader", texture_shader_vert_src, texture_shader_frag_src));
+
+        m_TextureShader->Bind();
+        m_TextureShader->SetInt("u_Texture", 0);
+
+        m_Texture = Hazel::Texture2D::Create("examples/assets/textures/checkerboard.jpg");
     }
 
     void OnUpdate(Hazel::Timestep ts) override
     {
-        HZ_INFO("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMiliseconds());
+        // HZ_INFO("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMiliseconds());
 
         if (Hazel::Input::IsKeyPressed(Hazel::Key::A))
             m_CameraPos.x -= m_CameraMoveSpeed * ts;
@@ -163,7 +204,11 @@ public:
             }
         }
 
-        Hazel::Renderer::Submit(m_Shader, m_TriangleVA);
+        m_Texture->Bind(0);
+        Hazel::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+        // Triangle
+        // Hazel::Renderer::Submit(m_Shader, m_TriangleVA);
 
         Hazel::Renderer::EndScene();
     }
@@ -193,8 +238,10 @@ private:
     Hazel::Ref<Hazel::Shader> m_Shader;
     Hazel::Ref<Hazel::VertexArray> m_TriangleVA;
 
-    Hazel::Ref<Hazel::Shader> m_FlatColorShader;
+    Hazel::Ref<Hazel::Shader> m_FlatColorShader, m_TextureShader;
     Hazel::Ref<Hazel::VertexArray> m_SquareVA;
+
+    Hazel::Ref<Hazel::Texture2D> m_Texture;
 
     Hazel::OrthographicCamera m_Camera;
     glm::vec3 m_CameraPos;
