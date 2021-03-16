@@ -5,6 +5,9 @@
 
 #include "PlatformDetection.hh"
 
+// TODO: Find a better way to integrate this with the build system
+#define HZ_DEBUG
+
 #ifdef HZ_DEBUG
     #if defined(HZ_PLATFORM_WINDOWS)
         #define HZ_DEBUGBREAK() __debugbreak()
@@ -19,14 +22,27 @@
     #define HZ_DEBUGBREAK()
 #endif
 
-#ifdef HZ_ENABLE_ASSERTS
+#ifndef HZ_ENABLE_ASSERTS
     #define HZ_ASSERT(x, ...)
     #define HZ_CORE_ASSERT(x, ...)
 #else
-    #define HZ_ASSERT(x, ...) { if (!(x)) { HZ_ERROR("Assertion failed at LINE {0} in {1}", __LINE__, __FILE__); \
-                                            HZ_ERROR("{0}", __VA_ARGS__); } }
-    #define HZ_CORE_ASSERT(x, ...) { if (!(x)) { HZ_CORE_ERROR("Assertion failed at LINE {0} in {1}", __LINE__, __FILE__); \
-                                                 HZ_CORE_ERROR("{0}", __VA_ARGS__); } }
+#define HZ_ASSERT(x, ...)                                                        \
+    {                                                                            \
+        if (!(x))                                                                \
+        {                                                                        \
+            HZ_ERROR("Assertion failed at LINE {0} in {1}", __LINE__, __FILE__); \
+            HZ_ERROR("{0}", __VA_ARGS__);                                        \
+        }                                                                        \
+    }
+
+#define HZ_CORE_ASSERT(x, ...)                                                        \
+    {                                                                                 \
+        if (!(x))                                                                     \
+        {                                                                             \
+            HZ_CORE_ERROR("Assertion failed at LINE {0} in {1}", __LINE__, __FILE__); \
+            HZ_CORE_ERROR("{0}", __VA_ARGS__);                                        \
+        }                                                                             \
+    }
 #endif
 
 #define BIT(x) (1 << x)

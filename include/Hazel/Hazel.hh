@@ -15,6 +15,8 @@
 
 #include "ImGui/ImGuiLayer.hh"
 
+#include "Renderer/CameraController.hh"
+
 // ----Renderer-------------------------------
 #include "Renderer/Renderer.hh"
 #include "Renderer/RenderCommand.hh"

@@ -15,7 +15,8 @@ namespace Hazel {
         HZ_CORE_ASSERT(!s_Instance, "Application already exists!");
         s_Instance = this;
 
-        m_Window = std::unique_ptr<Window>(Window::Create({ "HAZEL", 1600, 900 }));
+        // m_Window = std::unique_ptr<Window>(Window::Create({ "HAZEL", 1600, 900 }));
+        m_Window = std::unique_ptr<Window>(Window::Create());
         m_Window->SetEventCallback(HZ_BIND_EVENT_FN(Application::OnEvent));
         m_Window->SetVSync(true);
 
@@ -33,10 +34,9 @@ namespace Hazel {
     {
         EventDispatcher dispatcher(evt);
         dispatcher.Dispatch<WindowCloseEvent>(HZ_BIND_EVENT_FN(Application::OnWindowClose));
+        dispatcher.Dispatch<WindowResizeEvent>(HZ_BIND_EVENT_FN(Application::OnWindowResize));
 
-        HZ_CORE_TRACE("{0}", evt);
-
-        for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
+        for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
         {
             (*--it)->OnEvent(evt);
             if (evt.Handled)
@@ -54,12 +54,6 @@ namespace Hazel {
         m_LayerStack.PushOverlay(overlay);
     }
 
-    bool Application::OnWindowClose(WindowCloseEvent& evt)
-    {
-        m_Running = false;
-        return true;
-    }
-
     void Application::Run()
     {
         while (m_Running)
@@ -69,8 +63,13 @@ namespace Hazel {
             Timestep timestep = time - m_LastFrameTime;
             m_LastFrameTime = time;
 
-            for (Layer* layer : m_LayerStack)
-                layer->OnUpdate(timestep);
+            // In Windows minimizing causes the screen to get resized to 0,0 while still consuming resources,
+            // to avoid wasting CPU or GPU time we only render when the window size is greater than zero.
+            if (!m_Minimized)
+            {
+                for (Layer* layer : m_LayerStack)
+                    layer->OnUpdate(timestep);
+            }
 
             m_ImGuiLayer->BeginDraw();
             for (Layer* layer : m_LayerStack)
@@ -79,6 +78,26 @@ namespace Hazel {
 
             m_Window->OnUpdate();
         }
+    }
+
+    bool Application::OnWindowClose(WindowCloseEvent& evt)
+    {
+        m_Running = false;
+        return true;
+    }
+
+    bool Application::OnWindowResize(WindowResizeEvent& evt)
+    {
+        if (evt.GetWidth() == 0 || evt.GetHeight() == 0)
+        {
+            m_Minimized = true;
+            return false;
+        }
+        m_Minimized = false;
+
+        Renderer::OnWindowResize(m_Window->GetWidth(), m_Window->GetHeight());
+
+        return false;
     }
 
 } // namespace Hazel

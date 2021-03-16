@@ -3,15 +3,13 @@
 #include <imgui.h>
 #include <glm/gtc/type_ptr.hpp>
 
-constexpr float ASPECT_RATIO = 16.0f / 9.0f;
-constexpr float HEIGHT = 3.0f;
+static constexpr float ASPECT_RATIO = 1600.0f / 900.0f;
 
 class ExampleLayer : public Hazel::Layer
 {
 public:
     ExampleLayer()
-        : Layer("Example"), m_Camera(-0.5f * HEIGHT * ASPECT_RATIO, 0.5f * HEIGHT * ASPECT_RATIO, -0.5f * HEIGHT, 0.5f * HEIGHT),
-          m_CameraPos(0.0f), m_CameraMoveSpeed(1.0f)
+        : Layer("Example"), m_CameraController(ASPECT_RATIO, true)
     {
         // VAO
         m_TriangleVA.reset(Hazel::VertexArray::Create());
@@ -77,24 +75,15 @@ public:
 
     void OnUpdate(Hazel::Timestep ts) override
     {
-        // HZ_INFO("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMiliseconds());
+        // Update
+        m_CameraController.OnUpdate(ts);
 
-        if (Hazel::Input::IsKeyPressed(Hazel::Key::A))
-            m_CameraPos.x -= m_CameraMoveSpeed * ts;
-        else if (Hazel::Input::IsKeyPressed(Hazel::Key::D))
-            m_CameraPos.x += m_CameraMoveSpeed * ts;
-
-        if (Hazel::Input::IsKeyPressed(Hazel::Key::S))
-            m_CameraPos.y -= m_CameraMoveSpeed * ts;
-        else if (Hazel::Input::IsKeyPressed(Hazel::Key::W))
-            m_CameraPos.y += m_CameraMoveSpeed * ts;
-
+        // Render (not really)
         Hazel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
         Hazel::RenderCommand::Clear();
 
-        m_Camera.SetPosition(m_CameraPos);
 
-        Hazel::Renderer::BeginScene(m_Camera);
+        Hazel::Renderer::BeginScene(m_CameraController.GetCamera());
 
         glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -131,17 +120,16 @@ public:
 
     void OnEvent(Hazel::Event& evt) override
     {
-        // HZ_TRACE("{0}", e);
+        m_CameraController.OnEvent(evt);
+
         // Hazel::EventDispatcher dispatcher(evt);
         // dispatcher.Dispatch<Hazel::KeyPressedEvent>(HZ_BIND_EVENT_FN(ExampleLayer::OnKeyPressedEvent));
     }
 
     bool OnKeyPressedEvent(Hazel::KeyPressedEvent& evt)
     {
-        // if (evt.GetKeyCode() == Hazel::Key::A)
-        //     m_CameraPos.x += 0.1f;
-
-        // return false;
+        // HZ_INFO("{0}", evt);
+        return false;
     }
 private:
     Hazel::Ref<Hazel::Shader> m_Shader;
@@ -153,9 +141,7 @@ private:
     Hazel::Ref<Hazel::Texture2D> m_Texture;
     Hazel::Ref<Hazel::Texture2D> m_PikachuTex;
 
-    Hazel::OrthographicCamera m_Camera;
-    glm::vec3 m_CameraPos;
-    float m_CameraMoveSpeed;
+    Hazel::OrthographicCameraController m_CameraController;
 
     glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };

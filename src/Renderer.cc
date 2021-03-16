@@ -11,6 +11,12 @@ namespace Hazel {
         RenderCommand::Init();
     }
 
+    void Renderer::OnWindowResize(uint32_t width, uint32_t height)
+    {
+        // TEMP: This solution only works when rendering a single framebuffer
+        RenderCommand::SetViewport(0, 0, width, height);
+    }
+
     // TODO: Initialize here shader uniforms, camera settings...
     void Renderer::BeginScene(OrthographicCamera& camera)
     {

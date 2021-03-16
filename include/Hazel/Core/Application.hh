@@ -31,10 +31,12 @@ namespace Hazel {
         static Application& GetApp() { return *s_Instance; }
     private:
         bool OnWindowClose(WindowCloseEvent& evt);
+        bool OnWindowResize(WindowResizeEvent& evt);
     private:
         std::unique_ptr<Window> m_Window;
         ImGuiLayer* m_ImGuiLayer;
         bool m_Running = true;
+        bool m_Minimized = false; // Only needed for Windows OS
         LayerStack m_LayerStack;
         float m_LastFrameTime = 0.0f;
 
