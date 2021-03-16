@@ -1,9 +1,12 @@
 #include "Hazel/Hazel.hh"
+#include "Hazel/Core/EntryPoint.hh"
 
 #include <imgui.h>
 #include <glm/gtc/type_ptr.hpp>
 
-static constexpr float ASPECT_RATIO = 1600.0f / 900.0f;
+#include "Sandbox2D.hh"
+
+static constexpr float ASPECT_RATIO = 16.0f / 9.0f;
 
 class ExampleLayer : public Hazel::Layer
 {
@@ -12,7 +15,7 @@ public:
         : Layer("Example"), m_CameraController(ASPECT_RATIO, true)
     {
         // VAO
-        m_TriangleVA.reset(Hazel::VertexArray::Create());
+        m_VertexArray = Hazel::VertexArray::Create();
 
         // VBO
         float vertices[3 * 7] = {
@@ -21,24 +24,24 @@ public:
              0.5f, -0.5f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f
         };
         Hazel::Ref<Hazel::VertexBuffer> vertex_buffer;
-        vertex_buffer.reset(Hazel::VertexBuffer::Create(vertices, sizeof(vertices)));
+        vertex_buffer = Hazel::VertexBuffer::Create(vertices, sizeof(vertices));
         Hazel::BufferLayout layout = {
             { Hazel::ShaderDataType::Float3, "a_Pos" },
             { Hazel::ShaderDataType::Float4, "a_Color" }
         };
         vertex_buffer->SetLayout(layout);
-        m_TriangleVA->AddVertexBuffer(vertex_buffer);
+        m_VertexArray->AddVertexBuffer(vertex_buffer);
 
         // EBO
         uint32_t indices[3] = { 0, 1, 2 };
         Hazel::Ref<Hazel::IndexBuffer> index_buffer;
-        index_buffer.reset(Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-        m_TriangleVA->SetIndexBuffer(index_buffer);
+        index_buffer = Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
+        m_VertexArray->SetIndexBuffer(index_buffer);
 
-        m_TriangleVA->Unbind();
+        m_VertexArray->Unbind();
 
         // VAO
-        m_SquareVA.reset(Hazel::VertexArray::Create());
+        m_SquareVA = Hazel::VertexArray::Create();
 
         // VBO
         float sq_vertices[4 * 5] = {
@@ -48,7 +51,7 @@ public:
             -0.5f,  0.5f, 0.0f, 0.0f, 1.0f,
         };
         Hazel::Ref<Hazel::VertexBuffer> square_VB;
-        square_VB.reset(Hazel::VertexBuffer::Create(sq_vertices, sizeof(sq_vertices)));
+        square_VB = Hazel::VertexBuffer::Create(sq_vertices, sizeof(sq_vertices));
         Hazel::BufferLayout layout2 = {
             { Hazel::ShaderDataType::Float3, "a_Pos" },
             { Hazel::ShaderDataType::Float2, "a_TexCoord" }
@@ -59,7 +62,7 @@ public:
         // EBO
         uint32_t sq_indices[6] = { 0, 1, 2, 2, 3, 0 };
         Hazel::Ref<Hazel::IndexBuffer> square_IB;
-        square_IB.reset(Hazel::IndexBuffer::Create(sq_indices, sizeof(sq_indices) / sizeof(uint32_t)));
+        square_IB = Hazel::IndexBuffer::Create(sq_indices, sizeof(sq_indices) / sizeof(uint32_t));
         m_SquareVA->SetIndexBuffer(square_IB);
 
         m_Shader          = Hazel::Shader::Create("examples/assets/shaders/triangle.glsl");
@@ -81,7 +84,6 @@ public:
         // Render (not really)
         Hazel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
         Hazel::RenderCommand::Clear();
-
 
         Hazel::Renderer::BeginScene(m_CameraController.GetCamera());
 
@@ -106,7 +108,7 @@ public:
         Hazel::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
         // Triangle
-        // Hazel::Renderer::Submit(m_Shader, m_TriangleVA);
+        // Hazel::Renderer::Submit(m_Shader, m_VertexArray);
 
         Hazel::Renderer::EndScene();
     }
@@ -133,7 +135,7 @@ public:
     }
 private:
     Hazel::Ref<Hazel::Shader> m_Shader;
-    Hazel::Ref<Hazel::VertexArray> m_TriangleVA;
+    Hazel::Ref<Hazel::VertexArray> m_VertexArray;
 
     Hazel::Ref<Hazel::Shader> m_FlatColorShader, m_TextureShader;
     Hazel::Ref<Hazel::VertexArray> m_SquareVA;
@@ -146,14 +148,14 @@ private:
     glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
-
 // This class inherits from Application
 class Sandbox : public Hazel::Application
 {
 public:
     Sandbox()
     {
-        PushLayer(new ExampleLayer());
+        // PushLayer(new ExampleLayer());
+        PushLayer(new Sandbox2D());
     }
 
     ~Sandbox()

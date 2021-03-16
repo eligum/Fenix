@@ -4,7 +4,7 @@
 namespace Hazel {
 
     OrthographicCameraController::OrthographicCameraController(float aspect_ratio, bool enable_rotation)
-        : m_AspectRatio(aspect_ratio), m_ZoomLevel(1.5f),
+        : m_AspectRatio(aspect_ratio), m_ZoomLevel(1.0f),
           m_Camera(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel),
           m_Rotation(enable_rotation)
     {}

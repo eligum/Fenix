@@ -23,6 +23,8 @@ namespace Hazel {
         HZ_CORE_INFO("Renderer: {0}", glGetString(GL_RENDERER));
         HZ_CORE_INFO("Version:  {0}", glGetString(GL_VERSION));
         HZ_CORE_INFO("------------");
+
+        HZ_CORE_ASSERT(GLVersion.major > 4 || (GLVersion.major == 4 && GLVersion.minor >= 5), "Hazel requires at least OpenGL version 4.5");
     }
 
     void OpenGLContext::SwapBuffers()
