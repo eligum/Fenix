@@ -1,5 +1,5 @@
 #include "Platform/OpenGL/OpenGLContext.hh"
-#include "Hazel/Base.hh"
+#include "Hazel/Core/Base.hh"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>

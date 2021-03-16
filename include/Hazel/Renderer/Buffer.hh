@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Hazel/Base.hh"
+#include "Hazel/Core/Base.hh"
 
 #include <vector>
 #include <string>

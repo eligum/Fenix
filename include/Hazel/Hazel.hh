@@ -2,7 +2,7 @@
 
 // For use by Hazel applications
 
-#include "Base.hh"
+#include "Core/Base.hh"
 #include "Core/Application.hh"
 #include "Core/Log.hh"
 #include "Core/Layer.hh"
@@ -30,5 +30,5 @@
 // -------------------------------------------
 
 // ----Entry Point----------------------------
-#include "EntryPoint.hh"
+#include "Core/EntryPoint.hh"
 // -------------------------------------------

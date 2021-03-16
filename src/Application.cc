@@ -1,6 +1,6 @@
 #include "Hazel/Core/Application.hh"
 #include "Hazel/Core/Log.hh"
-#include "Hazel/Core/Events/ApplicationEvent.hh"
+#include "Hazel/Events/ApplicationEvent.hh"
 
 #include "Hazel/Renderer/Renderer.hh"
 

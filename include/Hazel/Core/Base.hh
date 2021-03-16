@@ -3,7 +3,7 @@
 #include <memory>
 #include <cstddef>
 
-#include "PlatformDetection.hh"
+#include "Platform/PlatformDetection.hh"
 
 // TODO: Find a better way to integrate this with the build system
 #define HZ_DEBUG
@@ -63,4 +63,4 @@ namespace Hazel {
 
 }
 
-#include "Core/Log.hh"
+#include "Hazel/Core/Log.hh"

@@ -1,5 +1,5 @@
 #include "Platform/OpenGL/OpenGLShader.hh"
-#include "Hazel/Base.hh"
+#include "Hazel/Core/Base.hh"
 
 #include <fstream>
 #include <glad/glad.h>

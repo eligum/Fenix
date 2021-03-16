@@ -5,9 +5,8 @@
 
 #include "Hazel/Core/Window.hh"
 #include "Hazel/Core/LayerStack.hh"
-#include "Hazel/Core/Events/Event.hh"
-#include "Hazel/Core/Events/ApplicationEvent.hh"
 #include "Hazel/Core/Timestep.hh"
+#include "Hazel/Events/ApplicationEvent.hh"
 
 #include "Hazel/ImGui/ImGuiLayer.hh"
 

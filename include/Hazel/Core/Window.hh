@@ -4,7 +4,7 @@
 #include <sstream>
 #include <functional>
 
-#include "Events/Event.hh"
+#include "Hazel/Events/Event.hh"
 
 namespace Hazel {
 

@@ -3,7 +3,7 @@
 #include <sstream>
 
 #include "Event.hh"
-#include "../KeyCodes.hh"
+#include "Hazel/Core/KeyCodes.hh"
 
 namespace Hazel {
 

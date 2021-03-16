@@ -2,8 +2,8 @@
 
 #include <string>
 
-#include "Events/Event.hh"
-#include "Timestep.hh"
+#include "Hazel/Events/Event.hh"
+#include "Hazel/Core/Timestep.hh"
 
 namespace Hazel {
 

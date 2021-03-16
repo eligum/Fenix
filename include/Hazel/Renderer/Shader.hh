@@ -3,7 +3,7 @@
 #include <string>
 #include <unordered_map>
 
-#include "Hazel/Base.hh"
+#include "Hazel/Core/Base.hh"
 
 #include <glm/glm.hpp>
 

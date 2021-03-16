@@ -1,9 +1,9 @@
 #include "Platform/Linux/LinuxWindow.hh"
-#include "Hazel/Base.hh"
+#include "Hazel/Core/Base.hh"
 
-#include "Hazel/Core/Events/ApplicationEvent.hh"
-#include "Hazel/Core/Events/KeyEvent.hh"
-#include "Hazel/Core/Events/MouseEvent.hh"
+#include "Hazel/Events/ApplicationEvent.hh"
+#include "Hazel/Events/KeyEvent.hh"
+#include "Hazel/Events/MouseEvent.hh"
 
 #include "Platform/OpenGL/OpenGLContext.hh"
 
