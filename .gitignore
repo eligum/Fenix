@@ -4,6 +4,7 @@
 *.x
 *.el
 *.json
+imgui.ini
 
 # Directories
 /[Bb]uild
