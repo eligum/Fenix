@@ -5,6 +5,8 @@
 *.el
 *.json
 imgui.ini
+sandbox-d
+sandbox-r
 
 # Directories
 /[Bb]uild
