@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Hazel/Hazel.hh"
+#include "Fenix/Fenix.hh"
 
-class Sandbox2D : public Hazel::Layer
+class Sandbox2D : public Fenix::Layer
 {
 public:
     Sandbox2D();
@@ -11,15 +11,15 @@ public:
     void OnAttach() override;
     void OnDetach() override;
 
-    void OnUpdate(Hazel::Timestep ts) override;
-    void OnEvent(Hazel::Event& e) override;
+    void OnUpdate(Fenix::Timestep ts) override;
+    void OnEvent(Fenix::Event& e) override;
     void OnImGuiRender() override;
 private:
-    Hazel::OrthographicCameraController m_CameraController;
+    Fenix::OrthographicCameraController m_CameraController;
 
     // TEMP
-    Hazel::Ref<Hazel::VertexArray> m_SquareVA;
-    Hazel::Ref<Hazel::Shader> m_FlatColorShader;
+    Fenix::Ref<Fenix::VertexArray> m_SquareVA;
+    Fenix::Ref<Fenix::Shader> m_FlatColorShader;
 
     glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 };

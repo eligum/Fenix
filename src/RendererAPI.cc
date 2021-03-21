@@ -1,8 +1,8 @@
-#include "Hazel/Renderer/RendererAPI.hh"
+#include "Fenix/Renderer/RendererAPI.hh"
 
-namespace Hazel {
+namespace Fenix {
 
     // TEMP: In the future this should be set at runtime
     RendererAPI::API RendererAPI::s_API = RendererAPI::API::OpenGL;
 
-} // namespace Hazel
+} // namespace Fenix

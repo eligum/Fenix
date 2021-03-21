@@ -1,7 +1,7 @@
-#include "Hazel/Renderer/CameraController.hh"
-#include "Hazel/Core/Input.hh"
+#include "Fenix/Renderer/CameraController.hh"
+#include "Fenix/Core/Input.hh"
 
-namespace Hazel {
+namespace Fenix {
 
     OrthographicCameraController::OrthographicCameraController(float aspect_ratio, bool enable_rotation)
         : m_AspectRatio(aspect_ratio), m_ZoomLevel(1.0f),
@@ -37,8 +37,8 @@ namespace Hazel {
     void OrthographicCameraController::OnEvent(Event& e)
     {
         EventDispatcher dispatcher(e);
-        dispatcher.Dispatch<MouseScrolledEvent>(HZ_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
-        dispatcher.Dispatch<WindowResizeEvent>(HZ_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
+        dispatcher.Dispatch<MouseScrolledEvent>(FX_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
+        dispatcher.Dispatch<WindowResizeEvent>(FX_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
     }
 
     bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
@@ -58,4 +58,4 @@ namespace Hazel {
         return false;
     }
 
-} // namespace Hazel
+} // namespace Fenix

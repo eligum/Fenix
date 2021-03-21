@@ -1,8 +1,8 @@
-#include "Hazel/Core/Layer.hh"
+#include "Fenix/Core/Layer.hh"
 
-namespace Hazel {
+namespace Fenix {
 
     Layer::Layer(const std::string& name)
         : m_DebugName(name) {}
 
-} // namespace Hazel
+} // namespace Fenix

@@ -1,9 +1,9 @@
-#include "Hazel/Core/Input.hh"
+#include "Fenix/Core/Input.hh"
 
-#include "Hazel/Core/Application.hh"
+#include "Fenix/Core/Application.hh"
 #include "GLFW/glfw3.h"
 
-namespace Hazel {
+namespace Fenix {
 
     bool Input::IsKeyPressed(KeyCode keycode)
     {
@@ -38,4 +38,4 @@ namespace Hazel {
         return GetMousePosition().y;
     }
 
-} // namespace Hazel
+} // namespace Fenix

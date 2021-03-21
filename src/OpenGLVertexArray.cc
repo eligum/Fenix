@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-namespace Hazel {
+namespace Fenix {
 
     static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
     {
@@ -21,7 +21,7 @@ namespace Hazel {
             case ShaderDataType::Bool:   return GL_BOOL;
             case ShaderDataType::None:   break;
         }
-        HZ_CORE_ASSERT(false, "Unknown ShaderDataType!");
+        FX_CORE_ASSERT(false, "Unknown ShaderDataType!");
         return 0;
     }
 
@@ -47,7 +47,7 @@ namespace Hazel {
 
     void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertex_buffer)
     {
-        HZ_CORE_ASSERT(vertex_buffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
+        FX_CORE_ASSERT(vertex_buffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
 
         glBindVertexArray(m_RendererID);
         vertex_buffer->Bind();
@@ -76,4 +76,4 @@ namespace Hazel {
         m_IndexBuffer = index_buffer;
     }
 
-} // namespace Hazel
+} // namespace Fenix

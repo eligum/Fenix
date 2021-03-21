@@ -8,7 +8,7 @@ fi
 # Create nested build-dir and run cmake
 mkdir -p build
 cmake -G 'Unix Makefiles' -S . -B build -DCMAKE_BUILD_TYPE=Debug \
-      -DWARNINGS_AS_ERRORS=FALSE -DHAZEL_BUILD_SHARED=OFF || exit 1
+      -DWARNINGS_AS_ERRORS=FALSE -DFENIX_BUILD_SHARED=OFF || exit 1
 
 # Ask if the user wants to compile now
 echo "---------------------------------------------------"

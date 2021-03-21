@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Hazel/Renderer/Texture.hh"
+#include "Fenix/Renderer/Texture.hh"
 
-namespace Hazel {
+namespace Fenix {
 
     class OpenGLTexture2D : public Texture2D
     {
@@ -20,4 +20,4 @@ namespace Hazel {
         uint32_t m_RendererID;
     };
 
-} // namespace Hazel
+} // namespace Fenix

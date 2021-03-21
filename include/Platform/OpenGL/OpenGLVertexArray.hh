@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Hazel/Renderer/VertexArray.hh"
+#include "Fenix/Renderer/VertexArray.hh"
 
-namespace Hazel {
+namespace Fenix {
 
     class OpenGLVertexArray : public VertexArray
     {
@@ -24,4 +24,4 @@ namespace Hazel {
         Ref<IndexBuffer> m_IndexBuffer;
     };
 
-} // namespace Hazel
+} // namespace Fenix

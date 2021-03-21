@@ -1,6 +1,6 @@
-#include "Hazel/ImGui/ImGuiLayer.hh"
+#include "Fenix/ImGui/ImGuiLayer.hh"
 
-#include "Hazel/Core/Application.hh"
+#include "Fenix/Core/Application.hh"
 
 #include "imgui.h"
 #include "backends/imgui_impl_glfw.h"
@@ -10,7 +10,7 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
-namespace Hazel {
+namespace Fenix {
 
     ImGuiLayer::ImGuiLayer()
         : Layer("ImGuiLayer")
@@ -94,4 +94,4 @@ namespace Hazel {
         ImGui::ShowDemoWindow(&show);
     }
 
-} // namespace Hazel
+} // namespace Fenix

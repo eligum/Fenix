@@ -1,11 +1,11 @@
 #pragma once
 
-#include "Hazel/Core/Window.hh"
-#include "Hazel/Renderer/GraphicsContext.hh"
+#include "Fenix/Core/Window.hh"
+#include "Fenix/Renderer/GraphicsContext.hh"
 
 #include <GLFW/glfw3.h>
 
-namespace Hazel {
+namespace Fenix {
 
     class LinuxWindow : public Window
     {
@@ -43,4 +43,4 @@ namespace Hazel {
         WindowData m_Data;
     };
 
-} // namespace Hazel
+} // namespace Fenix

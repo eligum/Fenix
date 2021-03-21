@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Hazel/Renderer/RendererAPI.hh"
+#include "Fenix/Renderer/RendererAPI.hh"
 
-namespace Hazel {
+namespace Fenix {
 
     class OpenGLRendererAPI : public RendererAPI
     {

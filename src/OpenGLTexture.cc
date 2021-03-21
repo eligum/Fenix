@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <stb_image.h>
 
-namespace Hazel {
+namespace Fenix {
 
     OpenGLTexture2D::OpenGLTexture2D(const std::string& filepath)
         : m_Path(filepath)
@@ -11,7 +11,7 @@ namespace Hazel {
         int width, height, channels;
         stbi_set_flip_vertically_on_load(1);
         stbi_uc* data = stbi_load(filepath.c_str(), &width, &height, &channels, STBI_default);
-        HZ_CORE_ASSERT(data, "Failed to load image");
+        FX_CORE_ASSERT(data, "Failed to load image");
         m_Width = static_cast<uint32_t>(width);
         m_Height = static_cast<uint32_t>(height);
 
@@ -27,7 +27,7 @@ namespace Hazel {
             dataFormat = GL_RGB;
         }
 
-        HZ_CORE_ASSERT(internalFormat | dataFormat, "Format not supported!");
+        FX_CORE_ASSERT(internalFormat | dataFormat, "Format not supported!");
 
         glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
         glTextureStorage2D(m_RendererID, 1, internalFormat, m_Width, m_Height);
@@ -50,4 +50,4 @@ namespace Hazel {
         glBindTextureUnit(slot, m_RendererID);
     }
 
-} // namespace Hazel
+} // namespace Fenix

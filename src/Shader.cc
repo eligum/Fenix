@@ -1,9 +1,9 @@
-#include "Hazel/Renderer/Shader.hh"
-#include "Hazel/Renderer/Renderer.hh"
+#include "Fenix/Renderer/Shader.hh"
+#include "Fenix/Renderer/Renderer.hh"
 
 #include "Platform/OpenGL/OpenGLShader.hh"
 
-namespace Hazel {
+namespace Fenix {
 
     //////////////////////////////////////////////////////////////////////////////////////
     // Shader ////////////////////////////////////////////////////////////////////////////
@@ -13,11 +13,11 @@ namespace Hazel {
     {
         switch (Renderer::GetAPI())
         {
-            case RendererAPI::API::None:    HZ_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
+            case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
             case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
         }
 
-        HZ_CORE_ASSERT(false, "Unknow RendererAPI!");
+        FX_CORE_ASSERT(false, "Unknow RendererAPI!");
         return nullptr;
     }
 
@@ -25,11 +25,11 @@ namespace Hazel {
     {
         switch (Renderer::GetAPI())
         {
-            case RendererAPI::API::None:    HZ_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
+            case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
             case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(vert_filepath, frag_filepath);
         }
 
-        HZ_CORE_ASSERT(false, "Unknow RendererAPI!");
+        FX_CORE_ASSERT(false, "Unknow RendererAPI!");
         return nullptr;
     }
 
@@ -37,11 +37,11 @@ namespace Hazel {
     {
         switch (Renderer::GetAPI())
         {
-            case RendererAPI::API::None:    HZ_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
+            case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
             case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(filepath);
         }
 
-        HZ_CORE_ASSERT(false, "Unknow RendererAPI!");
+        FX_CORE_ASSERT(false, "Unknow RendererAPI!");
         return nullptr;
     }
 
@@ -51,7 +51,7 @@ namespace Hazel {
 
     void ShaderLibrary::Add(const std::string& name, const Ref<Shader>& shader)
     {
-        HZ_CORE_ASSERT(!Exists(name), "Shader already exists!");
+        FX_CORE_ASSERT(!Exists(name), "Shader already exists!");
         m_Shaders[name] = shader;
     }
 
@@ -77,7 +77,7 @@ namespace Hazel {
 
     Ref<Shader> ShaderLibrary::GetShader(const std::string& name)
     {
-        HZ_CORE_ASSERT(Exists(name), "Shader not found!");
+        FX_CORE_ASSERT(Exists(name), "Shader not found!");
         return m_Shaders[name];
     }
 

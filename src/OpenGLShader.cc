@@ -1,12 +1,12 @@
 #include "Platform/OpenGL/OpenGLShader.hh"
-#include "Hazel/Core/Base.hh"
+#include "Fenix/Core/Base.hh"
 
 #include <fstream>
 #include <glad/glad.h>
 
 #include <glm/gtc/type_ptr.hpp>
 
-namespace Hazel {
+namespace Fenix {
 
     static uint32_t ShaderTypeFromString(const std::string& type)
     {
@@ -17,7 +17,7 @@ namespace Hazel {
         if (type == "geometry")
             return GL_GEOMETRY_SHADER;
 
-        HZ_CORE_ASSERT(false, "Unknown shader type!");
+        FX_CORE_ASSERT(false, "Unknown shader type!");
         return 0;
     }
 
@@ -78,12 +78,12 @@ namespace Hazel {
             }
             else
             {
-                HZ_CORE_ERROR("Could not read from file '{0}'", filepath);
+                FX_CORE_ERROR("Could not read from file '{0}'", filepath);
             }
         }
         else
         {
-            HZ_CORE_ERROR("Could not open file '{0}'", filepath);
+            FX_CORE_ERROR("Could not open file '{0}'", filepath);
         }
 
         return result;
@@ -99,13 +99,13 @@ namespace Hazel {
         while (pos != std::string::npos)
         {
             std::size_t eol = source.find_first_of("\r\n", pos); //End of shader type declaration line
-            HZ_CORE_ASSERT(eol != std::string::npos, "Syntax error");
+            FX_CORE_ASSERT(eol != std::string::npos, "Syntax error");
             std::size_t begin = pos + typeTokenLength + 1; //Start of shader type name (after "#type " keyword)
             std::string type = source.substr(begin, eol - begin);
-            HZ_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
+            FX_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
 
             std::size_t nextLinePos = source.find_first_not_of("\r\n", eol); //Start of shader code after shader type declaration line
-            HZ_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
+            FX_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
             pos = source.find(typeToken, nextLinePos); //Start of next shader type declaration line
 
             shaderSources[ShaderTypeFromString(type)] = (pos == std::string::npos) ? source.substr(nextLinePos) : source.substr(nextLinePos, pos - nextLinePos);
@@ -117,7 +117,7 @@ namespace Hazel {
     void OpenGLShader::Compile(const std::unordered_map<uint32_t, std::string>& shaderSources)
     {
         uint32_t program = glCreateProgram();
-        HZ_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
+        FX_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
         std::array<uint32_t, 2> shaderIDs;
         int shaderIDIndex = 0;
         for (auto& [type, source] : shaderSources)
@@ -140,8 +140,8 @@ namespace Hazel {
 
                 glDeleteShader(shader);
 
-                HZ_CORE_ERROR("{0}", infoLog.data());
-                HZ_CORE_ASSERT(false, "Shader compilation failure!");
+                FX_CORE_ERROR("{0}", infoLog.data());
+                FX_CORE_ASSERT(false, "Shader compilation failure!");
                 break;
             }
 
@@ -171,8 +171,8 @@ namespace Hazel {
             for (auto id : shaderIDs)
                 glDeleteShader(id);
 
-            HZ_CORE_ERROR("{0}", infoLog.data());
-            HZ_CORE_ASSERT(false, "Shader link failure!");
+            FX_CORE_ERROR("{0}", infoLog.data());
+            FX_CORE_ASSERT(false, "Shader link failure!");
             return;
         }
 
@@ -276,4 +276,4 @@ namespace Hazel {
         glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
     }
 
-} // namespace Hazel
+} // namespace Fenix

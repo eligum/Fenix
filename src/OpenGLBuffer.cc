@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-namespace Hazel {
+namespace Fenix {
 
     ////////////////////////////////////////////////////////////////////////////
     // VertexBuffer ////////////////////////////////////////////////////////////
@@ -57,4 +57,4 @@ namespace Hazel {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
 
-} // namespace Hazel
+} // namespace Fenix

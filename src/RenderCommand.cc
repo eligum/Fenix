@@ -1,8 +1,8 @@
-#include "Hazel/Renderer/RenderCommand.hh"
+#include "Fenix/Renderer/RenderCommand.hh"
 
 #include "Platform/OpenGL/OpenGLRendererAPI.hh"
 
-namespace Hazel {
+namespace Fenix {
 
     RendererAPI* RenderCommand::s_RendererAPI = new OpenGLRendererAPI;
 

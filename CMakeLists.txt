@@ -12,8 +12,8 @@ include(cmake/Ide.cmake)
 
 hazel_extract_version()
 
-project(HazelEngine VERSION ${HAZEL_VERSION} LANGUAGES CXX C)
-message(STATUS "Build Hazel version: ${HAZEL_VERSION}")
+project(FenixEngine VERSION ${FENIX_VERSION} LANGUAGES CXX C)
+message(STATUS "Build Fenix version: ${FENIX_VERSION}")
 
 # ---------------------------------------------------------------------------------------
 # Project build configuration
@@ -37,9 +37,9 @@ add_library(my_compile_features INTERFACE)
 target_compile_features(my_compile_features INTERFACE cxx_std_17)
 
 # Bunch of options
-option(HAZEL_BUILD_EXAMPLES "Build a set of example applications using Hazel" ON)
-option(HAZEL_BUILD_DOCS "Build Hazel documentation, requires doxygen" OFF)
-option(HAZEL_BUILD_SHARED "Build Hazel as a shared library" OFF)
+option(FENIX_BUILD_EXAMPLES "Build a set of example applications using Fenix" ON)
+option(FENIX_BUILD_DOCS "Build Fenix documentation, requires doxygen" OFF)
+option(FENIX_BUILD_SHARED "Build Fenix as a shared library" OFF)
 
 # ---------------------------------------------------------------------------------------
 # Build project dependencies
@@ -51,11 +51,11 @@ add_subdirectory(vendor)
 # ---------------------------------------------------------------------------------------
 add_subdirectory(src)
 
-if(HAZEL_BUILD_EXAMPLES)
+if(FENIX_BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
-if(HAZEL_BUILD_DOCS)
+if(FENIX_BUILD_DOCS)
     # set(DOXYGEN_SKIP_DOT TRUE)
     find_package(Doxygen REQUIRED)
     add_subdirectory(docs)

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Hazel/Renderer/Shader.hh"
+#include "Fenix/Renderer/Shader.hh"
 #include <glm/glm.hpp>
 
-namespace Hazel {
+namespace Fenix {
 
     class OpenGLShader : public Shader
     {
@@ -45,4 +45,4 @@ namespace Hazel {
         std::string m_Name;
     };
 
-} // namespace Hazel
+} // namespace Fenix

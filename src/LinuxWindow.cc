@@ -1,19 +1,19 @@
 #include "Platform/Linux/LinuxWindow.hh"
-#include "Hazel/Core/Base.hh"
+#include "Fenix/Core/Base.hh"
 
-#include "Hazel/Events/ApplicationEvent.hh"
-#include "Hazel/Events/KeyEvent.hh"
-#include "Hazel/Events/MouseEvent.hh"
+#include "Fenix/Events/ApplicationEvent.hh"
+#include "Fenix/Events/KeyEvent.hh"
+#include "Fenix/Events/MouseEvent.hh"
 
 #include "Platform/OpenGL/OpenGLContext.hh"
 
-namespace Hazel {
+namespace Fenix {
 
     static uint8_t s_GLFWWindowCount = 0;
 
     static void GLFWErrorCallback(int error, const char* description)
     {
-        HZ_CORE_ERROR("GLFW error ({0}): {1}", error, description);
+        FX_CORE_ERROR("GLFW error ({0}): {1}", error, description);
     }
 
     Window* Window::Create(const WindowProps& props)
@@ -37,12 +37,12 @@ namespace Hazel {
         m_Data.Width = props.Width;
         m_Data.Height = props.Height;
 
-        HZ_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+        FX_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
         if (s_GLFWWindowCount == 0)
         {
             int success = glfwInit();
-            HZ_CORE_ASSERT(success, "Failed to initialize GLFW!");
+            FX_CORE_ASSERT(success, "Failed to initialize GLFW!");
             glfwSetErrorCallback(GLFWErrorCallback);
         }
 
@@ -159,4 +159,4 @@ namespace Hazel {
         return m_Data.VSync;
     }
 
-} // namespace Hazel
+} // namespace Fenix

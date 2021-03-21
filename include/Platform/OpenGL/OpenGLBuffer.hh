@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Hazel/Renderer/Buffer.hh"
+#include "Fenix/Renderer/Buffer.hh"
 
-namespace Hazel {
+namespace Fenix {
 
     class OpenGLVertexBuffer : public VertexBuffer
     {
@@ -35,4 +35,4 @@ namespace Hazel {
         uint32_t m_Count;
     };
 
-} // namespace Hazel
+} // namespace Fenix

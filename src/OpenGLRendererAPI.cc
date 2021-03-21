@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-namespace Hazel {
+namespace Fenix {
 
     void OpenGLRendererAPI::Init()
     {
@@ -30,4 +30,4 @@ namespace Hazel {
         glDrawElements(GL_TRIANGLES, vertex_array->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
     }
 
-} // namespace Hazel
+} // namespace Fenix

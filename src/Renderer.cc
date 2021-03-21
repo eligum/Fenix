@@ -1,8 +1,8 @@
-#include "Hazel/Renderer/Renderer.hh"
+#include "Fenix/Renderer/Renderer.hh"
 
 #include "Platform/OpenGL/OpenGLShader.hh"
 
-namespace Hazel {
+namespace Fenix {
 
     Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
 
@@ -38,4 +38,4 @@ namespace Hazel {
         vertex_array->Unbind();
     }
 
-} // namespace Hazel
+} // namespace Fenix

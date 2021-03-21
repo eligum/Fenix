@@ -1,23 +1,23 @@
-#include "Hazel/Core/Application.hh"
-#include "Hazel/Core/Log.hh"
-#include "Hazel/Events/ApplicationEvent.hh"
+#include "Fenix/Core/Application.hh"
+#include "Fenix/Core/Log.hh"
+#include "Fenix/Events/ApplicationEvent.hh"
 
-#include "Hazel/Renderer/Renderer.hh"
+#include "Fenix/Renderer/Renderer.hh"
 
 #include <GLFW/glfw3.h>
 
-namespace Hazel {
+namespace Fenix {
 
     Application* Application::s_Instance = nullptr;
 
     Application::Application()
     {
-        HZ_CORE_ASSERT(!s_Instance, "Application already exists!");
+        FX_CORE_ASSERT(!s_Instance, "Application already exists!");
         s_Instance = this;
 
-        // m_Window = std::unique_ptr<Window>(Window::Create({ "HAZEL", 1600, 900 }));
+        // m_Window = std::unique_ptr<Window>(Window::Create({ "HENIX" 1600, 900 }));
         m_Window = std::unique_ptr<Window>(Window::Create());
-        m_Window->SetEventCallback(HZ_BIND_EVENT_FN(Application::OnEvent));
+        m_Window->SetEventCallback(FX_BIND_EVENT_FN(Application::OnEvent));
         m_Window->SetVSync(true);
 
         Renderer::Init();
@@ -33,8 +33,8 @@ namespace Hazel {
     void Application::OnEvent(Event& evt)
     {
         EventDispatcher dispatcher(evt);
-        dispatcher.Dispatch<WindowCloseEvent>(HZ_BIND_EVENT_FN(Application::OnWindowClose));
-        dispatcher.Dispatch<WindowResizeEvent>(HZ_BIND_EVENT_FN(Application::OnWindowResize));
+        dispatcher.Dispatch<WindowCloseEvent>(FX_BIND_EVENT_FN(Application::OnWindowClose));
+        dispatcher.Dispatch<WindowResizeEvent>(FX_BIND_EVENT_FN(Application::OnWindowResize));
 
         for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
         {
@@ -100,4 +100,4 @@ namespace Hazel {
         return false;
     }
 
-} // namespace Hazel
+} // namespace Fenix

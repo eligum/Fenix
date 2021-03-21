@@ -1,7 +1,7 @@
-#include "Hazel/Core/LayerStack.hh"
+#include "Fenix/Core/LayerStack.hh"
 #include <algorithm>
 
-namespace Hazel {
+namespace Fenix {
 
     LayerStack::LayerStack() = default;
 
@@ -48,4 +48,4 @@ namespace Hazel {
         }
     }
 
-} // namespace Hazel
+} // namespace Fenix

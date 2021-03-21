@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Hazel/Renderer/GraphicsContext.hh"
+#include "Fenix/Renderer/GraphicsContext.hh"
 
 struct GLFWwindow;
 
-namespace Hazel {
+namespace Fenix {
 
     class OpenGLContext : public GraphicsContext
     {
@@ -17,4 +17,4 @@ namespace Hazel {
         GLFWwindow* m_WindowHandle;
     };
 
-} // namespace Hazel
+} // namespace Fenix
