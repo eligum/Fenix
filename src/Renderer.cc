@@ -1,4 +1,5 @@
 #include "Fenix/Renderer/Renderer.hh"
+#include "Fenix/Renderer/Renderer2D.hh"
 
 #include "Platform/OpenGL/OpenGLShader.hh"
 
@@ -9,6 +10,7 @@ namespace Fenix {
     void Renderer::Init()
     {
         RenderCommand::Init();
+        Renderer2D::Init();
     }
 
     void Renderer::OnWindowResize(uint32_t width, uint32_t height)
@@ -30,8 +32,8 @@ namespace Fenix {
     void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertex_array, const glm::mat4& transform)
     {
         shader->Bind();
-        std::dynamic_pointer_cast<OpenGLShader>(shader)->SetMat4("u_ProjView", m_SceneData->ProjViewMatrix);
-        std::dynamic_pointer_cast<OpenGLShader>(shader)->SetMat4("u_Transform", transform);
+        shader->SetMat4("u_ProjView", m_SceneData->ProjViewMatrix);
+        shader->SetMat4("u_Transform", transform);
 
         vertex_array->Bind();
         RenderCommand::DrawIndexed(vertex_array);

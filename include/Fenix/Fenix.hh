@@ -19,6 +19,7 @@
 
 // ----Renderer-------------------------------
 #include "Renderer/Renderer.hh"
+#include "Renderer/Renderer2D.hh"
 #include "Renderer/RenderCommand.hh"
 
 #include "Renderer/VertexArray.hh"
