@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Fenix/Renderer/Camera.hh"
+#include "Fenix/Renderer/Texture.hh"
 
 namespace Fenix {
 
@@ -16,6 +17,8 @@ namespace Fenix {
         // Primitives
         static void DrawQuad(const glm::vec2& position, float rotation, const glm::vec2& size, const glm::vec4& color);
         static void DrawQuad(const glm::vec3& position, float rotation, const glm::vec2& size, const glm::vec4& color);
+        static void DrawQuad(const glm::vec2& position, float rotation, const glm::vec2& size, const Ref<Texture2D>& texture);
+        static void DrawQuad(const glm::vec3& position, float rotation, const glm::vec2& size, const Ref<Texture2D>& texture);
     };
 
 } // namespace Fenix

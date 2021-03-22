@@ -12,12 +12,12 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
+    m_Texture = Fenix::Texture2D::Create("examples/assets/textures/checkerboard.jpg");
 }
 
 void Sandbox2D::OnDetach()
 {
 }
-
 
 void Sandbox2D::OnUpdate(Fenix::Timestep ts)
 {
@@ -31,6 +31,7 @@ void Sandbox2D::OnUpdate(Fenix::Timestep ts)
     Fenix::Renderer2D::BeginScene(m_CameraController.GetCamera());
     Fenix::Renderer2D::DrawQuad({ 0.0f, 0.0f }, 30.0f, { 1.0f, 1.0f }, { 0.8f, 0.3f, 0.2f, 1.0f });
     Fenix::Renderer2D::DrawQuad({ 0.5f, -0.4f }, 0.0f, { 0.8f, 0.5f }, { 0.2f, 0.3f, 0.8f, 1.0f });
+    Fenix::Renderer2D::DrawQuad({ 0.5f,  0.5f, 0.1f }, 0.0f, { 0.6f, 0.6f }, m_Texture);
     Fenix::Renderer2D::EndScene();
 }
 

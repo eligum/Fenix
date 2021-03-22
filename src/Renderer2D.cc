@@ -12,6 +12,7 @@ namespace Fenix {
     {
         Ref<VertexArray> QuadVA;
         Ref<Shader> FlatColorShader;
+        Ref<Shader> TextureShader;
     };
 
     static Renderer2DStorage* s_Data;
@@ -22,16 +23,17 @@ namespace Fenix {
 
         s_Data->QuadVA = VertexArray::Create();
 
-        float squareVertices[4 * 3] = {
-            -0.5f, -0.5f, 0.0f,
-             0.5f, -0.5f, 0.0f,
-             0.5f,  0.5f, 0.0f,
-            -0.5f,  0.5f, 0.0f
+        float squareVertices[4 * 5] = {
+            -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+             0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+             0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+            -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
         };
         Ref<VertexBuffer> squareVB;
         squareVB = VertexBuffer::Create(squareVertices, sizeof(squareVertices));
         BufferLayout layout = {
             { ShaderDataType::Float3, "a_Pos" },
+            { ShaderDataType::Float2, "a_TexCoord" },
         };
         squareVB->SetLayout(layout);
         s_Data->QuadVA->AddVertexBuffer(squareVB);
@@ -42,6 +44,9 @@ namespace Fenix {
         s_Data->QuadVA->SetIndexBuffer(squareIB);
 
         s_Data->FlatColorShader = Shader::Create("examples/assets/shaders/flat_color.glsl");
+        s_Data->TextureShader = Shader::Create("examples/assets/shaders/texture.glsl"); // TEMP: Specific to one texture only
+        s_Data->TextureShader->Bind();
+        s_Data->TextureShader->SetInt("u_Texture", 0);
     }
 
     void Renderer2D::Shuttdown()
@@ -53,6 +58,9 @@ namespace Fenix {
     {
         s_Data->FlatColorShader->Bind();
         s_Data->FlatColorShader->SetMat4("u_ProjView", camera.GetProjViewMatrix());
+
+        s_Data->TextureShader->Bind();
+        s_Data->TextureShader->SetMat4("u_ProjView", camera.GetProjViewMatrix());
     }
 
     void Renderer2D::EndScene()
@@ -73,6 +81,26 @@ namespace Fenix {
         transform = glm::scale(transform, glm::vec3(size.x, size.y, 1.0f));
         transform = glm::rotate(transform, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
         s_Data->FlatColorShader->SetMat4("u_Transform", transform);
+
+        s_Data->QuadVA->Bind();
+        RenderCommand::DrawIndexed(s_Data->QuadVA); // TEMP: Immediate mode render
+    }
+
+    void Renderer2D::DrawQuad(const glm::vec2& position, float rotation, const glm::vec2& size, const Ref<Texture2D>& texture)
+    {
+        DrawQuad({ position.x, position.y, 0.0f }, rotation, size, texture);
+    }
+
+    void Renderer2D::DrawQuad(const glm::vec3& position, float rotation, const glm::vec2& size, const Ref<Texture2D>& texture)
+    {
+        s_Data->TextureShader->Bind();
+
+        glm::mat4 transform = glm::translate(glm::mat4(1.0f), position);
+        transform = glm::scale(transform, glm::vec3(size.x, size.y, 1.0f));
+        transform = glm::rotate(transform, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
+        s_Data->FlatColorShader->SetMat4("u_Transform", transform);
+
+        texture->Bind(0);
 
         s_Data->QuadVA->Bind();
         RenderCommand::DrawIndexed(s_Data->QuadVA); // TEMP: Immediate mode render
