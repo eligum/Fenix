@@ -11,8 +11,8 @@ namespace Fenix {
     struct Renderer2DStorage
     {
         Ref<VertexArray> QuadVA;
-        Ref<Shader> FlatColorShader;
         Ref<Shader> TextureShader;
+        Ref<Texture2D> WhiteTexture;
     };
 
     static Renderer2DStorage* s_Data;
@@ -43,7 +43,10 @@ namespace Fenix {
         squareIB = IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
         s_Data->QuadVA->SetIndexBuffer(squareIB);
 
-        s_Data->FlatColorShader = Shader::Create("examples/assets/shaders/flat_color.glsl");
+        s_Data->WhiteTexture = Texture2D::Create(1, 1);
+        uint32_t WhiteTextureData = 0xffffffff;
+        s_Data->WhiteTexture->SetData(&WhiteTextureData, sizeof(uint32_t));
+
         s_Data->TextureShader = Shader::Create("examples/assets/shaders/texture.glsl"); // TEMP: Specific to one texture only
         s_Data->TextureShader->Bind();
         s_Data->TextureShader->SetInt("u_Texture", 0);
@@ -56,9 +59,6 @@ namespace Fenix {
 
     void Renderer2D::BeginScene(const OrthographicCamera& camera)
     {
-        s_Data->FlatColorShader->Bind();
-        s_Data->FlatColorShader->SetMat4("u_ProjView", camera.GetProjViewMatrix());
-
         s_Data->TextureShader->Bind();
         s_Data->TextureShader->SetMat4("u_ProjView", camera.GetProjViewMatrix());
     }
@@ -74,13 +74,15 @@ namespace Fenix {
 
     void Renderer2D::DrawQuad(const glm::vec3& position, float rotation, const glm::vec2& size, const glm::vec4& color)
     {
-        s_Data->FlatColorShader->Bind();
-        s_Data->FlatColorShader->SetFloat4("u_Color", color);
+        s_Data->TextureShader->Bind();
+        s_Data->TextureShader->SetFloat4("u_Color", color);
+
+        s_Data->WhiteTexture->Bind(0);
 
         glm::mat4 transform = glm::translate(glm::mat4(1.0f), position);
         transform = glm::scale(transform, glm::vec3(size.x, size.y, 1.0f));
         transform = glm::rotate(transform, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
-        s_Data->FlatColorShader->SetMat4("u_Transform", transform);
+        s_Data->TextureShader->SetMat4("u_Transform", transform);
 
         s_Data->QuadVA->Bind();
         RenderCommand::DrawIndexed(s_Data->QuadVA); // TEMP: Immediate mode render
@@ -94,13 +96,14 @@ namespace Fenix {
     void Renderer2D::DrawQuad(const glm::vec3& position, float rotation, const glm::vec2& size, const Ref<Texture2D>& texture)
     {
         s_Data->TextureShader->Bind();
+        s_Data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
+
+        texture->Bind(0);
 
         glm::mat4 transform = glm::translate(glm::mat4(1.0f), position);
         transform = glm::scale(transform, glm::vec3(size.x, size.y, 1.0f));
         transform = glm::rotate(transform, glm::radians(rotation), glm::vec3(0.0f, 0.0f, 1.0f));
-        s_Data->FlatColorShader->SetMat4("u_Transform", transform);
-
-        texture->Bind(0);
+        s_Data->TextureShader->SetMat4("u_Transform", transform);
 
         s_Data->QuadVA->Bind();
         RenderCommand::DrawIndexed(s_Data->QuadVA); // TEMP: Immediate mode render

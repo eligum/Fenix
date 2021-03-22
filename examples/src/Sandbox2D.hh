@@ -19,7 +19,6 @@ private:
 
     // TEMP
     Fenix::Ref<Fenix::VertexArray> m_SquareVA;
-    Fenix::Ref<Fenix::Shader> m_FlatColorShader;
     Fenix::Ref<Fenix::Texture2D> m_Texture;
 
     glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
