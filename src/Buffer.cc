@@ -10,7 +10,7 @@ namespace Fenix {
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
-        case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLVertexBuffer>(vertices, size);
+            case RendererAPI::API::OpenGL:  return CreateRef<OpenGLVertexBuffer>(vertices, size);
         }
 
         FX_CORE_ASSERT(false, "Unknow RendererAPI!");
@@ -22,7 +22,7 @@ namespace Fenix {
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
-        case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLIndexBuffer>(indices, count);
+            case RendererAPI::API::OpenGL:  return CreateRef<OpenGLIndexBuffer>(indices, count);
         }
 
         FX_CORE_ASSERT(false, "Unknow RendererAPI!");

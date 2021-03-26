@@ -47,7 +47,7 @@ namespace Fenix {
         uint32_t WhiteTextureData = 0xffffffff;
         s_Data->WhiteTexture->SetData(&WhiteTextureData, sizeof(uint32_t));
 
-        s_Data->TextureShader = Shader::Create("examples/assets/shaders/texture.glsl"); // TEMP: Specific to one texture only
+        s_Data->TextureShader = Shader::Create("examples/assets/shaders/texture_and_color.glsl");
         s_Data->TextureShader->Bind();
         s_Data->TextureShader->SetInt("u_Texture", 0);
     }
@@ -66,6 +66,10 @@ namespace Fenix {
     void Renderer2D::EndScene()
     {
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////
+    // Specifying color //////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////
 
     void Renderer2D::DrawQuad(const glm::vec2& position, float rotation, const glm::vec2& size, const glm::vec4& color)
     {
@@ -87,6 +91,10 @@ namespace Fenix {
         s_Data->QuadVA->Bind();
         RenderCommand::DrawIndexed(s_Data->QuadVA); // TEMP: Immediate mode render
     }
+
+    //////////////////////////////////////////////////////////////////////////////////////
+    // Specifying a texture //////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////
 
     void Renderer2D::DrawQuad(const glm::vec2& position, float rotation, const glm::vec2& size, const Ref<Texture2D>& texture)
     {

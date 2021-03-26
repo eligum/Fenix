@@ -14,7 +14,7 @@ namespace Fenix {
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
-            case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
+            case RendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
         }
 
         FX_CORE_ASSERT(false, "Unknow RendererAPI!");
@@ -26,7 +26,7 @@ namespace Fenix {
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
-            case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(vert_filepath, frag_filepath);
+            case RendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(vert_filepath, frag_filepath);
         }
 
         FX_CORE_ASSERT(false, "Unknow RendererAPI!");
@@ -38,7 +38,7 @@ namespace Fenix {
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
-            case RendererAPI::API::OpenGL:  return std::make_shared<OpenGLShader>(filepath);
+            case RendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(filepath);
         }
 
         FX_CORE_ASSERT(false, "Unknow RendererAPI!");

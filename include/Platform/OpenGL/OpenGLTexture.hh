@@ -9,8 +9,8 @@ namespace Fenix {
     class OpenGLTexture2D : public Texture2D
     {
     public:
-        OpenGLTexture2D(const std::string& filepath);
         OpenGLTexture2D(uint32_t width, uint32_t height);
+        OpenGLTexture2D(const std::string& filepath);
         ~OpenGLTexture2D();
 
         void SetData(void* data, uint32_t size) override;

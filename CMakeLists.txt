@@ -1,4 +1,4 @@
-# Checkout the project repo at https://github.com/eligum/OpenGL-fw
+# Checkout the project repo at https://github.com/eligum/Fenix
 
 cmake_minimum_required(VERSION 3.16)
 
