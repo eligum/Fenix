@@ -53,7 +53,10 @@ namespace Fenix {
     bool OrthographicCameraController::OnWindowResized(WindowResizeEvent& e)
     {
         m_AspectRatio = static_cast<float>(e.GetWidth()) / static_cast<float>(e.GetHeight());
-        m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+        if (m_AspectRatio >= 1.0f)
+            m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
+        else
+            m_Camera.SetProjection(-m_ZoomLevel, m_ZoomLevel, -m_ZoomLevel / m_AspectRatio, m_ZoomLevel / m_AspectRatio);
 
         return false;
     }
