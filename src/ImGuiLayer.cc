@@ -2,13 +2,13 @@
 
 #include "Fenix/Core/Application.hh"
 
-#include "imgui.h"
-#include "backends/imgui_impl_glfw.h"
-#include "backends/imgui_impl_opengl3.h"
+#include <imgui.h>
+#include <backends/imgui_impl_glfw.h>
+#include <backends/imgui_impl_opengl3.h>
 
 // Temporary
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 namespace Fenix {
 
@@ -62,14 +62,14 @@ namespace Fenix {
         ImGui::DestroyContext();
     }
 
-    void ImGuiLayer::BeginDraw()
+    void ImGuiLayer::Begin()
     {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
     }
 
-    void ImGuiLayer::EndDraw()
+    void ImGuiLayer::End()
     {
         ImGuiIO& io = ImGui::GetIO();
         Application& app = Application::GetApp();
@@ -90,8 +90,8 @@ namespace Fenix {
 
     void ImGuiLayer::OnImGuiRender()
     {
-        static bool show = true;
-        ImGui::ShowDemoWindow(&show);
+        // static bool show = true;
+        // ImGui::ShowDemoWindow(&show);
     }
 
 } // namespace Fenix

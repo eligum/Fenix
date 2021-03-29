@@ -1,7 +1,6 @@
 #include "Sandbox2D.hh"
 
 #include <imgui.h>
-
 #include <glm/gtc/type_ptr.hpp>
 
 static constexpr float ASPECT_RATIO = 16.0f / 9.0f;
@@ -29,9 +28,9 @@ void Sandbox2D::OnUpdate(Fenix::Timestep ts)
     Fenix::RenderCommand::Clear();
 
     Fenix::Renderer2D::BeginScene(m_CameraController.GetCamera());
-    Fenix::Renderer2D::DrawQuad({ 0.0f, 0.0f }, 30.0f, { 1.0f, 1.0f }, { 0.8f, 0.3f, 0.2f, 1.0f });
-    Fenix::Renderer2D::DrawQuad({ 0.5f, -0.4f }, 0.0f, { 0.8f, 0.5f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-    Fenix::Renderer2D::DrawQuad({ 0.5f,  0.5f, 0.1f }, 0.0f, { 0.6f, 0.6f }, m_Texture);
+    Fenix::Renderer2D::DrawRotatedQuad({ 0.0f, 0.0f }, 30.0f, { 1.0f, 1.0f }, { 0.8f, 0.3f, 0.2f, 1.0f });
+    Fenix::Renderer2D::DrawQuad({ 0.5f, -0.4f }, { 0.8f, 0.5f }, { 0.2f, 0.3f, 0.8f, 1.0f });
+    Fenix::Renderer2D::DrawQuad({ 0.5f,  0.5f, 0.1f }, { 0.8f, 0.8f }, m_Texture, 2.0f);
     Fenix::Renderer2D::EndScene();
 }
 

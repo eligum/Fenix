@@ -17,8 +17,8 @@ namespace Fenix {
         void OnDetach() override;
         void OnImGuiRender() override;
 
-        void BeginDraw();
-        void EndDraw();
+        void Begin();
+        void End();
     private:
         float m_Time = 0.0f;
     };

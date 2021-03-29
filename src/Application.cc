@@ -71,10 +71,10 @@ namespace Fenix {
                     layer->OnUpdate(timestep);
             }
 
-            m_ImGuiLayer->BeginDraw();
+            m_ImGuiLayer->Begin();
             for (Layer* layer : m_LayerStack)
                 layer->OnImGuiRender();
-            m_ImGuiLayer->EndDraw();
+            m_ImGuiLayer->End();
 
             m_Window->OnUpdate();
         }
@@ -94,7 +94,6 @@ namespace Fenix {
             return false;
         }
         m_Minimized = false;
-
         Renderer::OnWindowResize(m_Window->GetWidth(), m_Window->GetHeight());
 
         return false;

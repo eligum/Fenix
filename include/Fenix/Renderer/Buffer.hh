@@ -45,7 +45,7 @@ namespace Fenix {
         uint32_t Offset;
         bool Normalize;
 
-        BufferElement() {}
+        BufferElement() = default;
 
         BufferElement(ShaderDataType type, const std::string& name, bool normalize = false)
             : Type(type), Name(name), Size(GetShaderDataTypeSize(type)), Offset(0), Normalize(normalize)
@@ -77,7 +77,7 @@ namespace Fenix {
     class BufferLayout
     {
     public:
-        BufferLayout() {}
+        BufferLayout() = default;
         BufferLayout(const std::initializer_list<BufferElement>& elements)
             : m_Elements(elements)
         {
@@ -118,10 +118,12 @@ namespace Fenix {
         virtual const BufferLayout& GetLayout() const = 0;
         virtual void SetLayout(const BufferLayout& layout) = 0;
 
+        static Ref<VertexBuffer> Create(uint32_t count);
         static Ref<VertexBuffer> Create(float* vertices, uint32_t count);
     };
 
     /// @class IndexBuffer
+    /// Currently Fenix only supports 32-bit index buffers.
     class IndexBuffer
     {
     public:
