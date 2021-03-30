@@ -5,24 +5,24 @@
 
 namespace Fenix {
 
-    Ref<VertexBuffer> VertexBuffer::Create(uint32_t count)
+    Ref<VertexBuffer> VertexBuffer::Create(uint32_t size)
     {
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
-            case RendererAPI::API::OpenGL:  return CreateRef<OpenGLVertexBuffer>(count);
+            case RendererAPI::API::OpenGL:  return CreateRef<OpenGLVertexBuffer>(size);
         }
 
         FX_CORE_ASSERT(false, "Unknow RendererAPI!");
         return nullptr;
     }
 
-    Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t count)
+    Ref<VertexBuffer> VertexBuffer::Create(float* vertices, uint32_t size)
     {
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
-            case RendererAPI::API::OpenGL:  return CreateRef<OpenGLVertexBuffer>(vertices, count);
+            case RendererAPI::API::OpenGL:  return CreateRef<OpenGLVertexBuffer>(vertices, size);
         }
 
         FX_CORE_ASSERT(false, "Unknow RendererAPI!");

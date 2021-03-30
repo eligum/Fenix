@@ -45,15 +45,15 @@ namespace Fenix {
         glBindVertexArray(0);
     }
 
-    void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertex_buffer)
+    void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)
     {
-        FX_CORE_ASSERT(vertex_buffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
+        FX_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
 
         glBindVertexArray(m_RendererID);
-        vertex_buffer->Bind();
+        vertexBuffer->Bind();
 
         uint32_t index = 0;
-        const auto& layout = vertex_buffer->GetLayout();
+        const auto& layout = vertexBuffer->GetLayout();
         for (const auto& element : layout)
         {
             glEnableVertexAttribArray(index);
@@ -65,15 +65,15 @@ namespace Fenix {
                                   reinterpret_cast<const void*>(element.Offset));
             index++;
         }
-        m_VertexBuffers.push_back(vertex_buffer);
+        m_VertexBuffers.push_back(vertexBuffer);
     }
 
-    void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& index_buffer)
+    void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer)
     {
         glBindVertexArray(m_RendererID);
-        index_buffer->Bind();
+        indexBuffer->Bind();
 
-        m_IndexBuffer = index_buffer;
+        m_IndexBuffer = indexBuffer;
     }
 
 } // namespace Fenix

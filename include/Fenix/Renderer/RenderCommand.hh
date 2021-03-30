@@ -27,9 +27,9 @@ namespace Fenix {
             s_RendererAPI->Clear();
         }
 
-        static void DrawIndexed(const Ref<VertexArray>& vertex_array)
+        static void DrawIndexed(const Ref<VertexArray>& vertexArray, uint32_t indexCount = 0)
         {
-            s_RendererAPI->DrawIndexed(vertex_array);
+            s_RendererAPI->DrawIndexed(vertexArray, indexCount);
         }
     private:
         static RendererAPI* s_RendererAPI;
