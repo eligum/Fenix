@@ -23,14 +23,16 @@ void Sandbox2D::OnUpdate(Fenix::Timestep ts)
     // Update
     m_CameraController.OnUpdate(ts);
 
-    // Render - not really though
+    // Render
+    Fenix::Renderer2D::ResetStats();
+
     Fenix::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
     Fenix::RenderCommand::Clear();
 
     Fenix::Renderer2D::BeginScene(m_CameraController.GetCamera());
     Fenix::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0f, 1.0f }, { 0.8f, 0.3f, 0.2f, 1.0f });
     Fenix::Renderer2D::DrawQuad({ 0.5f, -0.4f }, { 0.8f, 0.5f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-    // Fenix::Renderer2D::DrawQuad({ 0.5f,  0.5f, 0.1f }, { 0.8f, 0.8f }, m_Texture, 2.0f);
+    Fenix::Renderer2D::DrawQuad({ 0.5f, 0.5f, 0.1f }, { 0.8f, 0.8f }, m_Texture, 2.0f);
     Fenix::Renderer2D::EndScene();
 }
 
@@ -42,6 +44,15 @@ void Sandbox2D::OnEvent(Fenix::Event& e)
 void Sandbox2D::OnImGuiRender()
 {
     ImGui::Begin("Settings");
+
+    auto stats = Fenix::Renderer2D::GetStats();
+    ImGui::Text("Renderer2D Stats:");
+    ImGui::Text("Draw calls: %d", stats.DrawCalls);
+    ImGui::Text("Quads: %d", stats.QuadCount);
+    ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+    ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+
     ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+
     ImGui::End();
 }
