@@ -46,6 +46,7 @@ namespace Fenix {
     void Renderer2D::Init()
     {
         s_Data.QuadVA = VertexArray::Create();
+        s_Data.QuadVBBase = new QuadVertex[s_Data.MaxVertices];
 
         s_Data.QuadVB = VertexBuffer::Create(s_Data.MaxVertices * sizeof(QuadVertex));
         s_Data.QuadVB->SetLayout({
@@ -53,7 +54,7 @@ namespace Fenix {
             { ShaderDataType::Float4, "a_Color" },
             { ShaderDataType::Float2, "a_TexCoord" },
             { ShaderDataType::Float, "a_TexIndex" },
-            { ShaderDataType::Float, "a_TilingFactor" },
+            { ShaderDataType::Float, "a_TilingFactor" }
         });
         s_Data.QuadVA->AddVertexBuffer(s_Data.QuadVB);
 
@@ -88,8 +89,6 @@ namespace Fenix {
         s_Data.TextureShader = Shader::Create("examples/assets/shaders/texture_and_color.glsl");
         s_Data.TextureShader->Bind();
         s_Data.TextureShader->SetIntArray("u_Textures", samplers, s_Data.MaxTextureSlots);
-
-        s_Data.QuadVBBase = new QuadVertex[s_Data.MaxVertices];
 
         s_Data.QuadVertexPositions[0] = { -0.5f, -0.5f, 0.0f, 1.0f };
         s_Data.QuadVertexPositions[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
