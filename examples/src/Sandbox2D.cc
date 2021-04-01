@@ -34,6 +34,18 @@ void Sandbox2D::OnUpdate(Fenix::Timestep ts)
     Fenix::Renderer2D::DrawQuad({ 0.5f, -0.4f }, { 0.8f, 0.5f }, { 0.2f, 0.3f, 0.8f, 1.0f });
     Fenix::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 8.0f, 8.0f }, m_Texture, 8.0f);
     Fenix::Renderer2D::EndScene();
+
+    // Stress test
+    Fenix::Renderer2D::BeginScene(m_CameraController.GetCamera());
+    for (float y = -5.0f; y < 5.0f; y += 0.1f)
+    {
+        for (float x = -5.0f; x < 5.0f; x += 0.1f)
+        {
+            glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 1.0f };
+            Fenix::Renderer2D::DrawRotatedQuad({ x, y, 0.1f }, glm::radians(10.0f), { 0.09f, 0.09f }, color);
+        }
+    }
+    Fenix::Renderer2D::EndScene();
 }
 
 void Sandbox2D::OnEvent(Fenix::Event& e)
