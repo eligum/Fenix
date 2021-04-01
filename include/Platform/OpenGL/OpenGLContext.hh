@@ -10,6 +10,7 @@ namespace Fenix {
     {
     public:
         OpenGLContext(GLFWwindow* window_handle);
+        ~OpenGLContext();
 
         void Init() override;
         void SwapBuffers() override;

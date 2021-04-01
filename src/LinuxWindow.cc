@@ -134,8 +134,6 @@ namespace Fenix {
     {
         glfwDestroyWindow(m_Window);
         --s_GLFWWindowCount;
-        if (s_GLFWWindowCount == 0)
-            glfwTerminate();
     }
 
     void LinuxWindow::OnUpdate()

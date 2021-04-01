@@ -12,6 +12,11 @@ namespace Fenix {
         FX_CORE_ASSERT(window_handle, "Window handle is null!");
     }
 
+    OpenGLContext::~OpenGLContext()
+    {
+        glfwTerminate();
+    }
+
     void OpenGLContext::Init()
     {
         glfwMakeContextCurrent(m_WindowHandle);
