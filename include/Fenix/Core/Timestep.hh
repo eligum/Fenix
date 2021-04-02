@@ -1,20 +1,25 @@
 #pragma once
 
+#include <chrono>
+
 namespace Fenix {
 
     class Timestep
     {
     public:
-        Timestep(float time = 0.0f)
+        using Seconds = std::chrono::duration<float>;
+        using MilliSeconds = std::chrono::duration<float, std::ratio<1, 1000>>;
+
+        Timestep(Seconds time = {})
             : m_Time(time)
         {}
 
-        operator float() const { return m_Time; }
+        operator float() const { return m_Time.count(); }
 
-        float GetSeconds() const { return m_Time; }
-        float GetMiliseconds() const { return m_Time * 1000.0f; }
+        Seconds GetSeconds() const { return m_Time; }
+        MilliSeconds GetMiliseconds() const { return m_Time; }
     private:
-        float m_Time;
+        Seconds m_Time;
     };
 
 }

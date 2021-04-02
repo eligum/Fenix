@@ -59,7 +59,7 @@ namespace Fenix {
         {
             // TEMP: This shouldn't depend on glfw.
             float time = static_cast<float>(glfwGetTime());
-            Timestep timestep = time - m_LastFrameTime;
+            Timestep timestep = Timestep::Seconds(time - m_LastFrameTime);
             m_LastFrameTime = time;
 
             // In Windows minimizing causes the screen to get resized to 0,0 while still consuming resources,

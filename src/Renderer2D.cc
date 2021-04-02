@@ -19,10 +19,10 @@ namespace Fenix {
 
     struct Renderer2DData
     {
-        static const uint32_t MaxQuads = 16000;
-        static const uint32_t MaxVertices = MaxQuads * 4;
-        static const uint32_t MaxIndices = MaxQuads * 6;
-        static const uint32_t MaxTextureSlots = 32; // TODO: RenderCaps (Renderer Capabilities)
+        static constexpr uint32_t MaxQuads = 16000;
+        static constexpr uint32_t MaxVertices = MaxQuads * 4;
+        static constexpr uint32_t MaxIndices = MaxQuads * 6;
+        static constexpr uint32_t MaxTextureSlots = 32; // TODO: RenderCaps (Renderer Capabilities)
 
         Ref<VertexArray> QuadVA;
         Ref<VertexBuffer> QuadVB;
@@ -273,7 +273,6 @@ namespace Fenix {
 
     void Renderer2D::ResetStats()
     {
-        // memset(&s_Data.Stats, 0, sizeof(Statistics));
         s_Data.Stats.QuadCount = 0;
         s_Data.Stats.DrawCalls = 0;
     }

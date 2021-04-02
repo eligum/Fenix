@@ -2,6 +2,7 @@
 
 #include <imgui.h>
 #include <glm/gtc/type_ptr.hpp>
+#include <iostream>
 
 static constexpr float ASPECT_RATIO = 16.0f / 9.0f;
 
@@ -35,17 +36,21 @@ void Sandbox2D::OnUpdate(Fenix::Timestep ts)
     Fenix::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 8.0f, 8.0f }, m_Texture, 8.0f);
     Fenix::Renderer2D::EndScene();
 
+    Fenix::Renderer2D* myRenderer = new Fenix::Renderer2D();
+    std::cout << "Size of Fenix::Renderer2D is " << sizeof(Fenix::Renderer2D) << ", pointer @ is " << myRenderer << std::endl;
+    delete myRenderer;
+
     // Stress test
-    // Fenix::Renderer2D::BeginScene(m_CameraController.GetCamera());
-    // for (float y = -5.0f; y < 5.0f; y += 0.1f)
-    // {
-    //     for (float x = -5.0f; x < 5.0f; x += 0.1f)
-    //     {
-    //         glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 1.0f };
-    //         Fenix::Renderer2D::DrawRotatedQuad({ x, y, 0.1f }, glm::radians(10.0f), { 0.09f, 0.09f }, color);
-    //     }
-    // }
-    // Fenix::Renderer2D::EndScene();
+    Fenix::Renderer2D::BeginScene(m_CameraController.GetCamera());
+    for (float y = -5.0f; y <= 5.0f; y += 0.5f)
+    {
+        for (float x = -5.0f; x <= 5.0f; x += 0.5f)
+        {
+            glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 1.0f };
+            Fenix::Renderer2D::DrawRotatedQuad({ x, y, 0.1f }, glm::radians(10.0f), { 0.45f, 0.45f }, color);
+        }
+    }
+    Fenix::Renderer2D::EndScene();
 }
 
 void Sandbox2D::OnEvent(Fenix::Event& e)
