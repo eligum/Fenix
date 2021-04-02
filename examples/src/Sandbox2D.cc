@@ -23,6 +23,7 @@ void Sandbox2D::OnUpdate(Fenix::Timestep ts)
 {
     // Update
     m_CameraController.OnUpdate(ts);
+    m_FPS = 1.0f / ts;
 
     // Render
     Fenix::Renderer2D::ResetStats();
@@ -35,10 +36,6 @@ void Sandbox2D::OnUpdate(Fenix::Timestep ts)
     Fenix::Renderer2D::DrawQuad({ 0.5f, -0.4f }, { 0.8f, 0.5f }, { 0.2f, 0.3f, 0.8f, 1.0f });
     Fenix::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 8.0f, 8.0f }, m_Texture, 8.0f);
     Fenix::Renderer2D::EndScene();
-
-    Fenix::Renderer2D* myRenderer = new Fenix::Renderer2D();
-    std::cout << "Size of Fenix::Renderer2D is " << sizeof(Fenix::Renderer2D) << ", pointer @ is " << myRenderer << std::endl;
-    delete myRenderer;
 
     // Stress test
     Fenix::Renderer2D::BeginScene(m_CameraController.GetCamera());
@@ -68,6 +65,7 @@ void Sandbox2D::OnImGuiRender()
     ImGui::Text("Quads: %d", stats.QuadCount);
     ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
     ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+    ImGui::Text("FPS: %d", m_FPS);
 
     ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
