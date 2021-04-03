@@ -3,6 +3,7 @@
 #include <imgui.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
+#include "Utility.hh"
 
 static constexpr float ASPECT_RATIO = 16.0f / 9.0f;
 
@@ -21,6 +22,8 @@ void Sandbox2D::OnDetach()
 
 void Sandbox2D::OnUpdate(Fenix::Timestep ts)
 {
+    Fenix::LTimer timer("Sandbox2D::OnUpdate");
+
     // Update
     m_CameraController.OnUpdate(ts);
     m_FPS = 1.0f / ts;
