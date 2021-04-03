@@ -1,4 +1,4 @@
-file(GLOB FENIX_SOURCE LIST_DIRECTORIES false "${CMAKE_CURRENT_SOURCE_DIR}src/*.cc")
+file(GLOB FENIX_SOURCE LIST_DIRECTORIES false "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc")
 
 # This line is just a flex of my cmake skills
 # list(APPEND FENIX_SOURCE "ImGui/ImGuiBuild.cc;ImGui/ImGuiLayer.cc")
