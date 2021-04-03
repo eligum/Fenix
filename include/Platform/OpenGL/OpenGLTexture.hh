@@ -17,6 +17,7 @@ namespace Fenix {
 
         uint32_t GetWidth() const override { return m_Width; }
         uint32_t GetHeight() const override { return m_Height; }
+        uint32_t GetRendererID() const override { return m_RendererID; }
 
         void Bind(uint32_t slot = 0) const override;
 

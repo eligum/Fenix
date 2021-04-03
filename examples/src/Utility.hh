@@ -17,6 +17,9 @@ namespace Fenix {
     };
 
 
+    /// @class LTimer
+    ///
+    /// Timer implemented with RAII in mind.
     class LTimer
     {
     public:

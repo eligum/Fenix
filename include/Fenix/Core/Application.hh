@@ -25,6 +25,8 @@ namespace Fenix {
         void PushLayer(Layer* layer);
         void PushOverlay(Layer* overlay);
 
+        void Close();
+
         Window& GetWindow() { return *m_Window; }
 
         static Application& GetApp() { return *s_Instance; }

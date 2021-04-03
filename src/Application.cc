@@ -35,11 +35,11 @@ namespace Fenix {
         dispatcher.Dispatch<WindowCloseEvent>(FX_BIND_EVENT_FN(Application::OnWindowClose));
         dispatcher.Dispatch<WindowResizeEvent>(FX_BIND_EVENT_FN(Application::OnWindowResize));
 
-        for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+        for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
         {
-            (*--it)->OnEvent(evt);
             if (evt.Handled)
                 break;
+            (*it)->OnEvent(evt);
         }
     }
 
@@ -77,6 +77,11 @@ namespace Fenix {
 
             m_Window->OnUpdate();
         }
+    }
+
+    void Application::Close()
+    {
+        m_Running = false;
     }
 
     bool Application::OnWindowClose(WindowCloseEvent& evt)

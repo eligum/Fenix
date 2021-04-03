@@ -81,17 +81,11 @@ namespace Fenix {
 
         if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
         {
-            GLFWwindow* backup_current_context = glfwGetCurrentContext();
+            GLFWwindow* backupCurrentContext = glfwGetCurrentContext();
             ImGui::UpdatePlatformWindows();
             ImGui::RenderPlatformWindowsDefault();
-            glfwMakeContextCurrent(backup_current_context);
+            glfwMakeContextCurrent(backupCurrentContext);
         }
-    }
-
-    void ImGuiLayer::OnImGuiRender()
-    {
-        // static bool show = true;
-        // ImGui::ShowDemoWindow(&show);
     }
 
 } // namespace Fenix

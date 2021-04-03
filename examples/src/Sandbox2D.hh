@@ -20,6 +20,7 @@ private:
     // TEMP
     Fenix::Ref<Fenix::VertexArray> m_SquareVA;
     Fenix::Ref<Fenix::Texture2D> m_Texture;
+    Fenix::Ref<Fenix::Framebuffer> m_Framebuffer;
     uint32_t m_FPS;
 
     glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };

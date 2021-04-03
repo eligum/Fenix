@@ -24,6 +24,7 @@
 
 #include "Renderer/VertexArray.hh"
 #include "Renderer/Buffer.hh"
+#include "Renderer/Framebuffer.hh"
 #include "Renderer/Shader.hh"
 #include "Renderer/Texture.hh"
 
