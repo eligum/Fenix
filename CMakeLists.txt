@@ -2,22 +2,22 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-# ---------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 # Start project
-# ---------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 include(cmake/PreventInSourceBuilds.cmake)
 include(cmake/CompilerWarnings.cmake)
 include(cmake/Util.cmake)
 include(cmake/Ide.cmake)
 
-hazel_extract_version()
+fenix_extract_version()
 
 project(FenixEngine VERSION ${FENIX_VERSION} LANGUAGES CXX C)
-message(STATUS "Build Fenix version: ${FENIX_VERSION}")
+message(STATUS "Fenix version: ${FENIX_VERSION}")
 
-# ---------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 # Project build configuration
-# ---------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 include(cmake/BuildTypeSettings.cmake)
 
 # Output all binaries under the same easy-to-access directory
@@ -37,19 +37,20 @@ add_library(my_compile_features INTERFACE)
 target_compile_features(my_compile_features INTERFACE cxx_std_17)
 
 # Bunch of options
-option(FENIX_BUILD_EXAMPLES "Build a set of example applications using Fenix" ON)
+option(FENIX_BUILD_EXAMPLES "Build a set of example applications using Fenix Engine" ON)
 option(FENIX_BUILD_DOCS "Build Fenix documentation, requires doxygen" OFF)
 option(FENIX_BUILD_SHARED "Build Fenix as a shared library" OFF)
 
-# ---------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 # Build project dependencies
-# ---------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 add_subdirectory(vendor)
 
-# ---------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 # Build project
-# ---------------------------------------------------------------------------------------
-add_subdirectory(src)
+# ----------------------------------------------------------------------------------------
+add_subdirectory(Fenix)
+add_subdirectory(Fenix-Editor)
 
 if(FENIX_BUILD_EXAMPLES)
     add_subdirectory(examples)

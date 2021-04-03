@@ -33,9 +33,9 @@ function(enable_doxygen)
     endif()
 endfunction()
 
-# Get hazel version from include/Fenix/version.h and put it in FENIX_VERSION
-function(hazel_extract_version)
-    file(READ "${CMAKE_CURRENT_LIST_DIR}/include/Fenix/version.hh" file_contents)
+# Get Fenix version from include/Fenix/version.h and put it in FENIX_VERSION
+function(fenix_extract_version)
+    file(READ "${CMAKE_CURRENT_LIST_DIR}/Fenix/include/Fenix/version.hh" file_contents)
 
     string(REGEX MATCH "FENIX_VER_MAJOR ([0-9]+)" _ "${file_contents}")
     if(NOT CMAKE_MATCH_COUNT EQUAL 1)
@@ -62,7 +62,7 @@ function(hazel_extract_version)
 endfunction()
 
 # Enable address sanitizer (gcc/clang only)
-function(hazel_enable_sanitizer target_name)
+function(fenix_enable_sanitizer target_name)
     if(NOT CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         message(FATAL_ERROR "Sanitizer supported only for gcc/clang")
     endif()
