@@ -14,7 +14,7 @@ namespace Fenix {
 
     void EditorLayer::OnAttach()
     {
-        m_Texture = Texture2D::Create("examples/assets/textures/checkerboard.jpg");
+        m_Texture = Texture2D::Create("Fenix-Editor/assets/textures/checkerboard.jpg");
 
         FramebufferSpecification framebufSpec;
         framebufSpec.Width  = 1600;

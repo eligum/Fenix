@@ -7,6 +7,7 @@
 imgui.ini
 sandbox-d
 sandbox-r
+editor-d
 
 # Directories
 /[Bb]uild
