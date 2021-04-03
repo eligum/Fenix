@@ -10,7 +10,9 @@ namespace Fenix {
         OpenGLFramebuffer(const FramebufferSpecification& spec);
         ~OpenGLFramebuffer();
 
-        void Resize();
+        void Invalidate();
+
+        void Resize(uint32_t width, uint32_t height) override;
 
         void Bind() const override;
         void Unbind() const override;
@@ -19,8 +21,8 @@ namespace Fenix {
 
         uint32_t GetColorAttachmentRendererID() const override { return m_ColorAttachment; }
     private:
-        uint32_t m_RendererID;
-        uint32_t m_ColorAttachment, m_DepthStencilAttachment;
+        uint32_t m_RendererID = 0;
+        uint32_t m_ColorAttachment = 0, m_DepthStencilAttachment = 0;
         FramebufferSpecification m_Specification;
     };
 

@@ -153,6 +153,7 @@ class Sandbox : public Fenix::Application
 {
 public:
     Sandbox()
+        : Application("Sandbox 2D")
     {
         // PushLayer(new ExampleLayer());
         PushLayer(new Sandbox2D());

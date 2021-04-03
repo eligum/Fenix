@@ -10,12 +10,12 @@ namespace Fenix {
 
     Application* Application::s_Instance = nullptr;
 
-    Application::Application()
+    Application::Application(const std::string& name)
     {
         FX_CORE_ASSERT(!s_Instance, "Application already exists!");
         s_Instance = this;
 
-        m_Window = std::unique_ptr<Window>(Window::Create({ "FENIX", 1600, 900 }));
+        m_Window = std::unique_ptr<Window>(Window::Create({ name, 1600, 900 }));
         m_Window->SetEventCallback(FX_BIND_EVENT_FN(Application::OnEvent));
         m_Window->SetVSync(true);
 

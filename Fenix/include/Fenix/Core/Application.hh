@@ -15,7 +15,7 @@ namespace Fenix {
     class Application
     {
     public:
-        Application();
+        Application(const std::string& name = "Fenix App");
         virtual ~Application();
 
         void Run();

@@ -9,6 +9,7 @@ namespace Fenix {
     {
     public:
         FenixEditor()
+            : Application("FENIX::Editor")
         {
             PushLayer(new EditorLayer());
         }

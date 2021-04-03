@@ -14,7 +14,7 @@ namespace Fenix {
         uint32_t Width;
         uint32_t Height;
 
-        WindowProps(const std::string& title = "FENIX",
+        WindowProps(const std::string& title = "FENIX Engine",
                     uint32_t width = 1280,
                     uint32_t height = 720)
             : Title(title), Width(width), Height(height) {}

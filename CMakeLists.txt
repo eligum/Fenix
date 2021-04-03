@@ -53,7 +53,7 @@ add_subdirectory(Fenix)
 add_subdirectory(Fenix-Editor)
 
 if(FENIX_BUILD_EXAMPLES)
-    # add_subdirectory(examples)
+    add_subdirectory(examples)
 endif()
 
 if(FENIX_BUILD_DOCS)
