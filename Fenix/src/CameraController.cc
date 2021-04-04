@@ -54,7 +54,13 @@ namespace Fenix {
     {
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<MouseScrolledEvent>(FX_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
-        dispatcher.Dispatch<WindowResizeEvent>(FX_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
+        // dispatcher.Dispatch<WindowResizeEvent>(FX_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
+    }
+
+    void OrthographicCameraController::OnResize(float width, float height)
+    {
+        m_AspectRatio = width / height;
+        m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
     }
 
     bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
@@ -62,15 +68,12 @@ namespace Fenix {
         m_ZoomLevel -= e.GetYOffset() * 0.25f;
         m_ZoomLevel = std::min(20.0f, std::max(0.25f, m_ZoomLevel)); // Clamp to [0.25, 20.0f]
         m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
-
         return false;
     }
 
     bool OrthographicCameraController::OnWindowResized(WindowResizeEvent& e)
     {
-        m_AspectRatio = static_cast<float>(e.GetWidth()) / static_cast<float>(e.GetHeight());
-        m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
-
+        OnResize(static_cast<float>(e.GetWidth()), static_cast<float>(e.GetHeight()));
         return false;
     }
 

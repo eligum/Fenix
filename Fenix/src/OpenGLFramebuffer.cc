@@ -12,35 +12,36 @@ namespace Fenix {
 
     OpenGLFramebuffer::~OpenGLFramebuffer()
     {
-        glDeleteTextures(1, &m_DepthStencilAttachment);
-        glDeleteTextures(1, &m_ColorAttachment);
         glDeleteFramebuffers(1, &m_RendererID);
+        glDeleteTextures(1, &m_ColorAttachment);
+        glDeleteTextures(1, &m_DepthStencilAttachment);
     }
 
     void OpenGLFramebuffer::Invalidate()
     {
         if (m_RendererID)
         {
-            glDeleteTextures(1, &m_DepthStencilAttachment);
-            glDeleteTextures(1, &m_ColorAttachment);
             glDeleteFramebuffers(1, &m_RendererID);
+            glDeleteTextures(1, &m_ColorAttachment);
+            glDeleteTextures(1, &m_DepthStencilAttachment);
         }
 
-        glCreateFramebuffers(1, &m_RendererID);
-        glBindFramebuffer(GL_FRAMEBUFFER, m_RendererID);
-
+        // Build the texture that will serve as the color attachment for the framebuffer
         glCreateTextures(GL_TEXTURE_2D, 1, &m_ColorAttachment);
         glBindTexture(GL_TEXTURE_2D, m_ColorAttachment);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Specification.Width, m_Specification.Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Specification.Width, m_Specification.Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr); // Has to be sampled by the shader
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_ColorAttachment, 0);
-
+        // Build the texture that will serve as the depth and stencil attachments for the framebuffer
         glCreateTextures(GL_TEXTURE_2D, 1, &m_DepthStencilAttachment);
         glBindTexture(GL_TEXTURE_2D, m_DepthStencilAttachment);
-        glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, m_Specification.Width, m_Specification.Height);
+        glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, m_Specification.Width, m_Specification.Height); // Does not need to be sampled by the shader
 
+        // Create the framebuffer and attach the attachments
+        glCreateFramebuffers(1, &m_RendererID);
+        glBindFramebuffer(GL_FRAMEBUFFER, m_RendererID);
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_ColorAttachment, 0);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthStencilAttachment, 0);
 
         FX_CORE_ASSERT(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "Framebuffer is incomplete!");

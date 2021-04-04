@@ -1,7 +1,7 @@
 #include "Fenix/Core/Input.hh"
 
 #include "Fenix/Core/Application.hh"
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 
 namespace Fenix {
 

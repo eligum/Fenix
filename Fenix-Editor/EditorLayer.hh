@@ -20,14 +20,14 @@ namespace Fenix {
     private:
         OrthographicCameraController m_CameraController;
 
-        // TEMP
         Ref<VertexArray> m_SquareVA;
         Ref<Texture2D> m_Texture;
         Ref<Framebuffer> m_Framebuffer;
         uint32_t m_FPS;
-        glm::vec2 m_ViewportSize;
 
         glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+
+        glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
     };
 
 } // namespace Fenix
