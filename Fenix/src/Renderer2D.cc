@@ -245,7 +245,7 @@ namespace Fenix {
 
     void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tiling_factor, const glm::vec4& tint_color)
     {
-        DrawQuad({ position.x, position.y, 0.0f }, size, texture, tiling_factor);
+        DrawQuad({ position.x, position.y, 0.0f }, size, texture, tiling_factor, tint_color);
     }
 
     void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tiling_factor, const glm::vec4& tint_color)
@@ -258,7 +258,7 @@ namespace Fenix {
 
     void Renderer2D::DrawRotatedQuad(const glm::vec2& position, float rotation, const glm::vec2& size, const Ref<Texture2D>& texture, float tiling_factor, const glm::vec4& tint_color)
     {
-        DrawRotatedQuad({ position.x, position.y, 0.0f }, rotation, size, texture, tiling_factor);
+        DrawRotatedQuad({ position.x, position.y, 0.0f }, rotation, size, texture, tiling_factor, tint_color);
     }
 
     void Renderer2D::DrawRotatedQuad(const glm::vec3& position, float rotation, const glm::vec2& size, const Ref<Texture2D>& texture, float tiling_factor, const glm::vec4& tint_color)

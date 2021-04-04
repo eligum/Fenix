@@ -15,7 +15,7 @@ namespace Fenix {
         FX_CORE_ASSERT(!s_Instance, "Application already exists!");
         s_Instance = this;
 
-        m_Window = std::unique_ptr<Window>(Window::Create({ name, 1600, 900 }));
+        m_Window = std::unique_ptr<Window>(Window::Create({ name, 1280, 720 }));
         m_Window->SetEventCallback(FX_BIND_EVENT_FN(Application::OnEvent));
         m_Window->SetVSync(true);
 
@@ -84,7 +84,7 @@ namespace Fenix {
         m_Running = false;
     }
 
-    bool Application::OnWindowClose(WindowCloseEvent& evt)
+    bool Application::OnWindowClose(WindowCloseEvent&)
     {
         m_Running = false;
         return true;

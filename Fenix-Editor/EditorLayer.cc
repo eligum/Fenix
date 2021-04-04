@@ -59,11 +59,6 @@ namespace Fenix {
         m_Framebuffer->Unbind();
     }
 
-    void EditorLayer::OnEvent(Event& e)
-    {
-        m_CameraController.OnEvent(e);
-    }
-
     void EditorLayer::OnImGuiRender()
     {
         static bool dockspaceOpen                 = true;
@@ -158,7 +153,6 @@ namespace Fenix {
 
             m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
         }
-        // FX_WARN("Viewport size: {0}, {1}", viewportPanelSize.x, viewportPanelSize.y);
         uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
         ImGui::Image((void*)textureID, { m_ViewportSize.x, m_ViewportSize.y }, ImVec2(0, 1), ImVec2(1, 0));
 
@@ -166,6 +160,11 @@ namespace Fenix {
         ImGui::PopStyleVar();
 
         ImGui::End();
+    }
+
+    void EditorLayer::OnEvent(Event& e)
+    {
+        m_CameraController.OnEvent(e);
     }
 
 } // namespace Fenix

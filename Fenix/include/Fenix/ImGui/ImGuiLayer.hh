@@ -15,6 +15,7 @@ namespace Fenix {
 
         void OnAttach() override;
         void OnDetach() override;
+        void OnEvent(Event& event) override;
 
         void Begin();
         void End();
