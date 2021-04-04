@@ -15,7 +15,8 @@
 
 #include "ImGui/ImGuiLayer.hh"
 
-#include "Renderer/CameraController.hh"
+#include "Scene/Scene.hh"
+#include "Scene/Components.hh"
 
 // ----Renderer-------------------------------
 #include "Renderer/Renderer.hh"
@@ -29,4 +30,5 @@
 #include "Renderer/Texture.hh"
 
 #include "Renderer/Camera.hh"
+#include "Renderer/CameraController.hh"
 // -------------------------------------------

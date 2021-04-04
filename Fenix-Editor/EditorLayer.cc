@@ -20,6 +20,12 @@ namespace Fenix {
         framebufSpec.Width  = 1280;
         framebufSpec.Height = 720;
         m_Framebuffer       = Framebuffer::Create(framebufSpec);
+
+        m_ActiveScene = CreateRef<Scene>();
+
+        auto square = m_ActiveScene->CreateEntity();
+        m_ActiveScene->m_Registry.emplace<TransformComponent>(square);
+        m_ActiveScene->m_Registry.emplace<SpriteRendererComponent>(square, glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
     }
 
     void EditorLayer::OnDetach()
@@ -33,6 +39,9 @@ namespace Fenix {
             m_CameraController.OnUpdate(ts);
         m_FPS = 1.0f / ts;
 
+        // Update scene
+        m_ActiveScene->OnUpdate(ts);
+
         // Render
         Renderer2D::ResetStats();
 
@@ -41,13 +50,7 @@ namespace Fenix {
         RenderCommand::Clear();
 
         Renderer2D::BeginScene(m_CameraController.GetCamera());
-        Renderer2D::DrawRotatedQuad({ 0.0f, 0.0f }, glm::radians(30.0f), { 1.0f, 1.0f }, { 0.8f, 0.3f, 0.2f, 1.0f });
-        Renderer2D::DrawQuad({ 0.5f, -0.4f }, { 0.8f, 0.5f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-        Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 8.0f, 8.0f }, m_Texture, 8.0f);
-        Renderer2D::EndScene();
-
         // Stress test
-        Renderer2D::BeginScene(m_CameraController.GetCamera());
         for (float y = -5.0f; y <= 5.0f; y += 0.5f)
         {
             for (float x = -5.0f; x <= 5.0f; x += 0.5f)
@@ -57,6 +60,7 @@ namespace Fenix {
             }
         }
         Renderer2D::EndScene();
+
         m_Framebuffer->Unbind();
     }
 

@@ -15,6 +15,8 @@ set_property(TARGET spdlog PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 add_subdirectory(imgui)
 
+add_subdirectory(entt)
+
 # ---------------------------------------------------------------------------- #
 
 add_library(external_deps INTERFACE)
@@ -24,4 +26,5 @@ target_link_libraries(external_deps INTERFACE
                                     glad
                                     stb
                                     spdlog
-                                    imgui)
+                                    imgui
+                                    EnTT)

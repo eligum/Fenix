@@ -33,7 +33,7 @@ namespace Fenix {
 
         static Application& GetApp() { return *s_Instance; }
     private:
-        bool OnWindowClose(WindowCloseEvent& evt);
+        bool OnWindowClose(WindowCloseEvent&);
         bool OnWindowResize(WindowResizeEvent& evt);
     private:
         std::unique_ptr<Window> m_Window;
