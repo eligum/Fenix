@@ -4,6 +4,8 @@
 
 namespace Fenix {
 
+    static constexpr uint32_t s_MaxFrambufferSize = 8192;
+
     OpenGLFramebuffer::OpenGLFramebuffer(const FramebufferSpecification& spec)
         : m_Specification(spec)
     {
@@ -62,6 +64,12 @@ namespace Fenix {
 
     void OpenGLFramebuffer::Resize(uint32_t width, uint32_t height)
     {
+        if (width == 0 || height == 0 || width > s_MaxFrambufferSize || height > s_MaxFrambufferSize)
+        {
+            FX_CORE_WARN("Attempted to resize framebuffer to {0}, {1}", width, height);
+            return;
+        }
+
         m_Specification.Width = width;
         m_Specification.Height = height;
         Invalidate();

@@ -2,7 +2,7 @@
 
 extern Fenix::Application* Fenix::CreateApplication();
 
-int main(int argc, char** argv)
+int main(int, char**)
 {
     Fenix::Log::Init();
     FX_CORE_WARN("Initialized Log!");

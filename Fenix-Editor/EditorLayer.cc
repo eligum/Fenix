@@ -17,8 +17,8 @@ namespace Fenix {
         m_Texture = Texture2D::Create("Fenix-Editor/assets/textures/checkerboard.jpg");
 
         FramebufferSpecification framebufSpec;
-        framebufSpec.Width  = 1600;
-        framebufSpec.Height = 900;
+        framebufSpec.Width  = 1280;
+        framebufSpec.Height = 720;
         m_Framebuffer       = Framebuffer::Create(framebufSpec);
     }
 
@@ -29,7 +29,8 @@ namespace Fenix {
     void EditorLayer::OnUpdate(Timestep ts)
     {
         // Update
-        m_CameraController.OnUpdate(ts);
+        if (m_ViewportFocused)
+            m_CameraController.OnUpdate(ts);
         m_FPS = 1.0f / ts;
 
         // Render
@@ -145,8 +146,12 @@ namespace Fenix {
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
         ImGui::Begin("Viewport");
 
+        m_ViewportFocused = ImGui::IsWindowFocused();
+        m_ViewportHovered = ImGui::IsWindowHovered();
+        Application::GetApp().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+
         ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-        if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize))
+        if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize) && viewportPanelSize.x > 0 && viewportPanelSize.y > 0)
         {
             m_Framebuffer->Resize(static_cast<uint32_t>(viewportPanelSize.x), static_cast<uint32_t>(viewportPanelSize.y));
             m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
@@ -154,7 +159,7 @@ namespace Fenix {
             m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
         }
         uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
-        ImGui::Image((void*)textureID, { m_ViewportSize.x, m_ViewportSize.y }, ImVec2(0, 1), ImVec2(1, 0));
+        ImGui::Image(reinterpret_cast<void*>(textureID), { m_ViewportSize.x, m_ViewportSize.y }, ImVec2(0, 1), ImVec2(1, 0));
 
         ImGui::End();
         ImGui::PopStyleVar();

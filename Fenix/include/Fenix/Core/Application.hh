@@ -27,6 +27,8 @@ namespace Fenix {
 
         void Close();
 
+        ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
+
         Window& GetWindow() { return *m_Window; }
 
         static Application& GetApp() { return *s_Instance; }
