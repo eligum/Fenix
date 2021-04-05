@@ -26,6 +26,7 @@ namespace Fenix {
         uint32_t m_FPS;
 
         Ref<Scene> m_ActiveScene;
+        Entity m_SquareEntity;
 
         glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
         bool m_ViewportFocused = false, m_ViewportHovered = false;

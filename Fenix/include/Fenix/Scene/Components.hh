@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glm/mat4x4.hpp>
+#include <string>
 
 namespace Fenix {
 
@@ -12,6 +13,16 @@ namespace Fenix {
         TransformComponent(const TransformComponent&) = default;
         TransformComponent(const glm::mat4& transform)
             : Transform(transform) {}
+    };
+
+    struct TagComponent
+    {
+        std::string Tag{ "Unknown" };
+
+        TagComponent() = default;
+        TagComponent(const TagComponent&) = default;
+        TagComponent(const std::string& tag)
+            : Tag(tag) {}
     };
 
     struct SpriteRendererComponent

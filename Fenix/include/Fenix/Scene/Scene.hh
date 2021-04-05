@@ -6,16 +6,20 @@
 
 namespace Fenix {
 
+    class Entity; // Forward declaration
+
     class Scene
     {
     public:
         Scene();
         ~Scene();
 
-        entt::entity CreateEntity();
-        void OnUpdate(Timestep ts);
-    public:
+        Entity CreateEntity(const std::string& name = "");
+        void OnUpdate([[maybe_unused]] Timestep ts);
+    private:
         entt::registry m_Registry;
+
+        friend class Entity;
     };
 
 } // namespace Fenix

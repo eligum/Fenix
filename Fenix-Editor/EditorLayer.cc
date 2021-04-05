@@ -23,9 +23,10 @@ namespace Fenix {
 
         m_ActiveScene = CreateRef<Scene>();
 
-        auto square = m_ActiveScene->CreateEntity();
-        m_ActiveScene->m_Registry.emplace<TransformComponent>(square);
-        m_ActiveScene->m_Registry.emplace<SpriteRendererComponent>(square, glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+        Entity square = m_ActiveScene->CreateEntity("Square");
+        square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+
+        m_SquareEntity = square;
     }
 
     void EditorLayer::OnDetach()
@@ -39,9 +40,6 @@ namespace Fenix {
             m_CameraController.OnUpdate(ts);
         m_FPS = 1.0f / ts;
 
-        // Update scene
-        m_ActiveScene->OnUpdate(ts);
-
         // Render
         Renderer2D::ResetStats();
 
@@ -50,15 +48,19 @@ namespace Fenix {
         RenderCommand::Clear();
 
         Renderer2D::BeginScene(m_CameraController.GetCamera());
+
+        // Update scene
+        m_ActiveScene->OnUpdate(ts);
+
         // Stress test
-        for (float y = -5.0f; y <= 5.0f; y += 0.5f)
-        {
-            for (float x = -5.0f; x <= 5.0f; x += 0.5f)
-            {
-                glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 1.0f };
-                Renderer2D::DrawRotatedQuad({ x, y, 0.1f }, glm::radians(10.0f), { 0.45f, 0.45f }, color);
-            }
-        }
+        // for (float y = -5.0f; y <= 5.0f; y += 0.5f)
+        // {
+        //     for (float x = -5.0f; x <= 5.0f; x += 0.5f)
+        //     {
+        //         glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 1.0f };
+        //         Renderer2D::DrawRotatedQuad({ x, y, 0.1f }, glm::radians(10.0f), { 0.45f, 0.45f }, color);
+        //     }
+        // }
         Renderer2D::EndScene();
 
         m_Framebuffer->Unbind();
@@ -143,7 +145,17 @@ namespace Fenix {
         ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
         ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
         ImGui::Text("FPS: %d", m_FPS);
-        ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+
+        // EnTT
+        if (m_SquareEntity)
+        {
+            ImGui::Separator();
+            ImGui::Text("%s", m_SquareEntity.GetComponent<TagComponent>().Tag.c_str());
+
+            auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
+            ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
+            ImGui::Separator();
+        }
 
         ImGui::End();
 

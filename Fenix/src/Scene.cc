@@ -1,7 +1,8 @@
 #include "Fenix/Scene/Scene.hh"
 
-#include <glm/mat4x4.hpp>
 #include "Fenix/Scene/Components.hh"
+#include "Fenix/Renderer/Renderer2D.hh"
+#include "Fenix/Scene/Entity.hh"
 
 namespace Fenix {
 
@@ -14,14 +15,24 @@ namespace Fenix {
     {
     }
 
-    entt::entity Scene::CreateEntity()
+    Entity Scene::CreateEntity(const std::string& name)
     {
-        return m_Registry.create();
+        Entity entity = { m_Registry.create(), this };
+        entity.AddComponent<TransformComponent>();
+        auto& tag = entity.AddComponent<TagComponent>();
+        tag.Tag = (name.empty()) ? "Unnamed Entity" : name;
+
+        return entity;
     }
 
     void Scene::OnUpdate(Timestep ts)
     {
-
+        auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+        for (auto entity : group)
+        {
+            const auto& [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+            Renderer2D::DrawQuad(transform.Transform, sprite.Color);
+        }
     }
 
 } // namespace Fenix

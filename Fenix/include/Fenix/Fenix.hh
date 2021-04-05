@@ -16,6 +16,7 @@
 #include "ImGui/ImGuiLayer.hh"
 
 #include "Scene/Scene.hh"
+#include "Scene/Entity.hh"
 #include "Scene/Components.hh"
 
 // ----Renderer-------------------------------
