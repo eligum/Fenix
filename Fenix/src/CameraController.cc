@@ -54,7 +54,6 @@ namespace Fenix {
     {
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<MouseScrolledEvent>(FX_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
-        // dispatcher.Dispatch<WindowResizeEvent>(FX_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
     }
 
     void OrthographicCameraController::OnResize(float width, float height)

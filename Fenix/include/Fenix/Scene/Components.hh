@@ -3,6 +3,8 @@
 #include <glm/mat4x4.hpp>
 #include <string>
 
+#include "Fenix/Scene/SceneCamera.hh"
+
 namespace Fenix {
 
     struct TransformComponent
@@ -33,6 +35,16 @@ namespace Fenix {
         SpriteRendererComponent(const SpriteRendererComponent&) = default;
         SpriteRendererComponent(const glm::vec4& color)
             : Color(color) {}
+    };
+
+    struct CameraComponent
+    {
+        SceneCamera Camera;
+        bool Primary = true; // TODO: Think about moving to Scene.
+        bool FixedAspectRatio = false;
+
+        CameraComponent() = default;
+        CameraComponent(const CameraComponent&) = default;
     };
 
 } // namespace Fenix

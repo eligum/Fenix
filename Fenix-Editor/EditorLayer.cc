@@ -19,14 +19,15 @@ namespace Fenix {
         FramebufferSpecification framebufSpec;
         framebufSpec.Width  = 1280;
         framebufSpec.Height = 720;
-        m_Framebuffer       = Framebuffer::Create(framebufSpec);
+        m_Framebuffer = Framebuffer::Create(framebufSpec);
 
         m_ActiveScene = CreateRef<Scene>();
 
-        Entity square = m_ActiveScene->CreateEntity("Square");
-        square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+        m_SquareEntity = m_ActiveScene->CreateEntity("Square");
+        m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 
-        m_SquareEntity = square;
+        m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
+        m_CameraEntity.AddComponent<CameraComponent>();
     }
 
     void EditorLayer::OnDetach()
@@ -35,6 +36,16 @@ namespace Fenix {
 
     void EditorLayer::OnUpdate(Timestep ts)
     {
+        // Resize
+        FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+        if (m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f // Zero sized framebuffer is invalid
+            && (spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
+        {
+            m_Framebuffer->Resize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
+            m_ActiveScene->OnViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
+            // m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+        }
+
         // Update
         if (m_ViewportFocused)
             m_CameraController.OnUpdate(ts);
@@ -47,7 +58,7 @@ namespace Fenix {
         RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
         RenderCommand::Clear();
 
-        Renderer2D::BeginScene(m_CameraController.GetCamera());
+        // Renderer2D::BeginScene(m_CameraController.GetCamera());
 
         // Update scene
         m_ActiveScene->OnUpdate(ts);
@@ -61,7 +72,7 @@ namespace Fenix {
         //         Renderer2D::DrawRotatedQuad({ x, y, 0.1f }, glm::radians(10.0f), { 0.45f, 0.45f }, color);
         //     }
         // }
-        Renderer2D::EndScene();
+        // Renderer2D::EndScene();
 
         m_Framebuffer->Unbind();
     }
@@ -167,13 +178,8 @@ namespace Fenix {
         Application::GetApp().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
 
         ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-        if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize) && viewportPanelSize.x > 0 && viewportPanelSize.y > 0)
-        {
-            m_Framebuffer->Resize(static_cast<uint32_t>(viewportPanelSize.x), static_cast<uint32_t>(viewportPanelSize.y));
-            m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
+        m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 
-            m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
-        }
         uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
         ImGui::Image(reinterpret_cast<void*>(textureID), { m_ViewportSize.x, m_ViewportSize.y }, ImVec2(0, 1), ImVec2(1, 0));
 
@@ -185,7 +191,8 @@ namespace Fenix {
 
     void EditorLayer::OnEvent(Event& e)
     {
-        m_CameraController.OnEvent(e);
+        // FX_WARN("Recived event {0}", e.GetName());
+        // m_CameraController.OnEvent(e);
     }
 
 } // namespace Fenix
