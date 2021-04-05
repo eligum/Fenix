@@ -2,7 +2,7 @@
 #       (i.e. Pages) list in the generated documentation
 
 set(BOX2D_DOXYGEN_SOURCES
-    "include/Hazel"
+    "include/Fenix"
     "docs/overview.md"
     "docs/common.md")
 

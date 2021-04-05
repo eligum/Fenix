@@ -1,4 +1,4 @@
-# Sandbox for OpenGL development
+# Fenix
 Work-in-progress OpenGL framework that aims to provide a strong base for you to just dive-in and start writing OpenGL.
 Lorax
 
