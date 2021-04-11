@@ -13,7 +13,7 @@ namespace Fenix {
         s_CoreLogger->set_level(spdlog::level::trace);
 
         s_ClientLogger = spdlog::stdout_color_mt("APP");
-        s_CoreLogger->set_level(spdlog::level::info);
+        s_CoreLogger->set_level(spdlog::level::trace);
     }
 
 } // namespace Fenix

@@ -19,6 +19,10 @@
 #include "Scene/Entity.hh"
 #include "Scene/Components.hh"
 
+// ----Script---------------------------------
+#include "Scene/ScriptableEntity.hh"
+// -------------------------------------------
+
 // ----Renderer-------------------------------
 #include "Renderer/Renderer.hh"
 #include "Renderer/Renderer2D.hh"
