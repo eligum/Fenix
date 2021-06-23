@@ -1,8 +1,8 @@
 #pragma once
 
+#include "Fenix/Core/Base.hh"
 #include "Fenix/Scene/Scene.hh"
 #include <entt/entt.hpp>
-#include "Fenix/Core/Base.hh"
 
 namespace Fenix {
 
@@ -40,7 +40,12 @@ namespace Fenix {
                 return m_Scene->m_Registry.remove<T>(m_EntityHandle);
             }
 
-        operator bool() const { return m_Scene->m_Registry.valid(m_EntityHandle); }
+        // operator bool() const { return m_Scene->m_Registry.valid(m_EntityHandle); }
+        operator bool() const { return m_EntityHandle != entt::null; }
+        operator uint32_t() const { return static_cast<uint32_t>(m_EntityHandle); }
+
+        bool operator==(const Entity& other) const { return (m_EntityHandle == other.m_EntityHandle) && (m_Scene == other.m_Scene); }
+        bool operator!=(const Entity& other) const { return !(*this == other); }
 
     private:
         entt::entity m_EntityHandle = entt::null;

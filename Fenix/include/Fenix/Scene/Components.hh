@@ -20,7 +20,7 @@ namespace Fenix {
 
     struct TagComponent
     {
-        std::string Tag{ "Unknown" };
+        std::string Tag{ "-" };
 
         TagComponent() = default;
         TagComponent(const TagComponent&) = default;
