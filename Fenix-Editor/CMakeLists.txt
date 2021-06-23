@@ -1,4 +1,5 @@
-file(GLOB _fenix_editor_SOURCES "*.cc")
+file(GLOB _fenix_editor_SOURCES "*.cc"
+                                "Panels/*.cc")
 
 add_executable(fenix_editor ${_fenix_editor_SOURCES})
 

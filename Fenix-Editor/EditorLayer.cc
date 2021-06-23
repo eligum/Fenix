@@ -26,8 +26,12 @@ namespace Fenix {
         m_SquareEntity = m_ActiveScene->CreateEntity("Square");
         m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 
-        m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
-        m_CameraEntity.AddComponent<CameraComponent>();
+        m_CameraEntityA = m_ActiveScene->CreateEntity("Camera Entity A");
+        m_CameraEntityA.AddComponent<CameraComponent>();
+
+        m_CameraEntityB = m_ActiveScene->CreateEntity("Camera Entity B");
+        auto& cc = m_CameraEntityB.AddComponent<CameraComponent>();
+        cc.Primary = false;
 
         class CameraController : public ScriptableEntity
         {
@@ -56,7 +60,10 @@ namespace Fenix {
                         transform[3][1] -= speed * ts;
                 }
         };
-        m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+        m_CameraEntityA.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+        m_CameraEntityB.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+
+        m_SceneHierarchyPanel.SetContext(m_ActiveScene);
     }
 
     void EditorLayer::OnDetach()
@@ -176,6 +183,8 @@ namespace Fenix {
             ImGui::EndMenuBar();
         }
 
+        m_SceneHierarchyPanel.OnImGuiRender();
+
         ImGui::Begin("Settings");
 
         auto stats = Renderer2D::GetStats();
@@ -195,6 +204,12 @@ namespace Fenix {
             auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
             ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
             ImGui::Separator();
+        }
+
+        if (ImGui::Checkbox("Camera A", &m_PrimaryCamera))
+        {
+            m_CameraEntityA.GetComponent<CameraComponent>().Primary = m_PrimaryCamera;
+            m_CameraEntityB.GetComponent<CameraComponent>().Primary = !m_PrimaryCamera;
         }
 
         ImGui::End();
