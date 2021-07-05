@@ -1,8 +1,8 @@
 #include "SceneHierarchyPanel.hh"
 
 #include <imgui.h>
-#include <Fenix/Scene/Components.hh>
 #include <glm/gtc/type_ptr.hpp>
+#include <Fenix/Scene/Components.hh>
 
 namespace Fenix {
 

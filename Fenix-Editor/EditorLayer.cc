@@ -235,7 +235,7 @@ namespace Fenix {
 
     void EditorLayer::OnEvent(Event& e)
     {
-        // FX_WARN("Recived event {0}", e.GetName());
+        // FX_CORE_WARN("Recived event {0}", e.GetName());
         // m_CameraController.OnEvent(e);
     }
 
