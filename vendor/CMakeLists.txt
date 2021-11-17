@@ -5,6 +5,7 @@ add_subdirectory(stb)
 option(GLFW_BUILD_DOCS OFF)
 option(GLFW_BUILD_EXAMPLE OFF)
 option(GLFW_BUILD_TESTS OFF)
+option(GLFW_INSTALL OFF)
 add_subdirectory(glfw)
 
 set(glm_DIR ${CMAKE_CURRENT_LIST_DIR}/glm/cmake/glm)
