@@ -7,6 +7,3 @@
 [submodule "vendor/spdlog"]
 	path = vendor/spdlog
 	url = git@github.com:gabime/spdlog.git
-[submodule "vendor/imgui"]
-	path = vendor/imgui
-	url = https://github.com/eligum/imgui.git
