@@ -1,9 +1,6 @@
-file(GLOB_RECURSE _glad_HEADERS
-     LIST_DIRECTORIES false
-     "include/*.h")
+file(GLOB_RECURSE _glad_HEADERS "include/*.h")
 
-add_library(glad STATIC src/glad.c "${_glad_HEADERS}")
+add_library(Glad::Glad STATIC src/glad.c "${_glad_HEADERS}")
 
-set_property(TARGET glad PROPERTY POSITION_INDEPENDENT_CODE ON)
-
-target_include_directories(glad PUBLIC include)
+target_include_directories(Glad::Glad PUBLIC include)
+# set_property(TARGET Glad::Glad PROPERTY POSITION_INDEPENDENT_CODE ON)

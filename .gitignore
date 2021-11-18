@@ -1,14 +1,13 @@
-# Files
-*.out
-*.exe
-*.x
-*.el
-*.json
-imgui.ini
-sandbox-d
-sandbox-r
-editor-d
-
 # Directories
 /[Bb]uild
-/.ccls*
+
+# VSCode clutter
+/.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Files
+*.o
+*.out
+*.exe
