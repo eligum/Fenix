@@ -4,7 +4,7 @@
 #include <entt/entt.hpp>
 #include "Fenix/Core/Base.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class Entity
     {
@@ -47,4 +47,4 @@ namespace Fenix {
         Scene* m_Scene = nullptr; // Should be a weak pointer
     };
 
-} // namespace Fenix
+} // namespace fenix

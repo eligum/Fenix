@@ -1,15 +1,13 @@
 #pragma once
 
-extern Fenix::Application* Fenix::CreateApplication();
+extern fenix::Application* fenix::CreateApplication();
 
-int main(int, char**)
+int main(int /* argc */, char** /* argv */)
 {
-    Fenix::Log::Init();
+    fenix::Log::Init();
     FX_CORE_WARN("Initialized Log!");
 
-    auto app = Fenix::CreateApplication();
+    auto app = fenix::CreateApplication();
     app->Run();
     delete app;
-
-    return 0;
 }

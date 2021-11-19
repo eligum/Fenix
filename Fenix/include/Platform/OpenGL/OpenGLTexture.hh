@@ -4,7 +4,7 @@
 
 #include <glad/glad.h>
 
-namespace Fenix {
+namespace fenix {
 
     class OpenGLTexture2D : public Texture2D
     {
@@ -32,4 +32,4 @@ namespace Fenix {
         GLenum m_InternalFormat, m_DataFormat;
     };
 
-} // namespace Fenix
+} // namespace fenix

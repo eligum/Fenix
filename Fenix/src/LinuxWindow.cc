@@ -7,7 +7,7 @@
 
 #include "Platform/OpenGL/OpenGLContext.hh"
 
-namespace Fenix {
+namespace fenix {
 
     static uint8_t s_GLFWWindowCount = 0;
 
@@ -157,4 +157,4 @@ namespace Fenix {
         return m_Data.VSync;
     }
 
-} // namespace Fenix
+} // namespace fenix

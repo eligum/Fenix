@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-namespace Fenix {
+namespace fenix {
 
     static constexpr uint32_t s_MaxFrambufferSize = 8192;
 
@@ -75,4 +75,4 @@ namespace Fenix {
         Invalidate();
     }
 
-} // namespace Fenix
+} // namespace fenix

@@ -3,7 +3,7 @@
 
 #include "EditorLayer.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class FenixEditor : public Application
     {
@@ -24,4 +24,4 @@ namespace Fenix {
         return new FenixEditor;
     }
 
-} // namespace Fenix
+} // namespace fenix

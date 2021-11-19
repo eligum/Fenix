@@ -3,7 +3,7 @@
 #include "Fenix/Renderer/Renderer.hh"
 #include "Platform/OpenGL/OpenGLFramebuffer.hh"
 
-namespace Fenix {
+namespace fenix {
 
     Ref<Framebuffer> Framebuffer::Create(const FramebufferSpecification& spec)
     {

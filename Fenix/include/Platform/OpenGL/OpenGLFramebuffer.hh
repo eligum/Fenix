@@ -2,7 +2,7 @@
 
 #include "Fenix/Renderer/Framebuffer.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class OpenGLFramebuffer : public Framebuffer
     {
@@ -26,4 +26,4 @@ namespace Fenix {
         FramebufferSpecification m_Specification;
     };
 
-} // namespace Fenix
+} // namespace fenix

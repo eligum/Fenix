@@ -2,7 +2,7 @@
 
 #include "Fenix/Renderer/Buffer.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class OpenGLVertexBuffer : public VertexBuffer
     {
@@ -38,4 +38,4 @@ namespace Fenix {
         uint32_t m_Count;
     };
 
-} // namespace Fenix
+} // namespace fenix

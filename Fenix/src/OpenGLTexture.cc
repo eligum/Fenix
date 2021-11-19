@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <stb_image.h>
 
-namespace Fenix {
+namespace fenix {
 
     OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
         : m_Width(width), m_Height(height)
@@ -79,4 +79,4 @@ namespace Fenix {
         glBindTextureUnit(slot, m_RendererID);
     }
 
-} // namespace Fenix
+} // namespace fenix

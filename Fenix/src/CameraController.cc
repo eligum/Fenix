@@ -1,7 +1,7 @@
 #include "Fenix/Renderer/CameraController.hh"
 #include "Fenix/Core/Input.hh"
 
-namespace Fenix {
+namespace fenix {
 
     OrthographicCameraController::OrthographicCameraController(float aspect_ratio, bool enable_rotation)
         : m_AspectRatio(aspect_ratio), m_ZoomLevel(1.0f),
@@ -76,4 +76,4 @@ namespace Fenix {
         return false;
     }
 
-} // namespace Fenix
+} // namespace fenix

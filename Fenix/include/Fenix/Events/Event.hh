@@ -5,7 +5,7 @@
 
 #include "Fenix/Core/Base.hh"
 
-namespace Fenix {
+namespace fenix {
 
     // Events in Fenix are currently blocking, meaning when an event occurs it
     // immediately gets dispatched and must be dealt with right then and there.
@@ -98,4 +98,4 @@ namespace Fenix {
         return os << e.ToString();
     }
 
-} // namespace Fenix
+} // namespace fenix

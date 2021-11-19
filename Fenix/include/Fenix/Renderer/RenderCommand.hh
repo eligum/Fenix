@@ -2,7 +2,7 @@
 
 #include "Fenix/Renderer/RendererAPI.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class RenderCommand
     {
@@ -35,4 +35,4 @@ namespace Fenix {
         static RendererAPI* s_RendererAPI;
     };
 
-} // namespace Fenix
+} // namespace fenix

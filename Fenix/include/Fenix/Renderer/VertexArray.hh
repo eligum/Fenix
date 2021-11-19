@@ -3,7 +3,7 @@
 // TEMP: This file will eventually be deleted
 #include "Fenix/Renderer/Buffer.hh"
 
-namespace Fenix {
+namespace fenix {
 
     /// @class VertexArray
     class VertexArray

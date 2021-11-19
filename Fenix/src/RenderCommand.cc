@@ -2,7 +2,7 @@
 
 #include "Platform/OpenGL/OpenGLRendererAPI.hh"
 
-namespace Fenix {
+namespace fenix {
 
     RendererAPI* RenderCommand::s_RendererAPI = new OpenGLRendererAPI;
 

@@ -5,7 +5,7 @@
 #include "Fenix/Events/ApplicationEvent.hh"
 #include "Fenix/Events/KeyEvent.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class ImGuiLayer : public Layer
     {
@@ -25,4 +25,4 @@ namespace Fenix {
         bool m_BlockEvents = true;
     };
 
-} // namespace Fenix
+} // namespace fenix

@@ -7,7 +7,7 @@
 
 #include <glm/glm.hpp>
 
-namespace Fenix {
+namespace fenix {
 
     class Shader
     {
@@ -48,4 +48,4 @@ namespace Fenix {
         std::unordered_map<std::string, Ref<Shader>> m_Shaders;
     };
 
-} // namespace Fenix
+} // namespace fenix

@@ -6,7 +6,7 @@
 #include "Fenix/Events/ApplicationEvent.hh"
 #include "Fenix/Events/MouseEvent.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class OrthographicCameraController
     {
@@ -38,4 +38,4 @@ namespace Fenix {
         float m_CameraRotationSpeed = 120.0f;
     };
 
-} // namespace Fenix
+} // namespace fenix

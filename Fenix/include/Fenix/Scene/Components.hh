@@ -5,7 +5,7 @@
 
 #include "Fenix/Scene/SceneCamera.hh"
 
-namespace Fenix {
+namespace fenix {
 
     struct TransformComponent
     {
@@ -47,4 +47,4 @@ namespace Fenix {
         CameraComponent(const CameraComponent&) = default;
     };
 
-} // namespace Fenix
+} // namespace fenix

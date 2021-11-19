@@ -4,7 +4,7 @@
 
 #include "Fenix/Core/Base.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class Texture
     {
@@ -29,4 +29,4 @@ namespace Fenix {
         static Ref<Texture2D> Create(const std::string& filepath);
     };
 
-} // namespace Fenix
+} // namespace fenix

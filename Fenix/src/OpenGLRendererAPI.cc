@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-namespace Fenix {
+namespace fenix {
 
     void OpenGLRendererAPI::Init()
     {
@@ -33,4 +33,4 @@ namespace Fenix {
         glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, nullptr);
     }
 
-} // namespace Fenix
+} // namespace fenix

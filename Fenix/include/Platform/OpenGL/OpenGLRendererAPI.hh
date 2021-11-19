@@ -2,7 +2,7 @@
 
 #include "Fenix/Renderer/RendererAPI.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class OpenGLRendererAPI : public RendererAPI
     {

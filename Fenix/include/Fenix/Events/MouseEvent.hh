@@ -5,7 +5,7 @@
 #include "Event.hh"
 #include "Fenix/Core/MouseCodes.hh"
 
-namespace Fenix {
+namespace fenix {
 
     /// @class MouseMovedEvent
     class MouseMovedEvent : public Event

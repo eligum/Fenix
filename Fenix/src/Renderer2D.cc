@@ -6,7 +6,7 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
-namespace Fenix {
+namespace fenix {
 
     struct QuadVertex
     {
@@ -293,4 +293,4 @@ namespace Fenix {
         return s_Data.Stats;
     }
 
-} // namespace Fenix
+} // namespace fenix

@@ -6,7 +6,7 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
-namespace Fenix {
+namespace fenix {
 
     static uint32_t ShaderTypeFromString(const std::string& type)
     {
@@ -276,4 +276,4 @@ namespace Fenix {
         glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
     }
 
-} // namespace Fenix
+} // namespace fenix

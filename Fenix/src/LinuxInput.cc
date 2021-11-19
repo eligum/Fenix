@@ -3,7 +3,7 @@
 #include "Fenix/Core/Application.hh"
 #include <GLFW/glfw3.h>
 
-namespace Fenix {
+namespace fenix {
 
     bool Input::IsKeyPressed(KeyCode keycode)
     {
@@ -38,4 +38,4 @@ namespace Fenix {
         return GetMousePosition().y;
     }
 
-} // namespace Fenix
+} // namespace fenix

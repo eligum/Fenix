@@ -4,7 +4,7 @@
 
 #include "Event.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class WindowResizeEvent : public Event
     {
@@ -38,4 +38,4 @@ namespace Fenix {
         EVENT_CLASS_CATEGORY(EventCategoryApplication)
     };
 
-} // namespace Fenix
+} // namespace fenix

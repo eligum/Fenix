@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 
-namespace Fenix {
+namespace fenix {
 
     enum class ShaderDataType
     {
@@ -139,4 +139,4 @@ namespace Fenix {
         static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t count);
     };
 
-} // namespace Fenix
+} // namespace fenix

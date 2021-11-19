@@ -4,7 +4,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-namespace Fenix {
+namespace fenix {
 
     OpenGLContext::OpenGLContext(GLFWwindow* window_handle)
         : m_WindowHandle(window_handle)
@@ -37,4 +37,4 @@ namespace Fenix {
         glfwSwapBuffers(m_WindowHandle);
     }
 
-} // namespace Fenix
+} // namespace fenix

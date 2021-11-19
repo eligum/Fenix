@@ -4,7 +4,7 @@
 
 #include "Fenix/Core/Timestep.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class Entity; // Forward declaration
 
@@ -25,4 +25,4 @@ namespace Fenix {
         friend class Entity;
     };
 
-} // namespace Fenix
+} // namespace fenix

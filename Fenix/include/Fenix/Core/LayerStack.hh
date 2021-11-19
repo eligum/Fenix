@@ -5,7 +5,7 @@
 #include <vector>
 #include <cstdint>
 
-namespace Fenix {
+namespace fenix {
 
     class LayerStack
     {
@@ -32,4 +32,4 @@ namespace Fenix {
         uint32_t m_LayerInsertIndex = 0;
     };
 
-} // namespace Fenix
+} // namespace fenix

@@ -2,7 +2,7 @@
 
 #include <chrono>
 
-namespace Fenix {
+namespace fenix {
 
     class Timestep
     {

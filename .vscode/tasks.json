@@ -1,0 +1,23 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "(cmake) C++ - build project",
+            "type": "shell",
+            "command": "${workspaceFolder}/configure.sh",
+            "options": {
+                "env": {
+                    "CC": "/usr/bin/clang",
+                    "CXX": "/usr/bin/clang++"
+                }
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

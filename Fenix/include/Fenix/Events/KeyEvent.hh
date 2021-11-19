@@ -5,7 +5,7 @@
 #include "Event.hh"
 #include "Fenix/Core/KeyCodes.hh"
 
-namespace Fenix {
+namespace fenix {
 
     /// @class KeyEvent
     /// Abstract class, it is never going to be directly constructed. Therefore it doesn't have to
@@ -82,4 +82,4 @@ namespace Fenix {
         EVENT_CLASS_TYPE(KeyTyped)
     };
 
-} // namespace Fenix
+} // namespace fenix

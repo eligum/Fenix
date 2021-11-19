@@ -4,7 +4,7 @@
 
 struct GLFWwindow;
 
-namespace Fenix {
+namespace fenix {
 
     class OpenGLContext : public GraphicsContext
     {
@@ -18,4 +18,4 @@ namespace Fenix {
         GLFWwindow* m_WindowHandle;
     };
 
-} // namespace Fenix
+} // namespace fenix

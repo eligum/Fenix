@@ -2,7 +2,7 @@
 
 #include "Fenix/Renderer/VertexArray.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class OpenGLVertexArray : public VertexArray
     {
@@ -24,4 +24,4 @@ namespace Fenix {
         Ref<IndexBuffer> m_IndexBuffer;
     };
 
-} // namespace Fenix
+} // namespace fenix

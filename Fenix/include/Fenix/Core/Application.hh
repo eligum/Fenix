@@ -10,7 +10,7 @@
 
 #include "Fenix/ImGui/ImGuiLayer.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class Application
     {
@@ -49,4 +49,4 @@ namespace Fenix {
     // To be defined in CLIENT
     Application* CreateApplication();
 
-} // namespace Fenix
+} // namespace fenix

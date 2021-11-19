@@ -3,7 +3,7 @@
 #include "Fenix/Renderer/Shader.hh"
 #include <glm/glm.hpp>
 
-namespace Fenix {
+namespace fenix {
 
     class OpenGLShader : public Shader
     {
@@ -45,4 +45,4 @@ namespace Fenix {
         std::string m_Name;
     };
 
-} // namespace Fenix
+} // namespace fenix

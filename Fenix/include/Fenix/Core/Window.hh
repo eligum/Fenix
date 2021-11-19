@@ -6,7 +6,7 @@
 
 #include "Fenix/Events/Event.hh"
 
-namespace Fenix {
+namespace fenix {
 
     struct WindowProps
     {
@@ -43,4 +43,4 @@ namespace Fenix {
         static Window* Create(const WindowProps& props = WindowProps());
     };
 
-} // namespace Fenix
+} // namespace fenix

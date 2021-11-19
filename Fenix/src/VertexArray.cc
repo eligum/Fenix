@@ -3,7 +3,7 @@
 
 #include "Platform/OpenGL/OpenGLVertexArray.hh"
 
-namespace Fenix {
+namespace fenix {
 
     Ref<VertexArray> VertexArray::Create()
     {
@@ -17,4 +17,4 @@ namespace Fenix {
         return nullptr;
     }
 
-} // namespace Fenix
+} // namespace fenix

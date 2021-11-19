@@ -9,10 +9,14 @@ include(cmake/PreventInSourceBuilds.cmake)
 include(cmake/CompilerWarnings.cmake)
 include(cmake/Util.cmake)
 
-fenix_extract_version()
+set(Fenix_MAJOR_VERSION 0)
+set(Fenix_MINOR_VERSION 1)
+set(Fenix_PATCH_VERSION 0)
+set(Fenix_VERSION
+  ${Fenix_MAJOR_VERSION}.${Fenix_MINOR_VERSION}.${Fenix_PATCH_VERSION})
 
-project(FenixEngine VERSION ${FENIX_VERSION} LANGUAGES CXX C)
-message(STATUS "Fenix version: ${FENIX_VERSION}")
+project(FenixEngine VERSION ${Fenix_VERSION} LANGUAGES CXX C)
+message(STATUS "Fenix version: ${Fenix_VERSION}")
 
 # ----------------------------------------------------------------------------------------
 # Project build configuration

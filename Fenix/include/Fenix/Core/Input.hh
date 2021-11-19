@@ -5,7 +5,7 @@
 #include "KeyCodes.hh"
 #include "MouseCodes.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class Input
     {
@@ -18,4 +18,4 @@ namespace Fenix {
         static float GetMouseY();
     };
 
-} // namespace Fenix
+} // namespace fenix

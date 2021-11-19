@@ -5,7 +5,7 @@
 #include "Fenix/Events/Event.hh"
 #include "Fenix/Core/Timestep.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class Layer
     {
@@ -24,4 +24,4 @@ namespace Fenix {
         std::string m_DebugName;
     };
 
-} // namespace Fenix
+} // namespace fenix

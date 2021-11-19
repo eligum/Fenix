@@ -10,7 +10,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-namespace Fenix {
+namespace fenix {
 
     ImGuiLayer::ImGuiLayer()
         : Layer("ImGuiLayer")
@@ -98,4 +98,4 @@ namespace Fenix {
         }
     }
 
-} // namespace Fenix
+} // namespace fenix

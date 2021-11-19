@@ -2,7 +2,7 @@
 
 #include <Fenix/Fenix.hh>
 
-namespace Fenix {
+namespace fenix {
 
     class EditorLayer : public Layer
     {
@@ -35,4 +35,4 @@ namespace Fenix {
         glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
     };
 
-} // namespace Fenix
+} // namespace fenix

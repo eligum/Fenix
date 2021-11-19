@@ -2,7 +2,7 @@
 
 #include "Fenix/Core/Base.hh"
 
-namespace Fenix {
+namespace fenix {
 
     struct FramebufferSpecification
     {
@@ -27,4 +27,4 @@ namespace Fenix {
         static Ref<Framebuffer> Create(const FramebufferSpecification& spec);
     };
 
-} // namespace Fenix
+} // namespace fenix

@@ -2,7 +2,7 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-namespace Fenix {
+namespace fenix {
 
     SceneCamera::SceneCamera()
     {
@@ -33,4 +33,4 @@ namespace Fenix {
         m_Projection = glm::ortho(orthoLeft, orthoRight, orthoBottom, orthoTop, m_OrthographicNear, m_OrthographicFar);
     }
 
-} // namespace Fenix
+} // namespace fenix

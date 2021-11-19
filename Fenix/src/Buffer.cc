@@ -3,7 +3,7 @@
 
 #include "Platform/OpenGL/OpenGLBuffer.hh"
 
-namespace Fenix {
+namespace fenix {
 
     Ref<VertexBuffer> VertexBuffer::Create(uint32_t size)
     {
@@ -41,4 +41,4 @@ namespace Fenix {
         return nullptr;
     }
 
-} // namespace Fenix
+} // namespace fenix

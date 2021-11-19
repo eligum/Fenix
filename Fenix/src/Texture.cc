@@ -3,7 +3,7 @@
 #include "Fenix/Renderer/Renderer.hh"
 #include "Platform/OpenGL/OpenGLTexture.hh"
 
-namespace Fenix {
+namespace fenix {
 
     Ref<Texture2D> Texture2D::Create(uint32_t width, uint32_t height)
     {
@@ -29,4 +29,4 @@ namespace Fenix {
         return nullptr;
     }
 
-} // namespace Fenix
+} // namespace fenix

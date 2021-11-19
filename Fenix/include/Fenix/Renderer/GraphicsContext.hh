@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Fenix {
+namespace fenix {
 
     class GraphicsContext
     {

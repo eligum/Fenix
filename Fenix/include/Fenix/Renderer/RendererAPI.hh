@@ -4,7 +4,7 @@
 
 #include "Fenix/Renderer/VertexArray.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class RendererAPI
     {
@@ -29,4 +29,4 @@ namespace Fenix {
         static API s_API;
     };
 
-} // namespace Fenix
+} // namespace fenix

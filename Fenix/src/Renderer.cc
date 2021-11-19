@@ -3,7 +3,7 @@
 
 #include "Platform/OpenGL/OpenGLShader.hh"
 
-namespace Fenix {
+namespace fenix {
 
     Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData;
 
@@ -40,4 +40,4 @@ namespace Fenix {
         vertex_array->Unbind();
     }
 
-} // namespace Fenix
+} // namespace fenix

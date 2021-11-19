@@ -6,7 +6,7 @@
 
 static constexpr float ASPECT_RATIO = 16.0f / 9.0f;
 
-namespace Fenix {
+namespace fenix {
 
     EditorLayer::EditorLayer()
         : Layer("EditorLayer"), m_CameraController(ASPECT_RATIO, true)
@@ -195,4 +195,4 @@ namespace Fenix {
         // m_CameraController.OnEvent(e);
     }
 
-} // namespace Fenix
+} // namespace fenix

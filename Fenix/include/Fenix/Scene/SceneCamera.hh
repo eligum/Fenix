@@ -2,7 +2,7 @@
 
 #include "Fenix/Renderer/Camera.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class SceneCamera : public Camera
     {
@@ -21,4 +21,4 @@ namespace Fenix {
         float m_AspectRatio = 1.0f;
     };
 
-} // namespace Fenix
+} // namespace fenix

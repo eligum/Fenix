@@ -5,7 +5,7 @@
 
 #include <GLFW/glfw3.h>
 
-namespace Fenix {
+namespace fenix {
 
     class LinuxWindow : public Window
     {
@@ -43,4 +43,4 @@ namespace Fenix {
         WindowData m_Data;
     };
 
-} // namespace Fenix
+} // namespace fenix

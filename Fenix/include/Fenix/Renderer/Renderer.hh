@@ -4,7 +4,7 @@
 #include "Fenix/Renderer/Shader.hh"
 #include "Fenix/Renderer/Camera.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class Renderer
     {
@@ -29,4 +29,4 @@ namespace Fenix {
         static SceneData* m_SceneData;
     };
 
-} // namespace Fenix
+} // namespace fenix

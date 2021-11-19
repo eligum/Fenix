@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace Fenix
+namespace fenix
 {
     using MouseCode = uint16_t;
 

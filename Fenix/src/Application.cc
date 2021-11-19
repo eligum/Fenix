@@ -6,7 +6,7 @@
 
 #include <GLFW/glfw3.h>
 
-namespace Fenix {
+namespace fenix {
 
     Application* Application::s_Instance = nullptr;
 
@@ -103,4 +103,4 @@ namespace Fenix {
         return false;
     }
 
-} // namespace Fenix
+} // namespace fenix

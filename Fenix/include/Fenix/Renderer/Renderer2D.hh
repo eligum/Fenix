@@ -3,7 +3,7 @@
 #include "Fenix/Renderer/Camera.hh"
 #include "Fenix/Renderer/Texture.hh"
 
-namespace Fenix {
+namespace fenix {
 
     class Renderer2D
     {
@@ -47,4 +47,4 @@ namespace Fenix {
         static void NextBatch();
     };
 
-} // namespace Fenix
+} // namespace fenix

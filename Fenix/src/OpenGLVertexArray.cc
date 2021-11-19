@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-namespace Fenix {
+namespace fenix {
 
     static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
     {
@@ -77,4 +77,4 @@ namespace Fenix {
         m_IndexBuffer = indexBuffer;
     }
 
-} // namespace Fenix
+} // namespace fenix

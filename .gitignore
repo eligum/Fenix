@@ -8,6 +8,6 @@
 !.vscode/launch.json
 
 # Files
-*.o
 *.out
 *.exe
+*.log

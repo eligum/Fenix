@@ -4,7 +4,7 @@
 #include "Fenix/Renderer/Renderer2D.hh"
 #include "Fenix/Scene/Entity.hh"
 
-namespace Fenix {
+namespace fenix {
 
     Scene::Scene()
     {
@@ -77,4 +77,4 @@ namespace Fenix {
         }
     }
 
-} // namespace Fenix
+} // namespace fenix

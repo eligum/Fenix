@@ -1,7 +1,7 @@
 #include "Fenix/Core/LayerStack.hh"
 #include <algorithm>
 
-namespace Fenix {
+namespace fenix {
 
     LayerStack::LayerStack() = default;
 
@@ -48,4 +48,4 @@ namespace Fenix {
         }
     }
 
-} // namespace Fenix
+} // namespace fenix
