@@ -15,11 +15,11 @@ Next you can manually generate the build files with the following commands:
 
 ```console
 cd Fenix
-mkdir -p build
+mkdir build
 cmake -S . -B build -DWARNINGS_AS_ERRORS=FALSE -DCMAKE_BUILD_TYPE=Debug
 ```
 
-Or use the provided script `gen-project.sh`, which by default sets the build mode to *Debug*.
+Or use the provided script `gen-project.sh`, which by default sets the build mode to *Debug*. Only supported on Linux for now.
 
 <ins>**2. Configuring the dependencies:**</ins>
 
