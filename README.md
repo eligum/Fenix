@@ -9,7 +9,12 @@ This project uses [CMake](https://cmake.org/) to generate build files, version *
 
 <ins>**1. Downloading the repository:**</ins>
 
-Start by cloning the repository with `git clone --recursive https://github.com/eligum/Fenix.git`. If you forgot to clone it recursively, use `git submodule update --init` to clone the necesserary submodules.
+Start by cloning the repository with:
+
+```console
+git clone --recursive https://github.com/eligum/Fenix.git
+```
+If you forgot to clone it recursively, use `git submodule update --init` to clone the necesserary submodules.
 
 Next you can manually generate the build files with the following commands:
 
