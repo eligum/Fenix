@@ -58,9 +58,9 @@ namespace fenix {
         while (m_Running)
         {
             // TEMP: This shouldn't depend on glfw.
-            float time = static_cast<float>(glfwGetTime());
+            float time        = static_cast<float>(glfwGetTime());
             Timestep timestep = Timestep::Seconds(time - m_LastFrameTime);
-            m_LastFrameTime = time;
+            m_LastFrameTime   = time;
 
             // In Windows minimizing causes the screen to get resized to 0,0 while still consuming resources,
             // to avoid wasting CPU or GPU time we only render when the window size is greater than zero.
@@ -84,7 +84,7 @@ namespace fenix {
         m_Running = false;
     }
 
-    bool Application::OnWindowClose(WindowCloseEvent&)
+    bool Application::OnWindowClose(WindowCloseEvent& /* evt */)
     {
         m_Running = false;
         return true;
