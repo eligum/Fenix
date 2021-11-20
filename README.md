@@ -5,7 +5,7 @@ Project based on the [Hazel](https://github.com/TheCherno/Hazel) engine.
 ---
 
 ## Getting Started
-This project uses [CMake](https://cmake.org/) to generate build files, version **3.16** or higher is required.
+This project uses [CMake](https://cmake.org/) to generate build files, version **3.16** or higher is required. Fenix is currently being developed on a Linux enviroment, support for other platforms is officially untested although it's being made with Windows compatibility in mind.
 
 <ins>**1. Downloading the repository:**</ins>
 
