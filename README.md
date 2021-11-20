@@ -24,7 +24,7 @@ mkdir build
 cmake -S . -B build -DWARNINGS_AS_ERRORS=FALSE -DCMAKE_BUILD_TYPE=Debug
 ```
 
-Or use the provided script `gen-project.sh`, which by default sets the build mode to *Debug*. Only supported on Linux for now.
+Or use the provided script `gen-project.sh`, which by default sets the build type to *Debug*. Only supported on Linux for now.
 
 <ins>**2. Configuring the dependencies:**</ins>
 
@@ -32,11 +32,15 @@ All the project dependencies are included as submodules.
 
 ---
 
+## Features
+- Fast 2D renderer
+- ECS-driven scene components
+- Settings, properties and view panels
+
 ## Short term goals
 *Note: this is subject to change at any time!*
 
 - Learn Vulkan while making a game engine
-- Fast 2D rendering
 - Phisically-Based 3D rendering
 - Support for Linux and Windows
     - Native redering API support (OpenGL, Vulkan)
