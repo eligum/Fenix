@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -f configure.sh ]; then
+if [ ! -f 'gen-project.sh' ]; then
     echo "ERROR! This script only works when called from the project root."
     exit
 fi

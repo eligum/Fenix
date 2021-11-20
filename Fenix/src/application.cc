@@ -1,10 +1,12 @@
 #include "fenix/core/application.hh"
 #include "fenix/core/log.hh"
 #include "fenix/events/application_event.hh"
-
 #include "fenix/renderer/renderer.hh"
 
 #include <GLFW/glfw3.h>
+
+static constexpr uint32_t k_ScreenWidth = 1280;
+static constexpr uint32_t k_ScreenHeight = 720;
 
 namespace fenix {
 
@@ -15,7 +17,7 @@ namespace fenix {
         FX_CORE_ASSERT(!s_Instance, "Application already exists!");
         s_Instance = this;
 
-        m_Window = std::unique_ptr<Window>(Window::Create({ name, 1280, 720 }));
+        m_Window = std::unique_ptr<Window>(Window::Create({ name, k_ScreenWidth, k_ScreenHeight }));
         m_Window->SetEventCallback(FX_BIND_EVENT_FN(Application::OnEvent));
         m_Window->SetVSync(true);
 

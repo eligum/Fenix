@@ -6,7 +6,7 @@
         {
             "label": "(cmake) C++ - build project",
             "type": "shell",
-            "command": "${workspaceFolder}/configure.sh",
+            "command": "${workspaceFolder}/gen-project.sh",
             "options": {
                 "env": {
                     "CC": "/usr/bin/clang",
