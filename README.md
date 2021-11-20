@@ -46,10 +46,12 @@ All the project dependencies are included as submodules.
     - Native redering API support (OpenGL, Vulkan)
 
 ## Usage examples
-### Basic usage
+**TODO:** Add entity script code snippet, enjoy the little HelloWorld program for now ;)
 ```c++
+#include <iostream>
+
 int main()
 {
-    std::cout << "Hello World!" << std::endl;
+    std::cout << "Hello, world!" << std::endl;
 }
 ```
