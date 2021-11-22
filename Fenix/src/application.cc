@@ -5,8 +5,8 @@
 
 #include <GLFW/glfw3.h>
 
-static constexpr uint32_t k_ScreenWidth = 1280;
-static constexpr uint32_t k_ScreenHeight = 720;
+static constexpr uint32_t k_ScreenWidth = 1600;
+static constexpr uint32_t k_ScreenHeight = 900;
 
 namespace fenix {
 

@@ -8,10 +8,8 @@ target_link_libraries(fenix_editor PRIVATE
                                     my_compile_features)
 
 # A lil' bit of cmake fancyness
-if(MSVC)
-    add_custom_command(
-        TARGET fenix_editor
-        POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:fenix_editor>
-        "${CMAKE_CURRENT_LIST_DIR}")
-endif()
+add_custom_command(
+    TARGET fenix_editor
+    POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:fenix_editor>
+    "${CMAKE_CURRENT_LIST_DIR}")

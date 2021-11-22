@@ -2,9 +2,12 @@
 /[Bb]uild
 /out
 
-# Binaries
-**/bin/
-bin-int/
+# Files
+*.out
+*.exe
+*.pdb
+*.log
+fenix_editor
 
 # Visual Studio files and folder
 .vs/
@@ -18,9 +21,3 @@ bin-int/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
-
-# Files
-*.out
-*.exe
-*.pdb
-*.log
