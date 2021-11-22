@@ -22,4 +22,5 @@ bin-int/
 # Files
 *.out
 *.exe
+*.pdb
 *.log

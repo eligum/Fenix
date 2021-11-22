@@ -9,8 +9,8 @@ include(cmake/PreventInSourceBuilds.cmake)
 include(cmake/CompilerWarnings.cmake)
 include(cmake/Util.cmake)
 
-set(Fenix_MAJOR_VERSION 0)
-set(Fenix_MINOR_VERSION 1)
+set(Fenix_MAJOR_VERSION 1)
+set(Fenix_MINOR_VERSION 0)
 set(Fenix_PATCH_VERSION 0)
 set(Fenix_VERSION
   ${Fenix_MAJOR_VERSION}.${Fenix_MINOR_VERSION}.${Fenix_PATCH_VERSION})
@@ -24,9 +24,13 @@ message(STATUS "Fenix version: ${Fenix_VERSION}")
 include(cmake/BuildTypeSettings.cmake)
 
 # Output all binaries under the same easy-to-access directory
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE}")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE}")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE}")
+if(NOT MSVC)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE}")
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE}")
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin/${CMAKE_BUILD_TYPE}")
+else()
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
+endif()
 
 # Disable compiler specific extensions
 set(CMAKE_CXX_EXTENSIONS OFF)
