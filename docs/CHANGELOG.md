@@ -7,7 +7,7 @@ As of version 1.0.0 Fenix officially supports Windows. Build has been tested on 
 
 ### Added
 
-- A [batch script]() to quickly configure the project to build with Visual Studio 2019.
+- A [batch script](https://github.com/eligum/Fenix/blob/master/scripts/gen-project.bat) to quickly configure the project to build with Visual Studio 2019.
 
 ### Changed
 
