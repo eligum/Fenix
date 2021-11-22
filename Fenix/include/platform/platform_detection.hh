@@ -1,7 +1,6 @@
 // Platform detection using predefined macros
 #ifdef _WIN32
     /* Windows x64/x86 */
-    #error "Windows is not supported yet"
     #ifdef _WIN64
         /* Windows x64  */
         #define FX_PLATFORM_WINDOWS

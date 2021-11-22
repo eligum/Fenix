@@ -1,6 +1,7 @@
 #include "platform/opengl/opengl_shader.hh"
 #include "fenix/core/base.hh"
 
+#include <array>
 #include <fstream>
 #include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>

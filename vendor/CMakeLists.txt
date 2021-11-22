@@ -21,6 +21,11 @@ target_sources(
   PRIVATE imgui/backends/imgui_impl_opengl3.cpp
           imgui/backends/imgui_impl_glfw.cpp)
 
+target_link_libraries(
+    ImGui
+    PRIVATE glfw
+)
+
 target_include_directories(
   ImGui
   PUBLIC imgui

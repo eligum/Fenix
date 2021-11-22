@@ -3,6 +3,7 @@
 #include "fenix/renderer/vertex_array.hh"
 #include "fenix/renderer/render_command.hh"
 
+#include <array>
 #include <glm/gtc/type_ptr.hpp>
 
 namespace fenix {
