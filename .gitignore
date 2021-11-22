@@ -1,6 +1,17 @@
 # Directories
 /[Bb]uild
 
+# Binaries
+**/bin/
+bin-int/
+
+# Visual Studio files and folder
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
+
 # VSCode clutter
 /.vscode/*
 !.vscode/settings.json
