@@ -22,7 +22,7 @@ namespace fenix {
             case ShaderDataType::Bool:   return GL_BOOL;
             case ShaderDataType::None:   break;
         }
-        FX_CORE_ASSERT(false, "Unknown ShaderDataType!");
+        FENIX_CORE_ASSERT(false, "Unknown ShaderDataType!");
         return 0;
     }
 
@@ -48,7 +48,7 @@ namespace fenix {
 
     void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer)
     {
-        FX_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
+        FENIX_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Vertex Buffer has no layout!");
 
         glBindVertexArray(m_RendererID);
         vertexBuffer->Bind();

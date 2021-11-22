@@ -27,7 +27,7 @@ namespace fenix {
         int width, height, channels;
         stbi_set_flip_vertically_on_load(1);
         stbi_uc* data = stbi_load(filepath.c_str(), &width, &height, &channels, STBI_default);
-        FX_CORE_ASSERT(data, "Failed to load image");
+        FENIX_CORE_ASSERT(data, "Failed to load image");
         m_Width = static_cast<uint32_t>(width);
         m_Height = static_cast<uint32_t>(height);
 
@@ -46,7 +46,7 @@ namespace fenix {
         m_InternalFormat = internalFormat;
         m_DataFormat = dataFormat;
 
-        FX_CORE_ASSERT(internalFormat | dataFormat, "Format not supported!");
+        FENIX_CORE_ASSERT(internalFormat | dataFormat, "Format not supported!");
 
         glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
         glTextureStorage2D(m_RendererID, 1, internalFormat, m_Width, m_Height);
@@ -70,7 +70,7 @@ namespace fenix {
     void OpenGLTexture2D::SetData(void* data, uint32_t size)
     {
         uint32_t bpp = (m_DataFormat == GL_RGBA) ? 4 : 3; // Bytes per pixel
-        FX_ASSERT(size == m_Width * m_Height * bpp, "Data must be entire texture!");
+        FENIX_ASSERT(size == m_Width * m_Height * bpp, "Data must be entire texture!");
         glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, m_DataFormat, GL_UNSIGNED_BYTE, data);
     }
 

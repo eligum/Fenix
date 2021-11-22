@@ -22,15 +22,15 @@ namespace fenix {
 } // namespace fenix
 
 // Core log macros
-#define FX_CORE_TRACE(...)   ::fenix::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define FX_CORE_INFO(...)    ::fenix::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define FX_CORE_WARN(...)    ::fenix::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define FX_CORE_ERROR(...)   ::fenix::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define FX_CORE_FATAL(...)   ::fenix::Log::GetCoreLogger()->critical(__VA_ARGS__)
+#define FENIX_CORE_TRACE(...)   ::fenix::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define FENIX_CORE_INFO(...)    ::fenix::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define FENIX_CORE_WARN(...)    ::fenix::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define FENIX_CORE_ERROR(...)   ::fenix::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define FENIX_CORE_FATAL(...)   ::fenix::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Clien log macros
-#define FX_TRACE(...)        ::fenix::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define FX_INFO(...)         ::fenix::Log::GetClientLogger()->info(__VA_ARGS__)
-#define FX_WARN(...)         ::fenix::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define FX_ERROR(...)        ::fenix::Log::GetClientLogger()->error(__VA_ARGS__)
-#define FX_FATAL(...)        ::fenix::Log::GetClientLogger()->critical(__VA_ARGS__)
+#define FENIX_TRACE(...)        ::fenix::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define FENIX_INFO(...)         ::fenix::Log::GetClientLogger()->info(__VA_ARGS__)
+#define FENIX_WARN(...)         ::fenix::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define FENIX_ERROR(...)        ::fenix::Log::GetClientLogger()->error(__VA_ARGS__)
+#define FENIX_FATAL(...)        ::fenix::Log::GetClientLogger()->critical(__VA_ARGS__)

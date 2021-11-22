@@ -12,7 +12,7 @@ namespace fenix {
 
     static void GLFWErrorCallback(int error, const char* description)
     {
-        FX_CORE_ERROR("GLFW error ({0}): {1}", error, description);
+        FENIX_CORE_ERROR("GLFW error ({0}): {1}", error, description);
     }
 
     Window* Window::Create(const WindowProps& props)
@@ -36,12 +36,12 @@ namespace fenix {
         m_Data.Width = props.Width;
         m_Data.Height = props.Height;
 
-        FX_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+        FENIX_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
         if (s_GLFWWindowCount == 0)
         {
             int success = glfwInit();
-            FX_CORE_ASSERT(success, "Failed to initialize GLFW!");
+            FENIX_CORE_ASSERT(success, "Failed to initialize GLFW!");
             glfwSetErrorCallback(GLFWErrorCallback);
         }
 

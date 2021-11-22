@@ -125,12 +125,12 @@ public:
         m_CameraController.OnEvent(evt);
 
         // Fenix::EventDispatcher dispatcher(evt);
-        // dispatcher.Dispatch<Fenix::KeyPressedEvent>(FX_BIND_EVENT_FN(ExampleLayer::OnKeyPressedEvent));
+        // dispatcher.Dispatch<Fenix::KeyPressedEvent>(FENIX_BIND_EVENT_FN(ExampleLayer::OnKeyPressedEvent));
     }
 
     bool OnKeyPressedEvent(Fenix::KeyPressedEvent& evt)
     {
-        // FX_INFO("{0}", evt);
+        // FENIX_INFO("{0}", evt);
         return false;
     }
 private:

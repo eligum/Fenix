@@ -23,21 +23,21 @@ namespace fenix {
         template <typename T, typename... Args>
         T& AddComponent(Args&&... args)
             {
-                FX_CORE_ASSERT(!HasComponent<T>(), "Entity already has component!");
+                FENIX_CORE_ASSERT(!HasComponent<T>(), "Entity already has component!");
                 return m_Scene->m_Registry.emplace<T>(m_EntityHandle, std::forward<Args>(args)...);
             }
 
         template <typename T>
         T& GetComponent()
             {
-                FX_CORE_ASSERT(HasComponent<T>(), "Entity doesn't have component!");
+                FENIX_CORE_ASSERT(HasComponent<T>(), "Entity doesn't have component!");
                 return m_Scene->m_Registry.get<T>(m_EntityHandle);
             }
 
         template <typename T>
         bool RemoveComponent()
             {
-                FX_CORE_ASSERT(HasComponent<T>(), "Entity doesn't have component!");
+                FENIX_CORE_ASSERT(HasComponent<T>(), "Entity doesn't have component!");
                 return m_Scene->m_Registry.remove<T>(m_EntityHandle);
             }
 

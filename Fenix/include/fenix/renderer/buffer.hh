@@ -33,7 +33,7 @@ namespace fenix {
             case ShaderDataType::Bool:    return 1;
             case ShaderDataType::None:    break;
         }
-        FX_CORE_ASSERT(false, "Unknown ShaderDataType!");
+        FENIX_CORE_ASSERT(false, "Unknown ShaderDataType!");
         return 0;
     }
 
@@ -68,7 +68,7 @@ namespace fenix {
                 case ShaderDataType::Bool:    return 1;
                 case ShaderDataType::None:    break;
             }
-            FX_CORE_ASSERT(false, "Unknown ShaderDataType!");
+            FENIX_CORE_ASSERT(false, "Unknown ShaderDataType!");
             return 0;
         }
     };

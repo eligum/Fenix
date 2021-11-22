@@ -46,7 +46,7 @@ namespace fenix {
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_ColorAttachment, 0);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthStencilAttachment, 0);
 
-        FX_CORE_ASSERT(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "Framebuffer is incomplete!");
+        FENIX_CORE_ASSERT(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "Framebuffer is incomplete!");
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
@@ -66,7 +66,7 @@ namespace fenix {
     {
         if (width == 0 || height == 0 || width > s_MaxFrambufferSize || height > s_MaxFrambufferSize)
         {
-            FX_CORE_WARN("Attempted to resize framebuffer to {0}, {1}", width, height);
+            FENIX_CORE_WARN("Attempted to resize framebuffer to {0}, {1}", width, height);
             return;
         }
 

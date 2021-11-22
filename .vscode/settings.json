@@ -2,5 +2,8 @@
     "cmake.configureOnOpen": false,
     "clang-tidy.lintOnSave": false,
     "clang-tidy.buildPath": "build",
-    "C_Cpp.errorSquiggles": "Enabled"
+    "C_Cpp.errorSquiggles": "Enabled",
+    "files.associations": {
+        "array": "cpp"
+    }
 }

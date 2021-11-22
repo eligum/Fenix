@@ -9,11 +9,11 @@ namespace fenix {
     {
         switch (Renderer::GetAPI())
         {
-            case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
+            case RendererAPI::API::None:    FENIX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
             case RendererAPI::API::OpenGL:  return CreateRef<OpenGLVertexBuffer>(size);
         }
 
-        FX_CORE_ASSERT(false, "Unknow RendererAPI!");
+        FENIX_CORE_ASSERT(false, "Unknow RendererAPI!");
         return nullptr;
     }
 
@@ -21,11 +21,11 @@ namespace fenix {
     {
         switch (Renderer::GetAPI())
         {
-            case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
+            case RendererAPI::API::None:    FENIX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
             case RendererAPI::API::OpenGL:  return CreateRef<OpenGLVertexBuffer>(vertices, size);
         }
 
-        FX_CORE_ASSERT(false, "Unknow RendererAPI!");
+        FENIX_CORE_ASSERT(false, "Unknow RendererAPI!");
         return nullptr;
     }
 
@@ -33,11 +33,11 @@ namespace fenix {
     {
         switch (Renderer::GetAPI())
         {
-            case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
+            case RendererAPI::API::None:    FENIX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
             case RendererAPI::API::OpenGL:  return CreateRef<OpenGLIndexBuffer>(indices, count);
         }
 
-        FX_CORE_ASSERT(false, "Unknow RendererAPI!");
+        FENIX_CORE_ASSERT(false, "Unknow RendererAPI!");
         return nullptr;
     }
 

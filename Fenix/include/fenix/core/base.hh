@@ -6,49 +6,49 @@
 #include "platform/platform_detection.hh"
 
 // TODO: Find a better way to integrate this with the build system
-#define FX_DEBUG
+#define FENIX_DEBUG
 
-#ifdef FX_DEBUG
-    #if defined(FX_PLATFORM_WINDOWS)
-        #define FX_DEBUGBREAK() __debugbreak()
-    #elif defined(FX_PLATFORM_LINUX)
+#ifdef FENIX_DEBUG
+    #if defined(FENIX_PLATFORM_WINDOWS)
+        #define FENIX_DEBUGBREAK() __debugbreak()
+    #elif defined(FENIX_PLATFORM_LINUX)
         #include <signal.h>
-        #define FX_DEBUGBREAK() raise(SIGTRAP)
+        #define FENIX_DEBUGBREAK() raise(SIGTRAP)
     #else
         #error "Platform doesn't support debugbreak yet!"
     #endif
-    #define FX_ENABLE_ASSERTS
+    #define FENIX_ENABLE_ASSERTS
 #else
-    #define FX_DEBUGBREAK()
+    #define FENIX_DEBUGBREAK()
 #endif
 
-#ifndef FX_ENABLE_ASSERTS
-    #define FX_ASSERT(x, ...)
-    #define FX_CORE_ASSERT(x, ...)
+#ifndef FENIX_ENABLE_ASSERTS
+    #define FENIX_ASSERT(x, ...)
+    #define FENIX_CORE_ASSERT(x, ...)
 #else
-#define FX_ASSERT(x, ...)                                                        \
+#define FENIX_ASSERT(x, ...)                                                        \
     {                                                                            \
         if (!(x))                                                                \
         {                                                                        \
-            FX_ERROR("Assertion failed at LINE {0} in {1}", __LINE__, __FILE__); \
-            FX_ERROR("{0}", __VA_ARGS__);                                        \
+            FENIX_ERROR("Assertion failed at LINE {0} in {1}", __LINE__, __FILE__); \
+            FENIX_ERROR("{0}", __VA_ARGS__);                                        \
         }                                                                        \
     }
 
-#define FX_CORE_ASSERT(x, ...)                                                        \
+#define FENIX_CORE_ASSERT(x, ...)                                                        \
     {                                                                                 \
         if (!(x))                                                                     \
         {                                                                             \
-            FX_CORE_ERROR("Assertion failed at LINE {0} in {1}", __LINE__, __FILE__); \
-            FX_CORE_ERROR("{0}", __VA_ARGS__);                                        \
+            FENIX_CORE_ERROR("Assertion failed at LINE {0} in {1}", __LINE__, __FILE__); \
+            FENIX_CORE_ERROR("{0}", __VA_ARGS__);                                        \
         }                                                                             \
     }
 #endif
 
 #define BIT(x) (1 << x)
 
-// #define FX_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
-#define FX_BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
+// #define FENIX_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+#define FENIX_BIND_EVENT_FN(fn) [this](auto&&... args) -> decltype(auto) { return this->fn(std::forward<decltype(args)>(args)...); }
 
 namespace fenix {
 

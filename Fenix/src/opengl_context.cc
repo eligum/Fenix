@@ -9,7 +9,7 @@ namespace fenix {
     OpenGLContext::OpenGLContext(GLFWwindow* window_handle)
         : m_WindowHandle(window_handle)
     {
-        FX_CORE_ASSERT(window_handle, "Window handle is null!");
+        FENIX_CORE_ASSERT(window_handle, "Window handle is null!");
     }
 
     OpenGLContext::~OpenGLContext()
@@ -21,15 +21,15 @@ namespace fenix {
     {
         glfwMakeContextCurrent(m_WindowHandle);
         int status = gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress));
-        FX_CORE_ASSERT(status, "Failed to initialize Glad!");
+        FENIX_CORE_ASSERT(status, "Failed to initialize Glad!");
 
-        FX_CORE_INFO("------------");
-        FX_CORE_INFO("Vendor:   {0}", glGetString(GL_VENDOR));
-        FX_CORE_INFO("Renderer: {0}", glGetString(GL_RENDERER));
-        FX_CORE_INFO("Version:  {0}", glGetString(GL_VERSION));
-        FX_CORE_INFO("------------");
+        FENIX_CORE_INFO("------------");
+        FENIX_CORE_INFO("Vendor:   {0}", glGetString(GL_VENDOR));
+        FENIX_CORE_INFO("Renderer: {0}", glGetString(GL_RENDERER));
+        FENIX_CORE_INFO("Version:  {0}", glGetString(GL_VERSION));
+        FENIX_CORE_INFO("------------");
 
-        FX_CORE_ASSERT(GLVersion.major > 4 || (GLVersion.major == 4 && GLVersion.minor >= 5), "Fenix requires at least OpenGL version 4.5");
+        FENIX_CORE_ASSERT(GLVersion.major > 4 || (GLVersion.major == 4 && GLVersion.minor >= 5), "Fenix requires at least OpenGL version 4.5");
     }
 
     void OpenGLContext::SwapBuffers()

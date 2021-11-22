@@ -17,7 +17,7 @@ namespace fenix {
         if (type == "geometry")
             return GL_GEOMETRY_SHADER;
 
-        FX_CORE_ASSERT(false, "Unknown shader type!");
+        FENIX_CORE_ASSERT(false, "Unknown shader type!");
         return 0;
     }
 
@@ -78,12 +78,12 @@ namespace fenix {
             }
             else
             {
-                FX_CORE_ERROR("Could not read from file '{0}'", filepath);
+                FENIX_CORE_ERROR("Could not read from file '{0}'", filepath);
             }
         }
         else
         {
-            FX_CORE_ERROR("Could not open file '{0}'", filepath);
+            FENIX_CORE_ERROR("Could not open file '{0}'", filepath);
         }
 
         return result;
@@ -99,13 +99,13 @@ namespace fenix {
         while (pos != std::string::npos)
         {
             std::size_t eol = source.find_first_of("\r\n", pos); //End of shader type declaration line
-            FX_CORE_ASSERT(eol != std::string::npos, "Syntax error");
+            FENIX_CORE_ASSERT(eol != std::string::npos, "Syntax error");
             std::size_t begin = pos + typeTokenLength + 1; //Start of shader type name (after "#type " keyword)
             std::string type = source.substr(begin, eol - begin);
-            FX_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
+            FENIX_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
 
             std::size_t nextLinePos = source.find_first_not_of("\r\n", eol); //Start of shader code after shader type declaration line
-            FX_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
+            FENIX_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
             pos = source.find(typeToken, nextLinePos); //Start of next shader type declaration line
 
             shaderSources[ShaderTypeFromString(type)] = (pos == std::string::npos) ? source.substr(nextLinePos) : source.substr(nextLinePos, pos - nextLinePos);
@@ -117,7 +117,7 @@ namespace fenix {
     void OpenGLShader::Compile(const std::unordered_map<uint32_t, std::string>& shaderSources)
     {
         uint32_t program = glCreateProgram();
-        FX_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
+        FENIX_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now");
         std::array<uint32_t, 2> shaderIDs;
         int shaderIDIndex = 0;
         for (auto& [type, source] : shaderSources)
@@ -140,8 +140,8 @@ namespace fenix {
 
                 glDeleteShader(shader);
 
-                FX_CORE_ERROR("{0}", infoLog.data());
-                FX_CORE_ASSERT(false, "Shader compilation failure!");
+                FENIX_CORE_ERROR("{0}", infoLog.data());
+                FENIX_CORE_ASSERT(false, "Shader compilation failure!");
                 break;
             }
 
@@ -171,8 +171,8 @@ namespace fenix {
             for (auto id : shaderIDs)
                 glDeleteShader(id);
 
-            FX_CORE_ERROR("{0}", infoLog.data());
-            FX_CORE_ASSERT(false, "Shader link failure!");
+            FENIX_CORE_ERROR("{0}", infoLog.data());
+            FENIX_CORE_ASSERT(false, "Shader link failure!");
             return;
         }
 

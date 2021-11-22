@@ -12,11 +12,11 @@ namespace fenix {
     {
         switch (Renderer::GetAPI())
         {
-            case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
+            case RendererAPI::API::None:    FENIX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
             case RendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
         }
 
-        FX_CORE_ASSERT(false, "Unknow RendererAPI!");
+        FENIX_CORE_ASSERT(false, "Unknow RendererAPI!");
         return nullptr;
     }
 
@@ -24,11 +24,11 @@ namespace fenix {
     {
         switch (Renderer::GetAPI())
         {
-            case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
+            case RendererAPI::API::None:    FENIX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
             case RendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(vert_filepath, frag_filepath);
         }
 
-        FX_CORE_ASSERT(false, "Unknow RendererAPI!");
+        FENIX_CORE_ASSERT(false, "Unknow RendererAPI!");
         return nullptr;
     }
 
@@ -36,11 +36,11 @@ namespace fenix {
     {
         switch (Renderer::GetAPI())
         {
-            case RendererAPI::API::None:    FX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
+            case RendererAPI::API::None:    FENIX_CORE_ASSERT(false, "RendererAPI::None currently not supported!"); return nullptr;
             case RendererAPI::API::OpenGL:  return CreateRef<OpenGLShader>(filepath);
         }
 
-        FX_CORE_ASSERT(false, "Unknow RendererAPI!");
+        FENIX_CORE_ASSERT(false, "Unknow RendererAPI!");
         return nullptr;
     }
 
@@ -50,7 +50,7 @@ namespace fenix {
 
     void ShaderLibrary::Add(const std::string& name, const Ref<Shader>& shader)
     {
-        FX_CORE_ASSERT(!Exists(name), "Shader already exists!");
+        FENIX_CORE_ASSERT(!Exists(name), "Shader already exists!");
         m_Shaders[name] = shader;
     }
 
@@ -76,7 +76,7 @@ namespace fenix {
 
     Ref<Shader> ShaderLibrary::GetShader(const std::string& name)
     {
-        FX_CORE_ASSERT(Exists(name), "Shader not found!");
+        FENIX_CORE_ASSERT(Exists(name), "Shader not found!");
         return m_Shaders[name];
     }
 

@@ -5,8 +5,8 @@
 
 #include <GLFW/glfw3.h>
 
-static constexpr uint32_t k_ScreenWidth = 1600;
-static constexpr uint32_t k_ScreenHeight = 900;
+static constexpr uint32_t SCREEN_WIDTH = 1600;
+static constexpr uint32_t SCREEN_HEIGHT = 900;
 
 namespace fenix {
 
@@ -14,11 +14,11 @@ namespace fenix {
 
     Application::Application(const std::string& name)
     {
-        FX_CORE_ASSERT(!s_Instance, "Application already exists!");
+        FENIX_CORE_ASSERT(!s_Instance, "Application already exists!");
         s_Instance = this;
 
-        m_Window = std::unique_ptr<Window>(Window::Create({ name, k_ScreenWidth, k_ScreenHeight }));
-        m_Window->SetEventCallback(FX_BIND_EVENT_FN(Application::OnEvent));
+        m_Window = std::unique_ptr<Window>(Window::Create({ name, SCREEN_WIDTH, SCREEN_HEIGHT }));
+        m_Window->SetEventCallback(FENIX_BIND_EVENT_FN(Application::OnEvent));
         m_Window->SetVSync(true);
 
         Renderer::Init();
@@ -34,8 +34,8 @@ namespace fenix {
     void Application::OnEvent(Event& evt)
     {
         EventDispatcher dispatcher(evt);
-        dispatcher.Dispatch<WindowCloseEvent>(FX_BIND_EVENT_FN(Application::OnWindowClose));
-        dispatcher.Dispatch<WindowResizeEvent>(FX_BIND_EVENT_FN(Application::OnWindowResize));
+        dispatcher.Dispatch<WindowCloseEvent>(FENIX_BIND_EVENT_FN(Application::OnWindowClose));
+        dispatcher.Dispatch<WindowResizeEvent>(FENIX_BIND_EVENT_FN(Application::OnWindowResize));
 
         for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
         {
