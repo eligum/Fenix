@@ -1,7 +1,21 @@
-Checks: bugprone-*,clang-analyzer-*,clang-diagnostic-*,google-*,misc-*,modernize-*,-modernize-use-trailing-return-type,-modernize-concat-nested-namespaces,performance-*,readability-*,-modernize-use-auto
-# WarningsAsErrors: bugprone-*,clang-analyzer-*,clang-diagnostic-*,google-*,misc-*,modernize-*,performance-*,readability-*
+Checks: 'bugprone-*,
+clang-analyzer-*,
+clang-diagnostic-*,
+google-*,
+misc-*,
+modernize-*,
+performance-*,
+readability-*,
+-modernize-use-trailing-return-type,
+-modernize-concat-nested-namespaces,
+-modernize-use-auto
+'
+
 WarningsAsErrors: ''
+HeaderFilterRegex: '*fenix/[^f].*'
+AnalyzeTemporaryDtors: false
 FormatStyle: file
+
 CheckOptions:
   - key: readability-identifier-naming.ClassCase
     value: CamelCase
