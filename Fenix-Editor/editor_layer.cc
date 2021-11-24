@@ -1,4 +1,5 @@
 #include "editor_layer.hh"
+#include <fenix/util/instrumentor.hh>
 
 #include <imgui.h>
 #include <glm/gtc/type_ptr.hpp>
@@ -26,12 +27,33 @@ namespace fenix {
         m_SquareEntity = m_ActiveScene->CreateEntity("Square");
         m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 
-        m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
+        m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity A");
         m_CameraEntity.AddComponent<CameraComponent>();
+
+        m_SecondCamera = m_ActiveScene->CreateEntity("Camera Entity B");
+        auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
+        cc.Primary = false;
+
+        // class CameraController
+        // {
+        // public:
+        //     void OnCreate()
+        //     {
+        //     }
+
+        //     void OnDestroy()
+        //     {
+        //     }
+
+        //     void OnUpdate(Timestep ts)
+        //     {
+        //     }
+        // };
     }
 
     void EditorLayer::OnDetach()
     {
+        FENIX_PROFILE_FUNCTION();
     }
 
     void EditorLayer::OnUpdate(Timestep ts)
@@ -166,6 +188,12 @@ namespace fenix {
             auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
             ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
             ImGui::Separator();
+        }
+
+        if (ImGui::Checkbox("Camera A", &m_PrimaryCamera))
+        {
+            m_CameraEntity.GetComponent<CameraComponent>().Primary = m_PrimaryCamera;
+            m_SecondCamera.GetComponent<CameraComponent>().Primary = !m_PrimaryCamera;
         }
 
         ImGui::End();
