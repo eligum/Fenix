@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <cstddef>
+#include <cassert>
 
 #include "platform/platform_detection.hh"
 
@@ -23,25 +24,25 @@
 #endif
 
 #ifndef FENIX_ENABLE_ASSERTS
-    #define FENIX_ASSERT(x, ...)
+    #define FENIX_ASSERT(condition, ...) assert(condition)
     #define FENIX_CORE_ASSERT(x, ...)
 #else
 #define FENIX_ASSERT(x, ...)                                                        \
-    {                                                                            \
-        if (!(x))                                                                \
-        {                                                                        \
+    {                                                                               \
+        if (!(x))                                                                   \
+        {                                                                           \
             FENIX_ERROR("Assertion failed at LINE {0} in {1}", __LINE__, __FILE__); \
             FENIX_ERROR("{0}", __VA_ARGS__);                                        \
-        }                                                                        \
+        }                                                                           \
     }
 
 #define FENIX_CORE_ASSERT(x, ...)                                                        \
-    {                                                                                 \
-        if (!(x))                                                                     \
-        {                                                                             \
+    {                                                                                    \
+        if (!(x))                                                                        \
+        {                                                                                \
             FENIX_CORE_ERROR("Assertion failed at LINE {0} in {1}", __LINE__, __FILE__); \
             FENIX_CORE_ERROR("{0}", __VA_ARGS__);                                        \
-        }                                                                             \
+        }                                                                                \
     }
 #endif
 
