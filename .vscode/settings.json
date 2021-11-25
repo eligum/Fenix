@@ -5,6 +5,12 @@
     "C_Cpp.errorSquiggles": "Enabled",
     "files.associations": {
         "array": "cpp",
-        "chrono": "cpp"
+        "chrono": "cpp",
+        "istream": "cpp",
+        "bit": "cpp",
+        "fstream": "cpp",
+        "future": "cpp",
+        "system_error": "cpp",
+        "numeric": "cpp"
     }
 }

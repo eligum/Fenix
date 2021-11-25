@@ -17,6 +17,7 @@
 
 #include "scene/scene.hh"
 #include "scene/entity.hh"
+#include "scene/scriptable_entity.hh"
 #include "scene/components.hh"
 
 // ----renderer-------------------------------

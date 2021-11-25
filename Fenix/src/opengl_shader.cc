@@ -68,8 +68,8 @@ namespace fenix {
         if (in)
         {
             in.seekg(0, std::ios::end);
-            std::size_t size = in.tellg();
-            if (size != -1)
+            auto size = in.tellg();
+            if (size != std::streampos(-1))
             {
                 result.resize(size);
                 in.seekg(0, std::ios::beg);

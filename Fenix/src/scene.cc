@@ -7,7 +7,6 @@ namespace fenix {
 
     Scene::Scene()
     {
-        // entt::entity entity = m_Registry.create();
     }
 
     Scene::~Scene()
@@ -19,16 +18,31 @@ namespace fenix {
         Entity entity = { m_Registry.create(), this };
         entity.AddComponent<TransformComponent>();
         auto& tag = entity.AddComponent<TagComponent>();
-        tag.Tag = (name.empty()) ? "Unnamed Entity" : name;
+        tag.Tag = (name.empty()) ? "Undefined" : name;
 
         return entity;
     }
 
     void Scene::OnUpdate(Timestep ts)
     {
+        // Update scripts
+        {
+            m_Registry.view<NativeScriptComponent>().each([=](auto entity, auto& nsc) {
+                // TODO: Move to Scene::OnScenePlay
+                if (nsc.Instance == nullptr)
+                {
+                    nsc.Instance = nsc.InstantiateScript();
+                    nsc.Instance->m_Entity = Entity{ entity, this };
+                    nsc.Instance->OnCreate();
+                }
+
+                nsc.Instance->OnUpdate(ts);
+            });
+        }
+
         // Render sprites
-        Camera* mainCamera = nullptr;
-        glm::mat4* cameraTransform = nullptr;
+        Camera* main_camera = nullptr;
+        glm::mat4* camera_transform = nullptr;
         {
             auto view = m_Registry.view<TransformComponent, CameraComponent>();
             for (auto entity : view)
@@ -37,16 +51,16 @@ namespace fenix {
 
                 if (camera.Primary)
                 {
-                    cameraTransform = &transform.Transform;
-                    mainCamera = &camera.Camera;
+                    camera_transform = &transform.Transform;
+                    main_camera = &camera.Camera;
                     break;
                 }
             }
         }
 
-        if (mainCamera)
+        if (main_camera)
         {
-            Renderer2D::BeginScene(*mainCamera, *cameraTransform);
+            Renderer2D::BeginScene(*main_camera, *camera_transform);
 
             auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
             for (auto entity : group)
@@ -64,15 +78,13 @@ namespace fenix {
         m_ViewportWidth = width;
         m_ViewportHeight = height;
 
-        // Resize non-fixedAspectRatio cameras
+        // Resize non-fixed-aspect-ratio cameras
         auto view = m_Registry.view<CameraComponent>();
         for (auto entity : view)
         {
-            auto& cameraComponent = view.get<CameraComponent>(entity);
-            if (!cameraComponent.FixedAspectRatio)
-            {
-                cameraComponent.Camera.SetViewportSize(width, height);
-            }
+            auto& camera_component = view.get<CameraComponent>(entity);
+            if (!camera_component.FixedAspectRatio)
+                camera_component.Camera.SetViewportSize(width, height);
         }
     }
 

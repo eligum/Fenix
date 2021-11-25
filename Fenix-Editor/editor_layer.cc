@@ -15,6 +15,8 @@ namespace fenix {
 
     void EditorLayer::OnAttach()
     {
+        FENIX_PROFILE_FUNCTION();
+
         m_Texture = Texture2D::Create("assets/textures/checkerboard.jpg");
 
         FramebufferSpecification framebufSpec;
@@ -34,21 +36,34 @@ namespace fenix {
         auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
         cc.Primary = false;
 
-        // class CameraController
-        // {
-        // public:
-        //     void OnCreate()
-        //     {
-        //     }
+        class CameraController : public ScriptableEntity
+        {
+        public:
+            void OnCreate()
+            {
+            }
 
-        //     void OnDestroy()
-        //     {
-        //     }
+            void OnDestroy()
+            {
+            }
 
-        //     void OnUpdate(Timestep ts)
-        //     {
-        //     }
-        // };
+            void OnUpdate(Timestep ts)
+            {
+                auto& transform = GetComponent<TransformComponent>().Transform;
+                constexpr float speed = 5.0f;
+
+                if (Input::IsKeyPressed(Key::A))
+                    transform[3][0] -= speed * ts;
+                if (Input::IsKeyPressed(Key::D))
+                    transform[3][0] += speed * ts;
+                if (Input::IsKeyPressed(Key::W))
+                    transform[3][1] += speed * ts;
+                if (Input::IsKeyPressed(Key::S))
+                    transform[3][1] -= speed * ts;
+            }
+        };
+
+        m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
     }
 
     void EditorLayer::OnDetach()
@@ -58,14 +73,16 @@ namespace fenix {
 
     void EditorLayer::OnUpdate(Timestep ts)
     {
+        FENIX_PROFILE_FUNCTION();
+
         // Resize
         FramebufferSpecification spec = m_Framebuffer->GetSpecification();
         if (m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f // Zero sized framebuffer is invalid
             && (spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
         {
             m_Framebuffer->Resize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
+            m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
             m_ActiveScene->OnViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
-            // m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
         }
 
         // Update
@@ -80,11 +97,10 @@ namespace fenix {
         RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1.0f });
         RenderCommand::Clear();
 
-        // Renderer2D::BeginScene(m_CameraController.GetCamera());
-
         // Update scene
         m_ActiveScene->OnUpdate(ts);
 
+        // Renderer2D::BeginScene(m_CameraController.GetCamera());
         // Stress test
         // for (float y = -5.0f; y <= 5.0f; y += 0.5f)
         // {
@@ -101,6 +117,8 @@ namespace fenix {
 
     void EditorLayer::OnImGuiRender()
     {
+        FENIX_PROFILE_FUNCTION();
+
         static bool dockspaceOpen                 = true;
         static bool opt_fullscreen                = true;
         static bool opt_padding                   = false;
@@ -220,7 +238,7 @@ namespace fenix {
     void EditorLayer::OnEvent(Event& e)
     {
         // FENIX_WARN("Recived event {0}", e.GetName());
-        // m_CameraController.OnEvent(e);
+        m_CameraController.OnEvent(e);
     }
 
 } // namespace fenix
