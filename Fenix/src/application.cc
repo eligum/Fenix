@@ -5,8 +5,8 @@
 
 #include <GLFW/glfw3.h>
 
-static constexpr uint32_t SCREEN_WIDTH = 1600;
-static constexpr uint32_t SCREEN_HEIGHT = 900;
+static constexpr uint32_t SCREEN_WIDTH = 1280;
+static constexpr uint32_t SCREEN_HEIGHT = 720;
 
 namespace fenix {
 
@@ -19,7 +19,7 @@ namespace fenix {
 
         m_Window = std::unique_ptr<Window>(Window::Create({ name, SCREEN_WIDTH, SCREEN_HEIGHT }));
         m_Window->SetEventCallback(FENIX_BIND_EVENT_FN(Application::OnEvent));
-        m_Window->SetVSync(true);
+        m_Window->SetVSync(false);
 
         Renderer::Init();
 
