@@ -9,8 +9,8 @@
             "command": "${workspaceFolder}/gen-project.sh",
             "options": {
                 "env": {
-                    "CC": "/usr/bin/clang",
-                    "CXX": "/usr/bin/clang++"
+                    "CC": "clang",
+                    "CXX": "clang++"
                 }
             },
             "problemMatcher": [],

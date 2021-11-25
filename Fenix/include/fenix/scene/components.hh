@@ -4,6 +4,7 @@
 #include <string>
 
 #include "fenix/scene/scene_camera.hh"
+#include "fenix/scene/scriptable_entity.hh"
 
 namespace fenix {
 
@@ -45,6 +46,22 @@ namespace fenix {
 
         CameraComponent() = default;
         CameraComponent(const CameraComponent&) = default;
+    };
+
+    struct NativeScriptComponent
+    {
+        ScriptableEntity* Instance = nullptr;
+
+        // Function pointers
+        ScriptableEntity* (*InstantiateScript)();
+        void              (*DestroyScript)(NativeScriptComponent*);
+
+        template <typename T>
+        void Bind()
+        {
+            InstantiateScript = []() { return static_cast<ScriptableEntity*>(new T()); };
+            DestroyScript     = [](NativeScriptComponent* self) { delete self->Instance; self->Instance = nullptr; };
+        }
     };
 
 } // namespace fenix

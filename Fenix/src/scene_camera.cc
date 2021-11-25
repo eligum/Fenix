@@ -19,7 +19,7 @@ namespace fenix {
 
     void SceneCamera::SetViewportSize(uint32_t width, uint32_t height)
     {
-        m_AspectRatio = static_cast<float>(width) / static_cast<float>(height);
+        m_AspectRatio = width / static_cast<float>(height);
         RecalculateProjection();
     }
 

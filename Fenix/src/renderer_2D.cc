@@ -130,7 +130,7 @@ namespace fenix {
         if (s_Data.QuadIndexCount == 0)
             return; // Nothing to draw
 
-        uint32_t dataSize = (uint8_t*)s_Data.QuadVBPtr - (uint8_t*)s_Data.QuadVBBase; // Size in bytes
+        uint32_t dataSize = reinterpret_cast<uint8_t*>(s_Data.QuadVBPtr) - reinterpret_cast<uint8_t*>(s_Data.QuadVBBase); // Size in bytes
         s_Data.QuadVB->SetData(s_Data.QuadVBBase, dataSize);
 
         // Bind textures
@@ -274,7 +274,6 @@ namespace fenix {
 
     void Renderer2D::DrawRotatedQuad(const glm::vec3& position, float rotation, const glm::vec2& size, const Ref<Texture2D>& texture, float tiling_factor, const glm::vec4& tint_color)
     {
-
         glm::mat4 transform(1.0f);
         transform = glm::translate(glm::mat4(1.0f), position);
         transform = glm::rotate(transform, rotation, { 0.0f, 0.0f, 1.0f });
