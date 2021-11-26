@@ -11,6 +11,13 @@
         "fstream": "cpp",
         "future": "cpp",
         "system_error": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "type_traits": "cpp",
+        "*.tcc": "cpp",
+        "ostream": "cpp",
+        "sstream": "cpp",
+        "streambuf": "cpp",
+        "functional": "cpp",
+        "regex": "cpp"
     }
 }

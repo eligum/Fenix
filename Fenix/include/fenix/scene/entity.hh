@@ -41,6 +41,7 @@ namespace fenix {
                 return m_Scene->m_Registry.remove<T>(m_EntityHandle);
             }
 
+        // operator bool() const { return m_Scene->m_Registry.valid(m_EntityHandle); }
         operator bool() const { return m_EntityHandle != entt::null; }
         operator entt::entity() const { return m_EntityHandle; }
         operator uint32_t() const { return static_cast<uint32_t>(m_EntityHandle); }
@@ -52,7 +53,7 @@ namespace fenix {
 
         bool operator!=(const Entity& other) const
             {
-                return !(*this == other);
+                return !operator==(other);
             }
 
     private:

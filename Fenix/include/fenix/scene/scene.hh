@@ -23,6 +23,7 @@ namespace fenix {
         uint32_t m_ViewportHeight = 0, m_ViewportWidth = 0;
 
         friend class Entity;
+        friend class SceneHierarchyPanel;
     };
 
 } // namespace fenix

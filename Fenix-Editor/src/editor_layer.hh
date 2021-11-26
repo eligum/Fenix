@@ -1,6 +1,7 @@
 #pragma once
 
 #include <fenix/fenix.hh>
+#include "panels/scene_hierarchy_panel.hh"
 
 namespace fenix {
 
@@ -33,9 +34,13 @@ namespace fenix {
         bool m_PrimaryCamera = true;
 
         glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
-        bool m_ViewportFocused = false, m_ViewportHovered = false;
+        bool m_ViewportFocused = false;
+        bool m_ViewportHovered = false;
 
         glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
+
+        // Panels
+        SceneHierarchyPanel m_SceneHierarchyPanel;
     };
 
 } // namespace fenix
