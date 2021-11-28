@@ -23,6 +23,11 @@ namespace fenix {
         return entity;
     }
 
+    void Scene::DestroyEntity(Entity entity)
+    {
+        m_Registry.destroy(entity);
+    }
+
     void Scene::OnUpdate(Timestep ts)
     {
         // Update scripts
@@ -86,6 +91,38 @@ namespace fenix {
             if (!camera_component.FixedAspectRatio)
                 camera_component.Camera.SetViewportSize(width, height);
         }
+    }
+
+    template <typename T>
+    void Scene::OnComponentAddition(Entity entity, T& component)
+    {
+        // static_assert(false);
+    }
+
+    template<>
+    void Scene::OnComponentAddition<TagComponent>(Entity entity, TagComponent& component)
+    {
+    }
+
+    template<>
+    void Scene::OnComponentAddition<TransformComponent>(Entity entity, TransformComponent& component)
+    {
+    }
+
+    template<>
+    void Scene::OnComponentAddition<CameraComponent>(Entity entity, CameraComponent& component)
+    {
+        component.Camera.SetViewportSize(m_ViewportWidth, m_ViewportWidth);
+    }
+
+    template<>
+    void Scene::OnComponentAddition<SpriteRendererComponent>(Entity entity, SpriteRendererComponent& component)
+    {
+    }
+
+    template<>
+    void Scene::OnComponentAddition<NativeScriptComponent>(Entity entity, NativeScriptComponent& component)
+    {
     }
 
 } // namespace fenix
