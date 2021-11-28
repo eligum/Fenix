@@ -2,6 +2,9 @@ option(GLFW_BUILD_DOCS OFF)
 option(GLFW_BUILD_EXAMPLE OFF)
 option(GLFW_BUILD_TESTS OFF)
 option(GLFW_INSTALL OFF)
+option(YAML_BUILD_SHARED_LIBS OFF)
+
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 add_subdirectory(glfw)
 add_subdirectory(glad)
@@ -9,8 +12,10 @@ add_subdirectory(glm)
 add_subdirectory(stb)
 add_subdirectory(spdlog)
 add_subdirectory(entt)
+add_subdirectory(yaml-cpp)
 
-set_property(TARGET spdlog PROPERTY POSITION_INDEPENDENT_CODE ON)
+# set_property(TARGET spdlog PROPERTY POSITION_INDEPENDENT_CODE ON)
+# set_property(TARGET yaml-cpp PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 # ImGui
 add_library(ImGui STATIC)
@@ -21,10 +26,7 @@ target_sources(
   PRIVATE imgui/backends/imgui_impl_opengl3.cpp
           imgui/backends/imgui_impl_glfw.cpp)
 
-target_link_libraries(
-    ImGui
-    PRIVATE glfw
-)
+target_link_libraries(ImGui PRIVATE glfw)
 
 target_include_directories(
   ImGui
@@ -44,4 +46,5 @@ target_link_libraries(
             stb
             spdlog
             ImGui
-            entt)
+            entt
+            yaml-cpp)

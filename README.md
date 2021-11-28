@@ -11,14 +11,14 @@ This project uses [CMake](https://cmake.org/) to generate build files, version *
 
 Start by cloning the repository with:
 
-```console
+```sh
 git clone --recursive https://github.com/eligum/Fenix.git
 ```
 If you forgot to clone it recursively, use `git submodule update --init` to clone the necesserary submodules.
 
 Next you can manually generate the build files with the following commands:
 
-```console
+```sh
 cd Fenix
 mkdir build
 cmake -S . -B build -DWARNINGS_AS_ERRORS=FALSE -DCMAKE_BUILD_TYPE=Debug
@@ -28,7 +28,7 @@ Or use the provided script `gen-project.sh`, which by default sets the build typ
 
 <ins>**2. Configuring the dependencies:**</ins>
 
-All the project dependencies are included as submodules.
+All the project dependencies are included as submodules. All you need is an OpenGL capable GPU.
 
 ---
 
