@@ -4,6 +4,7 @@
 #include <imgui.h>
 #include <glm/gtc/type_ptr.hpp>
 #include <iostream>
+#include <filesystem>
 
 static constexpr float ASPECT_RATIO = 16.0f / 9.0f;
 
@@ -25,7 +26,7 @@ namespace fenix {
         m_Framebuffer = Framebuffer::Create(framebufSpec);
 
         m_ActiveScene = CreateRef<Scene>();
-
+#if 0
         m_SquareEntity = m_ActiveScene->CreateEntity("green_square");
         m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
 
@@ -39,36 +40,37 @@ namespace fenix {
         auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
         cc.Primary = false;
 
-        // class CameraController : public ScriptableEntity
-        // {
-        // public:
-        //     void OnCreate()
-        //     {
-        //     }
+        class CameraController : public ScriptableEntity
+        {
+        public:
+            void OnCreate()
+            {
+            }
 
-        //     void OnDestroy()
-        //     {
-        //     }
+            void OnDestroy()
+            {
+            }
 
-        //     void OnUpdate(Timestep ts)
-        //     {
-        //         auto& translation = GetComponent<TransformComponent>().Translation;
-        //         constexpr float speed = 5.0f;
+            void OnUpdate(Timestep ts)
+            {
+                auto& translation = GetComponent<TransformComponent>().Translation;
+                constexpr float speed = 5.0f;
 
-        //         if (Input::IsKeyPressed(Key::A))
-        //             translation.x -= speed * ts;
-        //         if (Input::IsKeyPressed(Key::D))
-        //             translation.x += speed * ts;
-        //         if (Input::IsKeyPressed(Key::W))
-        //             translation.y += speed * ts;
-        //         if (Input::IsKeyPressed(Key::S))
-        //             translation.y -= speed * ts;
-        //     }
-        // };
+                if (Input::IsKeyPressed(Key::A))
+                    translation.x -= speed * ts;
+                if (Input::IsKeyPressed(Key::D))
+                    translation.x += speed * ts;
+                if (Input::IsKeyPressed(Key::W))
+                    translation.y += speed * ts;
+                if (Input::IsKeyPressed(Key::S))
+                    translation.y -= speed * ts;
+            }
+        };
 
-        // m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
-
+        m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+#endif
         m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+
     }
 
     void EditorLayer::OnDetach()
@@ -190,6 +192,20 @@ namespace fenix {
                 ImGui::MenuItem("Padding", NULL, &opt_padding);
                 ImGui::Separator();
 
+                if (ImGui::MenuItem("Serialize"))
+                {
+                    SceneSerializer serializer {m_ActiveScene};
+                    std::filesystem::create_directories("assets/scenes");
+                    serializer.Serialize("assets/scenes/scene_01.yml");
+                }
+                if (ImGui::MenuItem("Deserialize"))
+                {
+                    SceneSerializer serializer {m_ActiveScene};
+                    std::filesystem::create_directories("assets/scenes");
+                    serializer.Deserialize("assets/scenes/scene_01.yml");
+                }
+
+                ImGui::Separator();
                 if (ImGui::MenuItem("Exit")) { Application::GetApp().Close(); }
                 ImGui::EndMenu();
             }

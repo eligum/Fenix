@@ -19,6 +19,7 @@
         "streambuf": "cpp",
         "functional": "cpp",
         "regex": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "iosfwd": "cpp"
     }
 }
