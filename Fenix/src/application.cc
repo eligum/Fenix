@@ -19,7 +19,7 @@ namespace fenix {
 
         m_Window = std::unique_ptr<Window>(Window::Create({ name, SCREEN_WIDTH, SCREEN_HEIGHT }));
         m_Window->SetEventCallback(FENIX_BIND_EVENT_FN(Application::OnEvent));
-        m_Window->SetVSync(true);
+        m_Window->SetVSync(false);
 
         Renderer::Init();
 

@@ -26,8 +26,11 @@ namespace fenix {
 
         m_ActiveScene = CreateRef<Scene>();
 
-        m_SquareEntity = m_ActiveScene->CreateEntity("Square");
+        m_SquareEntity = m_ActiveScene->CreateEntity("green_square");
         m_SquareEntity.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+
+        auto red_square = m_ActiveScene->CreateEntity("red_square");
+        red_square.AddComponent<SpriteRendererComponent>(glm::vec4{ 1.0f, 0.0f, 0.0f, 1.0f });
 
         m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity A");
         m_CameraEntity.AddComponent<CameraComponent>();
@@ -36,34 +39,36 @@ namespace fenix {
         auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
         cc.Primary = false;
 
-        class CameraController : public ScriptableEntity
-        {
-        public:
-            void OnCreate()
-            {
-            }
+        // class CameraController : public ScriptableEntity
+        // {
+        // public:
+        //     void OnCreate()
+        //     {
+        //     }
 
-            void OnDestroy()
-            {
-            }
+        //     void OnDestroy()
+        //     {
+        //     }
 
-            void OnUpdate(Timestep ts)
-            {
-                auto& transform = GetComponent<TransformComponent>().Transform;
-                constexpr float speed = 5.0f;
+        //     void OnUpdate(Timestep ts)
+        //     {
+        //         auto& translation = GetComponent<TransformComponent>().Translation;
+        //         constexpr float speed = 5.0f;
 
-                if (Input::IsKeyPressed(Key::A))
-                    transform[3][0] -= speed * ts;
-                if (Input::IsKeyPressed(Key::D))
-                    transform[3][0] += speed * ts;
-                if (Input::IsKeyPressed(Key::W))
-                    transform[3][1] += speed * ts;
-                if (Input::IsKeyPressed(Key::S))
-                    transform[3][1] -= speed * ts;
-            }
-        };
+        //         if (Input::IsKeyPressed(Key::A))
+        //             translation.x -= speed * ts;
+        //         if (Input::IsKeyPressed(Key::D))
+        //             translation.x += speed * ts;
+        //         if (Input::IsKeyPressed(Key::W))
+        //             translation.y += speed * ts;
+        //         if (Input::IsKeyPressed(Key::S))
+        //             translation.y -= speed * ts;
+        //     }
+        // };
 
-        m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+        // m_CameraEntity.AddComponent<NativeScriptComponent>().Bind<CameraController>();
+
+        m_SceneHierarchyPanel.SetContext(m_ActiveScene);
     }
 
     void EditorLayer::OnDetach()
@@ -164,11 +169,16 @@ namespace fenix {
 
         // DockSpace
         ImGuiIO& io = ImGui::GetIO();
+        ImGuiStyle& style = ImGui::GetStyle();
+        float min_win_size = style.WindowMinSize.x;
+        style.WindowMinSize.x = 385.0f;
         if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
         {
             ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
             ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
         }
+
+        style.WindowMinSize.x = min_win_size;
 
         if (ImGui::BeginMenuBar())
         {
@@ -187,32 +197,17 @@ namespace fenix {
             ImGui::EndMenuBar();
         }
 
-        ImGui::Begin("Settings");
+        // Scene Hierarchy panel
+        m_SceneHierarchyPanel.OnImGuiRender();
+
+        ImGui::Begin("2D Renderer Stats");
 
         auto stats = Renderer2D::GetStats();
-        ImGui::Text("Renderer2D Stats:");
         ImGui::Text("Draw calls: %d", stats.DrawCalls);
         ImGui::Text("Quads: %d", stats.QuadCount);
         ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
         ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
         ImGui::Text("FPS: %d", m_FPS);
-
-        // EnTT
-        if (m_SquareEntity)
-        {
-            ImGui::Separator();
-            ImGui::Text("%s", m_SquareEntity.GetComponent<TagComponent>().Tag.c_str());
-
-            auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
-            ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
-            ImGui::Separator();
-        }
-
-        if (ImGui::Checkbox("Camera A", &m_PrimaryCamera))
-        {
-            m_CameraEntity.GetComponent<CameraComponent>().Primary = m_PrimaryCamera;
-            m_SecondCamera.GetComponent<CameraComponent>().Primary = !m_PrimaryCamera;
-        }
 
         ImGui::End();
 
@@ -232,7 +227,7 @@ namespace fenix {
         ImGui::End();
         ImGui::PopStyleVar();
 
-        ImGui::End();
+        ImGui::End(); // End dockspace
     }
 
     void EditorLayer::OnEvent(Event& e)

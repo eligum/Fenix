@@ -64,7 +64,7 @@ namespace fenix {
                                   element.Normalize ? GL_TRUE : GL_FALSE,
                                   layout.GetStride(),
                                   reinterpret_cast<const void*>(element.Offset));
-            index++;
+            ++index;
         }
         m_VertexBuffers.push_back(vertexBuffer);
     }
