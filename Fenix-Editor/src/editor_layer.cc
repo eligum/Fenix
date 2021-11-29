@@ -1,5 +1,6 @@
 #include "editor_layer.hh"
 #include <fenix/util/instrumentor.hh>
+#include <fenix/util/platform_utils.hh>
 
 #include <imgui.h>
 #include <glm/gtc/type_ptr.hpp>
@@ -192,21 +193,26 @@ namespace fenix {
                 ImGui::MenuItem("Padding", NULL, &opt_padding);
                 ImGui::Separator();
 
-                if (ImGui::MenuItem("Serialize"))
-                {
-                    SceneSerializer serializer {m_ActiveScene};
-                    std::filesystem::create_directories("assets/scenes");
-                    serializer.Serialize("assets/scenes/scene_01.yml");
-                }
-                if (ImGui::MenuItem("Deserialize"))
-                {
-                    SceneSerializer serializer {m_ActiveScene};
-                    std::filesystem::create_directories("assets/scenes");
-                    serializer.Deserialize("assets/scenes/scene_01.yml");
-                }
+                if (ImGui::MenuItem("New", "Ctrl+N"))
+                    NewScene();
+
+                if (ImGui::MenuItem("Open...", "Ctrl+O"))
+                    OpenScene();
+
+                if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S"))
+                    SaveSceneAs();
+
+                // if (ImGui::MenuItem("Save", "Ctrl+S"))
+                // {
+                //     std::filesystem::create_directories("assets/scenes");
+                //     std::string file_path = FileDialog::SaveFile("Fenix Scene (*.fenix)\0*.fenix\0");
+                // }
 
                 ImGui::Separator();
-                if (ImGui::MenuItem("Exit")) { Application::GetApp().Close(); }
+                if (ImGui::MenuItem("Exit")) {
+                    Application::GetApp().Close();
+                }
+
                 ImGui::EndMenu();
             }
 
@@ -250,6 +256,70 @@ namespace fenix {
     {
         // FENIX_WARN("Recived event {0}", e.GetName());
         m_CameraController.OnEvent(e);
+
+        EventDispatcher dispatcher {e};
+        dispatcher.Dispatch<KeyPressedEvent>(FENIX_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
+    }
+
+    bool EditorLayer::OnKeyPressed(KeyPressedEvent& e)
+    {
+        // Shortcuts
+        if (e.GetRepeatCount() > 0)
+            return false;
+
+        bool control = Input::IsKeyPressed(key::LeftControl) || Input::IsKeyPressed(key::RightControl);
+        bool shift = Input::IsKeyPressed(key::LeftShift) || Input::IsKeyPressed(key::RightShift);
+        switch (e.GetKeyCode())
+        {
+            case key::N: {
+                if (control)
+                    NewScene();
+                break;
+            }
+            case key::O: {
+                if (control)
+                    OpenScene();
+                break;
+            }
+            case key::S: {
+                if (control && shift)
+                    SaveSceneAs();
+                break;
+            }
+        }
+
+        return true;
+    }
+
+    void EditorLayer::NewScene()
+    {
+        m_ActiveScene = CreateRef<Scene>();
+        m_ActiveScene->OnViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
+        m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+    }
+
+    void EditorLayer::OpenScene()
+    {
+        std::string file_path = FileDialog::OpenFile("Fenix Scene (*.fenix)\0*.fenix\0");
+        if (!file_path.empty())
+        {
+            m_ActiveScene = CreateRef<Scene>();
+            m_ActiveScene->OnViewportResize(static_cast<uint32_t>(m_ViewportSize.x), static_cast<uint32_t>(m_ViewportSize.y));
+            m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+
+            SceneSerializer serializer {m_ActiveScene};
+            serializer.Deserialize(file_path);
+        }
+    }
+
+    void EditorLayer::SaveSceneAs()
+    {
+        std::string file_path = FileDialog::SaveFile("Fenix Scene (*.fenix)\0*.fenix\0");
+        if (!file_path.empty())
+        {
+            SceneSerializer serializer {m_ActiveScene};
+            serializer.Serialize(file_path);
+        }
     }
 
 } // namespace fenix

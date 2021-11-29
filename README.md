@@ -28,7 +28,7 @@ Or use the provided script `gen-project.sh`, which by default sets the build typ
 
 <ins>**2. Configuring the dependencies:**</ins>
 
-All the project dependencies are included as submodules. All you need is an OpenGL capable GPU.
+All the project dependencies are included as submodules. All you need is an OpenGL capable GPU. If you are on Linux gtk-3 is needed for file dialogs.
 
 ---
 

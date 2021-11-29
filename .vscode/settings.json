@@ -4,6 +4,7 @@
     "clang-tidy.buildPath": "build",
     "C_Cpp.errorSquiggles": "Enabled",
     "files.associations": {
+        "*.fenix": "yaml",
         "array": "cpp",
         "chrono": "cpp",
         "istream": "cpp",

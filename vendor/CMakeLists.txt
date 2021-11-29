@@ -13,6 +13,7 @@ add_subdirectory(stb)
 add_subdirectory(spdlog)
 add_subdirectory(entt)
 add_subdirectory(yaml-cpp)
+add_subdirectory(nfd-e)
 
 # set_property(TARGET spdlog PROPERTY POSITION_INDEPENDENT_CODE ON)
 # set_property(TARGET yaml-cpp PROPERTY POSITION_INDEPENDENT_CODE ON)
@@ -47,4 +48,5 @@ target_link_libraries(
             spdlog
             ImGui
             entt
-            yaml-cpp)
+            yaml-cpp
+            nfd)

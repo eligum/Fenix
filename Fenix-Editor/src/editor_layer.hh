@@ -19,6 +19,12 @@ namespace fenix {
         void OnImGuiRender() override;
 
     private:
+        bool OnKeyPressed(KeyPressedEvent& e);
+        void NewScene();
+        void OpenScene();
+        void SaveSceneAs();
+
+    private:
         OrthographicCameraController m_CameraController;
 
         Ref<VertexArray> m_SquareVA;
@@ -31,7 +37,6 @@ namespace fenix {
         Entity m_CameraEntity;
         Entity m_SecondCamera;
 
-        // glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
         bool m_ViewportFocused = false;
         bool m_ViewportHovered = false;
 

@@ -11,32 +11,32 @@ namespace fenix {
 
     void OrthographicCameraController::OnUpdate(Timestep ts)
     {
-        if (Input::IsKeyPressed(Key::A))
+        if (Input::IsKeyPressed(key::A))
         {
             m_CameraPosition.x -= glm::cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
             m_CameraPosition.y -= glm::sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
         }
-        else if (Input::IsKeyPressed(Key::D))
+        else if (Input::IsKeyPressed(key::D))
         {
             m_CameraPosition.x += glm::cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
             m_CameraPosition.y += glm::sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
         }
 
-        if (Input::IsKeyPressed(Key::W))
+        if (Input::IsKeyPressed(key::W))
         {
             m_CameraPosition.x += -glm::sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
             m_CameraPosition.y += glm::cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
         }
-        else if (Input::IsKeyPressed(Key::S))
+        else if (Input::IsKeyPressed(key::S))
         {
             m_CameraPosition.x -= -glm::sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
             m_CameraPosition.y -= glm::cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
         }
         if (m_Rotation)
         {
-            if (Input::IsKeyPressed(Key::Q))
+            if (Input::IsKeyPressed(key::Q))
                 m_CameraRotation += m_CameraRotationSpeed * ts;
-            else if (Input::IsKeyPressed(Key::E))
+            else if (Input::IsKeyPressed(key::E))
                 m_CameraRotation -= m_CameraRotationSpeed * ts;
 
             if (m_CameraRotation > 180.0f)

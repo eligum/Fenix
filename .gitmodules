@@ -14,3 +14,6 @@
 [submodule "vendor/yaml-cpp"]
 	path = vendor/yaml-cpp
 	url = https://github.com/jbeder/yaml-cpp.git
+[submodule "vendor/NFD-ext"]
+	path = vendor/nfd-e
+	url = https://github.com/btzy/nativefiledialog-extended.git

@@ -6,7 +6,7 @@ namespace fenix
 {
     using KeyCode = uint16_t;
 
-    namespace Key
+    namespace key
     {
         enum : KeyCode
         {
