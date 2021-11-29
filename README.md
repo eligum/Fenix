@@ -37,6 +37,11 @@ All the project dependencies are included as submodules. All you need is an Open
 - ECS-driven scene components
 - Settings, properties and view panels
 
+## Bugs
+- Opening a scene mulitiple times does not remove old entites from the scene hierarchy panel
+- Adding the same component to an entity makes the program crash
+- Deselecting an entity also clears the properties panel (maybe feature)
+
 ## Short term goals
 *Note: this is subject to change at any time!*
 
