@@ -21,3 +21,4 @@ fenix_editor
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
+!.vscode/fenix.code-snippets
