@@ -50,7 +50,6 @@ BraceWrapping:
 
 BreakAfterJavaFieldAnnotations: true
 BreakBeforeBinaryOperators: NonAssignment
-BreakBeforeBraces: Custom
 BreakBeforeInheritanceComma: true
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeColon
@@ -79,18 +78,12 @@ IncludeCategories:
     Regex: .*
 IncludeIsMainRegex: (Test)?$
 IndentCaseLabels: true
-IndentWidth: 4
 IndentWrappedFunctionNames: true
-JavaScriptQuotes: Leave
-JavaScriptWrapImports: true
 KeepEmptyLinesAtTheStartOfBlocks: true
 MacroBlockBegin: ''
 MacroBlockEnd: ''
 MaxEmptyLinesToKeep: 3
 NamespaceIndentation: All
-ObjCBlockIndentWidth: 7
-ObjCSpaceAfterProperty: true
-ObjCSpaceBeforeProtocolList: false
 PointerAlignment: Left
 ReflowComments: true
 SortIncludes: false
