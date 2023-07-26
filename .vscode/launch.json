@@ -5,6 +5,16 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "(lldb) Launch",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/bin/Debug/fenix_editor",
+            "args": [],
+            "cwd": "${workspaceFolder}/Fenix-Editor",
+            "console": "integratedTerminal",
+            "preLaunchTask": "Fenix: Build project (cmake)"
+        },
+        {
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
@@ -22,7 +32,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "(cmake) C++ - build project"
+            "preLaunchTask": "Fenix: Build project (cmake)"
         }
     ]
 }
